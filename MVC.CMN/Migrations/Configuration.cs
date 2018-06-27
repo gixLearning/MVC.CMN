@@ -1,6 +1,7 @@
 using Microsoft.AspNet.Identity;
 using MVC.CMN.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 
@@ -40,6 +41,31 @@ namespace MVC.CMN.Migrations {
                 context.Users.AddOrUpdate(x => x.UserName, admin);
                 context.SaveChanges();
             }
+
+            var users = new List<ApplicationUser> {
+                new ApplicationUser() {
+                    UserName = "a@b.com",
+                    PasswordHash = passwordHasher.HashPassword("Password@1"),
+                    PhoneNumber = "12345678911",
+                    Email = "a@b.com",
+                    SecurityStamp = Guid.NewGuid().ToString()
+                },
+                new ApplicationUser() {
+                    UserName = "b@c.com",
+                    PasswordHash = passwordHasher.HashPassword("Password@2"),
+                    PhoneNumber = "12345678911",
+                    Email = "b@c.com",
+                    SecurityStamp = Guid.NewGuid().ToString()
+                },
+                new ApplicationUser() {
+                    UserName = "c@d.com",
+                    PasswordHash = passwordHasher.HashPassword("Password@3"),
+                    PhoneNumber = "12345678911",
+                    Email = "c@d.com",
+                    SecurityStamp = Guid.NewGuid().ToString()
+                }
+            };
+            users.ForEach(s => context.Users.AddOrUpdate(x => x.UserName, s));
         }
     }
 }
