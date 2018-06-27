@@ -16,9 +16,23 @@
     white-space: normal;
 }
 
+
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
 }
+
+
+nav ul li a, nav ul li a:visited {
+    color: lightgray ;
+    text-decoration: none;
+}
+
+    nav ul li a:hover, nav ul li a:active {
+        color: white;
+        text-decoration: none;
+    }
+

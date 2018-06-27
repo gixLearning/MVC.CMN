@@ -2,9 +2,154 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="d-flex flex-row">
-    <p>This is a flex row</p>
+@*<div class="d-flex flex-row">
+        <p>This is a flex row</p>
+    </div>
+    <div class="d-flex flex-row">
+        <p>This is a flex row2</p>
+    </div>*@
+
+
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- Indicators -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- The slideshow -->
+    <div class="carousel-inner">
+        <div class="center-block carousel-item active">
+            <span>Stuff 1</span>
+        </div>
+        <div class="center-block carousel-item">
+            <span>Stuff 2</span>
+        </div>
+        <div class="center-block carousel-item">
+            <span>Stuff 3</span>
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
 </div>
-<div class="d-flex flex-row">
-    <p>This is a flex row</p>
+
+
+
+
+
+
+
+
+
+<div class="d-flex">
+    <div class="col-md-9 col-lg-9" id="newsfeed">
+
+        <div class="border border-secondary p-2 m-2 rounded" id="Entry1">
+            <p>
+                <h2>
+                    The hottest titles this summer!
+                </h2>
+            </p>
+            <p class="small">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec lacinia sapien. Vivamus posuere, enim id ornare tristique, nibh velit pretium odio, eu consectetur nisi leo sed nulla.
+                Donec sodales felis nec nibh tincidunt, eu suscipit ex feugiat. Etiam rutrum odio ac urna pharetra varius. Cras id justo ex. Proin eget auctor mi. Quisque sagittis nec ex et finibus.
+                Aliquam tellus felis, semper vel libero quis, iaculis dictum erat. Mauris ac magna fringilla, pulvinar orci eu, laoreet nisi.
+            </p>
+            <p class="small">
+                Morbi ac neque eu sapien bibendum elementum ac finibus ipsum. Aliquam et dapibus ante, nec sollicitudin sapien. Aliquam erat volutpat. Ut ultricies feugiat erat quis tincidunt.
+                Vestibulum vel dolor metus. Maecenas ac elit sit amet libero gravida sagittis id a tortor. Vivamus tristique enim eget ultricies malesuada.
+                Vestibulum ut felis sit amet libero fringilla tincidunt. Mauris commodo nisi elit, nec ultricies tortor ultricies ut. Suspendisse interdum dolor consequat ornare iaculis. In a placerat libero.
+            </p>
+
+        </div>
+
+        <div class="border border-secondary p-2 m-2 rounded" id="Entry2">
+            <p>
+                <h2>
+                    Ball-shaped blocks? Minecraft's latest development will outrage the fans!
+                </h2>
+            </p>
+
+            <p class="small">
+                Curabitur ac aliquam nisl, nec dictum ipsum. Donec ac sodales mauris. Vestibulum posuere nunc ut imperdiet congue. Donec libero justo, facilisis a ultricies eu, rutrum at neque.
+                Integer mattis nisl sit amet sapien tempor facilisis. Cras nec dolor convallis arcu placerat ornare. Phasellus ultricies massa est, id pretium elit volutpat in. Nulla id lobortis nulla.
+                Nam lobortis tristique ligula. Aliquam erat volutpat.
+            </p>
+
+        </div>
+
+        <div class="border border-secondary p-2 m-2 rounded" id="Entry3">
+            <p>
+                <h2>
+                    Is Pong coming back?
+                </h2>
+            </p>
+
+            <p class="small">
+                Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer mollis, erat quis semper feugiat, enim metus porta augue, dictum placerat magna magna at ex. In hendrerit dapibus felis.
+                Nulla posuere felis felis, quis vestibulum massa tempor at. Nam scelerisque vitae nulla mattis accumsan. Proin nec purus ut ipsum bibendum facilisis.
+                Etiam maximus ipsum vel eros porta venenatis ut sed est.
+            </p>
+
+        </div>
+
+        <div class="border border-secondary p-2 m-2 rounded" id="Entry4">
+            <p>
+                <h2>
+                    EA refuses comments on allegations of insider trading, cannibalism
+                </h2>
+            </p>
+
+            <p class="small">
+                Fusce pulvinar nisi eu velit consectetur, eget pellentesque felis tempus. Morbi pellentesque nisl non vehicula dictum.
+                Fusce varius, leo ac blandit tincidunt, erat risus blandit risus, sit amet bibendum erat enim at elit. Phasellus volutpat ligula leo, sit amet lacinia odio facilisis placerat.
+                Nulla vehicula ultricies varius. Cras vel sapien at leo ullamcorper semper efficitur sit amet ligula. Vestibulum mi dolor, cursus sit amet eleifend ut, pellentesque a lectus.
+            </p>
+
+        </div>
+
+        @Html.Partial("_Newsitem1")
+
+
+
+
+    </div>
+
+
+
+
+
+    <div class="col-md-3 col-lg-3" id="sidebar">
+
+        <div class="border border-secondary p-2 m-2 rounded" id="Notice1">
+            <p>
+                <h2>
+                    We can put some cool stuff here.
+                </h2>
+            </p>
+
+            <p class="small">
+                Integer sit amet ligula nec nibh tristique ultrices sed non tellus. Nunc sollicitudin, dui ut tincidunt ultrices, justo odio viverra elit, a hendrerit libero turpis eget risus.
+                Integer imperdiet dignissim scelerisque. Nullam at lectus eget dolor venenatis blandit. Proin condimentum odio vel hendrerit posuere. Nunc luctus est a varius fermentum.
+                Praesent eu placerat tellus, a pharetra risus. Suspendisse vitae laoreet purus. Suspendisse pulvinar dolor tellus, vel posuere arcu hendrerit at.
+                Donec a nunc porttitor, varius tellus ut, auctor metus. Vestibulum rhoncus facilisis interdum. Nunc a neque eu purus condimentum vehicula maximus vel enim.
+                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec pellentesque sodales tortor quis feugiat.
+                Fusce egestas, tortor eu blandit pretium, justo sapien tempus leo, convallis dapibus lorem lectus in est.
+            </p>
+
+        </div>
+
+
+    </div>
 </div>
+
+
