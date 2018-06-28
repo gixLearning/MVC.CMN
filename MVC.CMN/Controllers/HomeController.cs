@@ -21,5 +21,13 @@ namespace MVC.CMN.Controllers {
 
             return View();
         }
+
+
+        public ActionResult MessageBoard() {
+
+
+            return View();
+        }
+
     }
 }
