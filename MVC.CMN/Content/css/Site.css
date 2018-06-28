@@ -16,7 +16,9 @@
     white-space: normal;
 }
 
-
+#indexcarousel {
+    height: 100px;
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 input,
