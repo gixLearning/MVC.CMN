@@ -1,0 +1,18 @@
+﻿@model  MVC.CMN.Models.Newsitem
+
+<div class="border border-@Model.Colorstyle p-2 m-2 rounded btn-@Model.Colorstyle" id="@Model.Id">
+    <p>
+        <h2>
+            @Model.Title
+        </h2>
+    </p>
+
+    <p class="small">
+        @Model.Content
+    </p>
+
+    <p class="text-right small">Written by @Model.Author on @Model.Datestamp</p>
+
+
+</div>
+

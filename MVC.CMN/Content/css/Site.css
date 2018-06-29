@@ -1,6 +1,9 @@
 ﻿body {
     padding-top: 70px;
     padding-bottom: 20px;
+    background-image: url("../Images/water-management-systems.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -15,6 +18,14 @@
 .dl-horizontal dt {
     white-space: normal;
 }
+
+.carousel-item.active,
+.carousel-item-next,
+.carousel-item-prev{
+    display:block;
+    
+}
+
 
 #indexcarousel {
     height: 100px;
@@ -38,3 +49,14 @@ nav ul li a, nav ul li a:visited {
         text-decoration: none;
     }
 
+.panel-transparent {
+    background: rgba(0, 148, 255, 0.2);
+}
+
+    .panel-transparent .panel-heading {
+        background: none;
+    }
+
+    .panel-transparent .panel-body {
+        background: none;
+    }

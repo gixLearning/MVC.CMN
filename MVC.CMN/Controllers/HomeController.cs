@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVC.CMN.Models;
 
 namespace MVC.CMN.Controllers {
     public class HomeController : Controller {
@@ -27,6 +28,14 @@ namespace MVC.CMN.Controllers {
 
 
             return View();
+        }
+
+        public ActionResult DynamicNewsitem(int id)
+        {
+
+            Newsitem model = StaticData.NewsBase.Find(x => x.Id == id);
+
+            return PartialView("_DynamicNewsitem", model);
         }
 
     }
