@@ -9,17 +9,13 @@
 
 <div class="d-flex">
 
-    <table class="col-12">
+    <table class="col-12 table-hover">
 
         @{
             foreach (var board in Model)
             {
-                <tr>
-                    <td>
                         @Html.Partial("_BoardCell", board)
 
-                    </td>
-                </tr>
             }
         }
 

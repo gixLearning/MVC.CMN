@@ -47,5 +47,16 @@ public ActionResult ShowBoard(string id)
             return View("SingleBoard", StaticData.Boards.Find(x => x.Id == Convert.ToInt32(id)));
         }
 
+
+        public ActionResult ShowThread(string id)
+        {
+
+
+
+            return View("SingleThread", StaticData.Threads.Find(x => x.Id == Convert.ToInt32(id)));
+        }
+
+
+
     }
 }

@@ -1,0 +1,27 @@
+﻿@model MVC.CMN.Models.Threaditem
+
+@{
+    ViewBag.Title = "SingleThread";
+}
+
+<h2>SingleBoard</h2>
+
+<h2>@Model.Title    </h2>
+
+
+
+<div class="d-flex">
+
+    <table class="col-12 table-hover">
+
+        @{
+            foreach (var post in Model.Posts)
+            {
+
+                        @Html.Partial("_PostCell", post)
+
+            }
+        }
+
+    </table>
+</div>

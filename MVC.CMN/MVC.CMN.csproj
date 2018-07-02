@@ -269,6 +269,9 @@
     <Content Include="Views\Shared\_DynamicNewsitem.cshtml" />
     <Content Include="Views\Shared\_BoardCell.cshtml" />
     <Content Include="Views\Home\SingleBoard.cshtml" />
+    <Content Include="Views\Shared\_ThreadCell.cshtml" />
+    <Content Include="Views\Home\SingleThread.cshtml" />
+    <Content Include="Views\Shared\_PostCell.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

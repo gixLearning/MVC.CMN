@@ -13,20 +13,18 @@
 
 <div class="d-flex">
 
-    <table class="col-12">
+    <table class="col-12 table-hover">
 
         @{
             foreach (var thread in Model.Threads)
             {
-                <tr>
-                    <td>
+                
+                    
 
-                        @thread.Title;
+                        @Html.Partial("_ThreadCell", thread)
 
-                        @*@Html.Partial("_BoardCell", thread)*@
-
-                    </td>
-                </tr>
+                    
+                
             }
         }
 
