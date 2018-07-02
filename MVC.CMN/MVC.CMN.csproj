@@ -159,8 +159,11 @@
       <DependentUpon>201806251009238_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Boarditem.cs" />
     <Compile Include="Models\Newsitem.cs" />
+    <Compile Include="Models\Postitem.cs" />
     <Compile Include="Models\StaticData.cs" />
+    <Compile Include="Models\Threaditem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -264,6 +267,8 @@
     <Content Include="Scripts\popper\popper-utils.js.map" />
     <Content Include="Views\Home\MessageBoard.cshtml" />
     <Content Include="Views\Shared\_DynamicNewsitem.cshtml" />
+    <Content Include="Views\Shared\_BoardCell.cshtml" />
+    <Content Include="Views\Home\SingleBoard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

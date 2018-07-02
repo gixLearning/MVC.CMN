@@ -27,7 +27,7 @@ namespace MVC.CMN.Controllers {
         public ActionResult MessageBoard() {
 
 
-            return View();
+            return View("MessageBoard", StaticData.Boards);
         }
 
         public ActionResult DynamicNewsitem(int id)
@@ -36,6 +36,15 @@ namespace MVC.CMN.Controllers {
             Newsitem model = StaticData.NewsBase.Find(x => x.Id == id);
 
             return PartialView("_DynamicNewsitem", model);
+        }
+
+
+public ActionResult ShowBoard(string id)
+        {
+
+
+
+            return View("SingleBoard", StaticData.Boards.Find(x => x.Id == Convert.ToInt32(id)));
         }
 
     }

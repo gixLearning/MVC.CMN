@@ -1,0 +1,21 @@
+﻿@model MVC.CMN.Models.Boarditem
+
+
+
+
+
+<div class="border border-info p-2 m-2 rounded btn-info col-12" id="@Model.Id">
+    <p>
+        <h2>
+            @Html.ActionLink(Model.Title, "ShowBoard", "Home", new { id = Model.Id }, null )
+
+
+            @Model.Id
+        </h2>
+    </p>
+
+    <p class="small">
+        @Model.Description
+    </p>
+
+</div>

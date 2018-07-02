@@ -1,7 +1,27 @@
-﻿
+﻿@model  List<MVC.CMN.Models.Boarditem>
+
 @{
     ViewBag.Title = "MessageBoard";
 }
 
 <h2>MessageBoard</h2>
 
+
+<div class="d-flex">
+
+    <table class="col-12">
+
+        @{
+            foreach (var board in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.Partial("_BoardCell", board)
+
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>

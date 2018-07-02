@@ -50,6 +50,7 @@ nav ul li a, nav ul li a:visited {
     }
 
 .panel-transparent {
+    background: rgb(0, 148, 255);
     background: rgba(0, 148, 255, 0.2);
 }
 
