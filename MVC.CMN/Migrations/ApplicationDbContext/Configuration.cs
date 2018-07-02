@@ -1,17 +1,17 @@
-using Microsoft.AspNet.Identity;
-using MVC.CMN.Models;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Linq;
+namespace MVC.CMN.Migrations.ApplicationDbContext {
 
-namespace MVC.CMN.Migrations {
+    using Microsoft.AspNet.Identity;
+    using MVC.CMN.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext> {
 
         public Configuration() {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "MVC.CMN.Models.ApplicationDbContext";
+            MigrationsDirectory = @"Migrations\ApplicationDbContext";
         }
 
         protected override void Seed(ApplicationDbContext context) {
