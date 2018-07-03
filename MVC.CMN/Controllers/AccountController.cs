@@ -81,13 +81,13 @@ namespace MVC.CMN.Controllers
             ApplicationUser user = await UserManager.FindByEmailAsync(model.Email, model.Password);
 
             var result = SignInStatus.Failure;
-            if(user != null) {
+            if (user != null) {
                 result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
             }
 
             //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             //await SignInManager.SignInAsync(user, model.RememberMe, false);
-            
+
             switch (result)
             {
                 case SignInStatus.Success:
