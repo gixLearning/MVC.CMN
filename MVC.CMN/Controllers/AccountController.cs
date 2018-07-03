@@ -78,14 +78,14 @@ namespace MVC.CMN.Controllers
             // To enable password failures to trigger account lockout, change to shouldLockout: true
 
             //Is it a bad idea to fetch the user twice just to use original SignInManager?
-            //ApplicationUser user = await UserManager.FindByEmailAsync(model.Email, model.Password);
+            ApplicationUser user = await UserManager.FindByEmailAsync(model.Email, model.Password);
 
-            //var result = SignInStatus.Failure;
-            //if(user != null) {
-            //    result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
-            //}
+            var result = SignInStatus.Failure;
+            if (user != null) {
+                result = await SignInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            }
 
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            //var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             //await SignInManager.SignInAsync(user, model.RememberMe, false);
 
             switch (result)
