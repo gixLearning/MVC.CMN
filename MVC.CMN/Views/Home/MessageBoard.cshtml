@@ -4,17 +4,24 @@
     ViewBag.Title = "MessageBoard";
 }
 
-<h2>MessageBoard</h2>
-
+<div>
+    <div class="panel rounded border border-info col-4 offset-4 panel-transparent p-2 m-2">
+        <h2 class="text-center">MessageBoard</h2>
+    </div>
+</div>
 
 <div class="d-flex">
+
+
+
+
 
     <table class="col-12 table-hover">
 
         @{
             foreach (var board in Model)
             {
-                        @Html.Partial("_BoardCell", board)
+                @Html.Partial("_BoardCell", board)
 
             }
         }
