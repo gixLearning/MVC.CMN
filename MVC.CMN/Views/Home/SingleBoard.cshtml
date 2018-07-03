@@ -1,0 +1,32 @@
+﻿@model MVC.CMN.Models.Boarditem
+
+@{
+    ViewBag.Title = "SingleBoard";
+}
+
+<h2>SingleBoard</h2>
+
+<h2>@Model.Title    </h2>
+<h2>@Model.Description    </h2>
+
+
+
+<div class="d-flex">
+
+    <table class="col-12">
+
+        @{
+            foreach (var thread in Model.Threads)
+            {
+                
+                    
+
+                        @Html.Partial("_ThreadCell", thread)
+
+                    
+                
+            }
+        }
+
+    </table>
+</div>

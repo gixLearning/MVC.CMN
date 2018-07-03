@@ -23,6 +23,7 @@ namespace MVC.CMN {
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/css/bootstrap/bootstrap.css",
+                      "~/Content/css/bootstrap/spacelab.bootstrap.min.css",
                       "~/Content/css/site.css"));
         }
     }

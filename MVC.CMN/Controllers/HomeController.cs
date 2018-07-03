@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MVC.CMN.Models;
 
 namespace MVC.CMN.Controllers {
     public class HomeController : Controller {
@@ -26,8 +27,36 @@ namespace MVC.CMN.Controllers {
         public ActionResult MessageBoard() {
 
 
-            return View();
+            return View("MessageBoard", StaticData.Boards);
         }
+
+        public ActionResult DynamicNewsitem(int id)
+        {
+
+            Newsitem model = StaticData.NewsBase.Find(x => x.Id == id);
+
+            return PartialView("_DynamicNewsitem", model);
+        }
+
+
+public ActionResult ShowBoard(string id)
+        {
+
+
+
+            return View("SingleBoard", StaticData.Boards.Find(x => x.Id == Convert.ToInt32(id)));
+        }
+
+
+        public ActionResult ShowThread(string id)
+        {
+
+
+
+            return View("SingleThread", StaticData.Threads.Find(x => x.Id == Convert.ToInt32(id)));
+        }
+
+
 
     }
 }
