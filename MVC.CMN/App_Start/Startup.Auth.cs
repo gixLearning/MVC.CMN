@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using MVC.CMN.Models;
+using MVC.CMN.DataContexts;
 
 namespace MVC.CMN
 {
