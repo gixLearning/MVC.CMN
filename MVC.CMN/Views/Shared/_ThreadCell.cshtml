@@ -3,34 +3,41 @@
 <tr>
     <td>
 
-        <div class="d-flex border border-active p-2 m-2 rounded table-active col-lg-12 col-md-12" id="@Model.Id">
+        <div class="border rounded col-12 no-padding" style="background:blue;" id="@Model.Id">
 
-            <div class="col-lg-10 col-md-10">
-
-                <p>
-                    <h2>
-                        @Html.ActionLink(Model.Title, "ShowThread", "Home", new { id = Model.Id }, null)
-
-                    </h2>
+            <div class="cell-header col-12">
+                <p class="no-margin">
+                    @Html.ActionLink(Model.Title, "ShowThread", "Home", new { id = Model.Id }, null)
                 </p>
-
-                <p class="small">
-                    @Model.Posts.FirstOrDefault().Content
-                </p>
-
-
             </div>
 
-            <div class="col-lg-2 col-md-2">
+            <div class="d-flex cell-content col-12 flex-wrap">
+                <div class="col-10 no-padding">
+                    <p class="no-margin">
+                        @Model.Posts.FirstOrDefault().Content
+                    </p>
+                </div>
 
+                <div class="col-2 no-padding">
+                    <p class="text-right small no-margin">
+                        @Html.ActionLink("Edit thread", "EditThread", "Home", new { id = Model.Id }, null)
+                        <br />
+                        @Html.ActionLink("Delete thread", "DeleteThread", "Home", new { id = Model.Id }, null)
+                    </p>
+                </div>
+            </div>
 
-                <p class="text-right small">
-
-                    @Html.ActionLink("Edit thread", "EditThread", "Home", new { id = Model.Id }, null)
-                    @Html.ActionLink("Delete thread", "DeleteThread", "Home", new { id = Model.Id }, null)
-
+            <div class="cell-footer col-12">
+                <p class="no-margin">
+                    Footer info
                 </p>
+
             </div>
         </div>
+
+
+
+
+
     </td>
 </tr>

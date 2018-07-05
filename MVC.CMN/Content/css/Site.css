@@ -61,3 +61,26 @@ nav ul li a, nav ul li a:visited {
     .panel-transparent .panel-body {
         background: none;
     }
+
+    .cell-header{
+        background: rgb(128, 128, 128);
+    }
+
+    .cell-content{
+        background: lightgray;
+    }
+
+    .cell-footer{
+        background: rgb(0, 148, 255);
+        
+    }
+
+    .no-padding{
+        padding: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .no-margin{
+        margin: 0;
+    }
