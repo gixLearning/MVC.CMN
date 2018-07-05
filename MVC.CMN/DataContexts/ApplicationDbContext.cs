@@ -11,8 +11,8 @@ namespace MVC.CMN.DataContexts {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
+            : base("DefaultConnection", throwIfV1Schema: false) {
+            this.Database.Log = (s) => System.Diagnostics.Debug.WriteLine(s);
         }
 
         public static ApplicationDbContext Create()
