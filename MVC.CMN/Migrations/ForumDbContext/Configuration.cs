@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using MVC.CMN.Models.MessageBoard;
 
 namespace MVC.CMN.Migrations.ForumDbContext {
     internal sealed class Configuration : DbMigrationsConfiguration<DataContexts.ForumDbContext> {
@@ -16,6 +18,12 @@ namespace MVC.CMN.Migrations.ForumDbContext {
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
+            var boards = new List<Board>() {
+                new Board() { Name = "Announcements"},
+                new Board() { Name = "General Discussion"}
+            };
+            boards.ForEach(s => context.Boards.AddOrUpdate(s));
+            context.SaveChanges();
         }
     }
 }

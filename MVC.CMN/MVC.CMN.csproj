@@ -174,11 +174,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.Designer.cs">
+      <DependentUpon>201807051306080_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ApplicationDbContext\ApplicationDbInitializer.cs" />
     <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
-    <Compile Include="Migrations\ForumDbContext\201807051008162_InitialDatabaseCreation.cs" />
-    <Compile Include="Migrations\ForumDbContext\201807051008162_InitialDatabaseCreation.Designer.cs">
-      <DependentUpon>201807051008162_InitialDatabaseCreation.cs</DependentUpon>
+    <Compile Include="Migrations\ForumDbContext\201807051236014_InitialCreate.cs" />
+    <Compile Include="Migrations\ForumDbContext\201807051236014_InitialCreate.Designer.cs">
+      <DependentUpon>201807051236014_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ForumDbContext\ForumDbInitializer.cs" />
     <Compile Include="Migrations\ForumDbContext\Configuration.cs" />
@@ -324,8 +328,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\ForumDbContext\201807051008162_InitialDatabaseCreation.resx">
-      <DependentUpon>201807051008162_InitialDatabaseCreation.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.resx">
+      <DependentUpon>201807051306080_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ForumDbContext\201807051236014_InitialCreate.resx">
+      <DependentUpon>201807051236014_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
