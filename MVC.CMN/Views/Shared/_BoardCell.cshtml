@@ -9,13 +9,13 @@
 
         <div class="border rounded col-12 no-padding" style="background:blue;" id="@Model.Id">
 
-            <div class="cell-header col-12">
+            <div class="cell-header col-12 gradient-black">
                 <p class="no-margin">
                     @Html.ActionLink(Model.Title, "ShowBoard", "Home", new { id = Model.Id }, null)
                 </p>
             </div>
 
-            <div class="d-flex cell-content col-12 flex-wrap">
+            <div class="d-flex cell-content col-12 flex-wrap gradient-white">
                 <div class="col-10 no-padding">
                     <p class="no-margin">
                         @Model.Description
@@ -31,7 +31,7 @@
                 </div>
             </div>
 
-            <div class="cell-footer col-12">
+            <div class="cell-footer col-12 gradient-grey">
                 <p class="no-margin">
                     Footer info
                 </p>
