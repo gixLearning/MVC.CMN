@@ -49,6 +49,9 @@ nav ul li a, nav ul li a:visited {
         text-decoration: none;
     }
 
+
+
+    /*Standard cell css*/
 .standard-cell .cell-header {
     background-image: linear-gradient(#595959, #333 50%, #292929);
 }
@@ -60,6 +63,22 @@ nav ul li a, nav ul li a:visited {
 .standard-cell .cell-footer {
     background-image: linear-gradient(#bfbfbf, #999 50%, #8f8f8f);
 }
+
+
+
+.board-header .cell-header {
+    background-image: linear-gradient(#6d94bf, #446E9B 50%, #3e648d);
+}
+
+.board-header .cell-content {
+    background-image: linear-gradient(white, #eee 50%, #e4e4e4);
+}
+
+.board-header .cell-footer {
+    background-image: linear-gradient(#bfbfbf, #999 50%, #8f8f8f);
+}
+
+
 
 
 .panel-transparent {
@@ -126,4 +145,10 @@ background-image: linear-gradient(white, #eee 50%, #e4e4e4);
 
 .gradient-blue {
     background-image: linear-gradient(#7bbdf7, #3399F3 50%, #208ff2);
+}
+
+
+tr td {
+    padding: 0; 
+    margin: 0;
 }

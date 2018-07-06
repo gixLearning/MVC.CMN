@@ -10,23 +10,20 @@
     </div>
 </div>
 
-<div class="col-10 no-gutters mx-auto" style="background: white;">
 
 
 
 
 
-    <table class="mx-auto col-10" style="background: white;">
+    <table class="mx-auto col-10">
 
         @{
             foreach (var board in Model)
             {
                 @Html.Partial("_BoardCell", board)
-
+                
             }
         }
 
     </table>
-</div>
 
-<
