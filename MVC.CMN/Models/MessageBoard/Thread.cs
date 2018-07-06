@@ -14,7 +14,7 @@ namespace MVC.CMN.Models.MessageBoard {
         public DateTime Created { get; set; }
 
         public virtual Board Board { get; set; }
-        //public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
         //public virtual UserProfile UserProfile { get; set; }
 
         [Required]

@@ -17,6 +17,9 @@ namespace MVC.CMN.DataContexts {
         }
 
         public virtual DbSet<Board> Boards { get; set; }
+        public virtual DbSet<Thread> Threads { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
@@ -33,6 +36,24 @@ namespace MVC.CMN.DataContexts {
                 .Property(e => e.Subject)
                 .IsUnicode(false);
 
+            //
+            modelBuilder.Entity<Thread>()
+                .Property(e => e.Subject)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Thread>()
+                .HasMany(e => e.Posts)
+                .WithRequired(e => e.Thread)
+                .WillCascadeOnDelete(false);
+            //
+
+            modelBuilder.Entity<Post>()
+                .Property(e => e.Subject)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Post>()
+                .Property(e => e.Content)
+                .IsUnicode(false);
         }
     }
 }
