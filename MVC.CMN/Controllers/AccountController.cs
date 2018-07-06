@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MVC.CMN.Models;
 using MVC.CMN.Extensions;
+using MVC.CMN.Models.MessageBoard;
+using System.Data.Entity;
 
 namespace MVC.CMN.Controllers
 {
@@ -167,6 +169,14 @@ namespace MVC.CMN.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    using (var forumdb = new DataContexts.ForumDbContext()) {
+                        UserProfile profile = new UserProfile {
+                            UserId = user.Id
+                        };
+
+                        forumdb.UserProfiles.Add(profile);
+                        forumdb.SaveChanges();
+                    }
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

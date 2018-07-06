@@ -180,9 +180,9 @@
     </Compile>
     <Compile Include="Migrations\ApplicationDbContext\ApplicationDbInitializer.cs" />
     <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
-    <Compile Include="Migrations\ForumDbContext\201807052051158_InitialCreate.cs" />
-    <Compile Include="Migrations\ForumDbContext\201807052051158_InitialCreate.Designer.cs">
-      <DependentUpon>201807052051158_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\ForumDbContext\201807060823556_InitialCreate.cs" />
+    <Compile Include="Migrations\ForumDbContext\201807060823556_InitialCreate.Designer.cs">
+      <DependentUpon>201807060823556_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\ForumDbContext\ForumDbInitializer.cs" />
     <Compile Include="Migrations\ForumDbContext\Configuration.cs" />
@@ -196,6 +196,7 @@
     <Compile Include="Models\MessageBoard\MessageBoardViewModel.cs" />
     <Compile Include="Models\MessageBoard\Post.cs" />
     <Compile Include="Models\MessageBoard\Thread.cs" />
+    <Compile Include="Models\MessageBoard\UserProfile.cs" />
     <Compile Include="Models\Newsitem.cs" />
     <Compile Include="Models\Postitem.cs" />
     <Compile Include="Models\RoleTypes.cs" />
@@ -332,8 +333,8 @@
     <EmbeddedResource Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.resx">
       <DependentUpon>201807051306080_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ForumDbContext\201807052051158_InitialCreate.resx">
-      <DependentUpon>201807052051158_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ForumDbContext\201807060823556_InitialCreate.resx">
+      <DependentUpon>201807060823556_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

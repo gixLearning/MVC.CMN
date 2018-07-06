@@ -13,7 +13,7 @@ namespace MVC.CMN.Migrations.ForumDbContext
         
         string IMigrationMetadata.Id
         {
-            get { return "201807052051158_InitialCreate"; }
+            get { return "201807060823556_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

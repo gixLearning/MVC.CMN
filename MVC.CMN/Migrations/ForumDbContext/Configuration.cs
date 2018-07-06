@@ -19,8 +19,8 @@ namespace MVC.CMN.Migrations.ForumDbContext {
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
             var boards = new List<Board>() {
-                new Board() { Name = "Announcements"},
-                new Board() { Name = "General Discussion"}
+                new Board() { Name = "Announcements", Description = "Collection of important messages regarding the site" },
+                new Board() { Name = "General Discussion", Description = "Discuss everything" }
             };
             boards.ForEach(s => context.Boards.AddOrUpdate(s));
             context.SaveChanges();

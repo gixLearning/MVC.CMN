@@ -11,7 +11,7 @@ namespace MVC.CMN.Models.MessageBoard {
         public DateTime Created { get; set; }
 
         public virtual Thread Thread { get; set; }
-        //public virtual UserProfile UserProfile { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
 
         [Required]
         [StringLength(128)]

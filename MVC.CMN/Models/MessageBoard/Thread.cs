@@ -15,7 +15,7 @@ namespace MVC.CMN.Models.MessageBoard {
 
         public virtual Board Board { get; set; }
         public virtual ICollection<Post> Posts { get; set; }
-        //public virtual UserProfile UserProfile { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
 
         [Required]
         [StringLength(128)]
@@ -26,7 +26,7 @@ namespace MVC.CMN.Models.MessageBoard {
         public string Subject { get; set; }
 
         public Thread() {
-            //Posts = new HashSet<Post>();
+            Posts = new HashSet<Post>();
         }
     }
 }
