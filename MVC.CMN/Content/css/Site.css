@@ -49,6 +49,38 @@ nav ul li a, nav ul li a:visited {
         text-decoration: none;
     }
 
+
+
+    /*Standard cell css*/
+.standard-cell .cell-header {
+    background-image: linear-gradient(#595959, #333 50%, #292929);
+}
+
+.standard-cell .cell-content {
+    background-image: linear-gradient(white, #eee 50%, #e4e4e4);
+}
+
+.standard-cell .cell-footer {
+    background-image: linear-gradient(#bfbfbf, #999 50%, #8f8f8f);
+}
+
+
+
+.board-header .cell-header {
+    background-image: linear-gradient(#6d94bf, #446E9B 50%, #3e648d);
+}
+
+.board-header .cell-content {
+    background-image: linear-gradient(white, #eee 50%, #e4e4e4);
+}
+
+.board-header .cell-footer {
+    background-image: linear-gradient(#bfbfbf, #999 50%, #8f8f8f);
+}
+
+
+
+
 .panel-transparent {
     background: rgb(0, 148, 255);
     background: rgba(0, 148, 255, 0.2);
@@ -61,3 +93,62 @@ nav ul li a, nav ul li a:visited {
     .panel-transparent .panel-body {
         background: none;
     }
+
+    .cell-header{
+        background: rgb(128, 128, 128);
+    }
+
+    .cell-content{
+        background: lightgray;
+    }
+
+    .cell-footer{
+        background: rgb(0, 148, 255);
+        
+    }
+
+    .no-padding{
+        padding: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .no-margin{
+        margin: 0;
+    }
+
+
+.gradient-black {
+    background-image: linear-gradient(#595959, #333 50%, #292929);
+}
+
+.gradient-red {
+    background-image: linear-gradient(#ff1d1b, #CD0200 50%, #b90200);
+}
+
+
+.gradient-white {
+background-image: linear-gradient(white, #eee 50%, #e4e4e4);
+}
+.gradient-steelblue {
+    background-image: linear-gradient(#6d94bf, #446E9B 50%, #3e648d);
+}
+.gradient-grey {
+    background-image: linear-gradient(#bfbfbf, #999 50%, #8f8f8f);
+}
+.gradient-green {
+    background-image: linear-gradient(#52da34, #36a41e 50%, #31921b);
+}
+.gradient-orange {
+    background-image: linear-gradient(#ff9c22, #D47500 50%, #c06a00);
+}
+
+.gradient-blue {
+    background-image: linear-gradient(#7bbdf7, #3399F3 50%, #208ff2);
+}
+
+
+tr td {
+    padding: 0; 
+    margin: 0;
+}

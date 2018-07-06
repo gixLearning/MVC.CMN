@@ -12,10 +12,6 @@ namespace MVC.CMN.Models
         public string Author { get; set; }
         public List<Postitem> Posts { get; set; }
 
-        //public Threaditem()
-        //{
-        //    Posts = new List<Postitem>();
-        //}
-
+ 
     }
 }

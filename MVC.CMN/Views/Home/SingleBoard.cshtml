@@ -7,26 +7,35 @@
 <h2>SingleBoard</h2>
 
 <h2>@Model.Title    </h2>
-<h2>@Model.Description    </h2>
 
 
 
 <div class="d-flex">
 
-    <table class="col-12">
+    <div class="d-flex border border-dark rounded flex-column col-10 mx-auto no-padding">
 
-        @{
+        <div class="col-12 gradient-orange">
+            <h3>@Model.Title    </h3><br />
+            <h4>@Model.Description    </h4>
+
+        </div>
+
+
+
+        <table class="col-12 mx-auto">
+
+            @{
             foreach (var thread in Model.Threads)
             {
-                
-                    
 
-                        @Html.Partial("_ThreadCell", thread)
 
-                    
-                
-            }
+
+                @Html.Partial("_ThreadCell", thread)
+
+
+
         }
-
-    </table>
+            }
+        </table>
+    </div>
 </div>

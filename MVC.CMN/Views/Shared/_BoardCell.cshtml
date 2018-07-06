@@ -7,31 +7,63 @@
 <tr>
     <td>
 
-        <div class="d-flex border border-active p-2 m-2 rounded table-active col-lg-12 col-md-12" id="@Model.Id">
+        <div class="border border-dark rounded col-12 no-padding">
 
-            <div class="col-lg-10 col-md-10">
-                <p>
-                    <h2>
+            <div class="col-12 no-padding board-header" id="@Model.Id">
+
+                <div class="cell-header col-12">
+                    <p class="no-margin">
                         @Html.ActionLink(Model.Title, "ShowBoard", "Home", new { id = Model.Id }, null)
+                    </p>
+                </div>
 
-                    </h2>
-                </p>
+                <div class="d-flex cell-content col-12 flex-wrap">
+                    <div class="col-10 no-padding">
+                        <p class="no-margin">
+                            @Model.Description
+                        </p>
+                    </div>
 
-                <p class="small">
-                    @Model.Description
-                </p>
+                    <div class="col-2 no-padding">
+                        <p class="text-right small no-margin">
+                            @Html.ActionLink("Edit board", "EditBoard", "Home", new { id = Model.Id }, null)
+                            <br />
+                            @Html.ActionLink("Delete board", "DeleteBoard", "Home", new { id = Model.Id }, null)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="cell-footer col-12">
+                    <p class="no-margin">
+                        Footer info
+                    </p>
+
+                </div>
             </div>
 
-            <div class="col-lg-2 col-md-2">
+            <div class="d-flex">
 
-                <p class="text-right small">
+                <table class="col-12 mx-auto no-padding">
 
-                    @Html.ActionLink("Edit board", "EditBoard", "Home", new { id = Model.Id }, null)
-                    @Html.ActionLink("Delete board", "DeleteBoard", "Home", new { id = Model.Id }, null)
+                    @{
+                foreach (var thread in Model.Threads)
+                {
 
-                </p>
+
+
+                    @Html.Partial("_ThreadCell", thread)
+
+
+
+        }
+                    }
+
+                </table>
             </div>
 
         </div>
+        <br />
+
     </td>
 </tr>
+

@@ -10,21 +10,20 @@
     </div>
 </div>
 
-<div class="d-flex">
 
 
 
 
 
-    <table class="col-12">
+    <table class="mx-auto col-10">
 
         @{
             foreach (var board in Model)
             {
                 @Html.Partial("_BoardCell", board)
-
+                
             }
         }
 
     </table>
-</div>
+

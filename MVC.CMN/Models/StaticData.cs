@@ -17,6 +17,10 @@ namespace MVC.CMN.Models
         };
 
 
+
+
+
+
         public static Threaditem thread1 = new Threaditem()
         {
             Id = 1,
@@ -50,7 +54,37 @@ namespace MVC.CMN.Models
             }
         };
 
-        public static List<Threaditem> Threads = new List<Threaditem>() { thread1, thread2 };
+
+        public static Threaditem thread3 = new Threaditem()
+        {
+            Id = 3,
+            Title = "Sonic 2020 Speedrun",
+            Author = "Jonatan Streith",
+            Posts = new List<Postitem>()
+            {
+            new Postitem() {Id=7, Author = "Jonatan Streith", BelongsToThread = thread3, Content = "This week, I'll be attempting another speedrun!"},
+            new Postitem() {Id=8, Author = "Nitpick McAnalRetentive", BelongsToThread = thread3, Content = "That game doesn't even exist."},
+            new Postitem() {Id=9, Author = "Jonatan Streith", BelongsToThread = thread3, Content = "That's how you know it's fast!"}
+
+            }
+        };
+
+        public static Threaditem thread4 = new Threaditem()
+        {
+            Id = 4,
+            Title = "Introduce yourself",
+            Author = "Jonatan Streith",
+            Posts = new List<Postitem>()
+            {
+            new Postitem() {Id=10, Author = "Jonatan Streith", BelongsToThread = thread4, Content = "Tell us who you are!"}
+
+            }
+        };
+
+
+
+
+        public static List<Threaditem> Threads = new List<Threaditem>() { thread1, thread2, thread3 };
 
         public static Boarditem board1 = new Boarditem()
         {
@@ -66,7 +100,7 @@ namespace MVC.CMN.Models
             Id = 2,
             Title = "Gaming",
             Description = "Game-related topics.",
-            Threads = new List<Threaditem>() { }
+            Threads = new List<Threaditem>() { thread3 }
         };
 
         public static Boarditem board3 = new Boarditem()
@@ -74,7 +108,7 @@ namespace MVC.CMN.Models
             Id = 3,
             Title = "Social",
             Description = "Meet the community!",
-            Threads = new List<Threaditem>() { }
+            Threads = new List<Threaditem>() { thread4 }
         };
 
 
