@@ -88,6 +88,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -166,16 +167,36 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessageBoardController.cs" />
     <Compile Include="DataContexts\ApplicationDbContext.cs" />
+    <Compile Include="DataContexts\ForumDbContext.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.Designer.cs">
+      <DependentUpon>201807051306080_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ApplicationDbContext\ApplicationDbInitializer.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
+    <Compile Include="Migrations\ForumDbContext\201807060823556_InitialCreate.cs" />
+    <Compile Include="Migrations\ForumDbContext\201807060823556_InitialCreate.Designer.cs">
+      <DependentUpon>201807060823556_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ForumDbContext\ForumDbInitializer.cs" />
+    <Compile Include="Migrations\ForumDbContext\Configuration.cs" />
+    <Compile Include="Migrations\MySqlHistoryContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Boarditem.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MessageBoard\Board.cs" />
+    <Compile Include="Models\MessageBoard\MessageBoardViewModel.cs" />
+    <Compile Include="Models\MessageBoard\Post.cs" />
+    <Compile Include="Models\MessageBoard\Thread.cs" />
+    <Compile Include="Models\MessageBoard\UserProfile.cs" />
     <Compile Include="Models\Newsitem.cs" />
     <Compile Include="Models\Postitem.cs" />
     <Compile Include="Models\RoleTypes.cs" />
@@ -289,11 +310,12 @@
     <Content Include="Views\Shared\_ThreadCell.cshtml" />
     <Content Include="Views\Home\SingleThread.cshtml" />
     <Content Include="Views\Shared\_PostCell.cshtml" />
+    <Content Include="Views\MessageBoard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Initializers\" />
-    <Folder Include="Models\MessageBoard\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -305,6 +327,15 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.resx">
+      <DependentUpon>201807051306080_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ForumDbContext\201807060823556_InitialCreate.resx">
+      <DependentUpon>201807060823556_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

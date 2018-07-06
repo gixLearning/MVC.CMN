@@ -1,4 +1,4 @@
-﻿namespace MVC.CMN.DAL.Models {
+﻿namespace MVC.CMN.Models {
 
     /// <summary>
     /// Used in getting the identityrole string from the Rolemangers hashed data-table.
