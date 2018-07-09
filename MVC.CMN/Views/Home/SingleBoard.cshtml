@@ -4,18 +4,18 @@
     ViewBag.Title = "SingleBoard";
 }
 
-<h2>SingleBoard</h2>
-
-<h2>@Model.Title    </h2>
 
 
 
 
 <div class="d-flex border border-dark rounded flex-column col-10 mx-auto no-padding">
 
-    <div class="col-12 gradient-orange">
-        <h3>@Model.Title    </h3><br />
-        <h4>@Model.Description    </h4>
+    <div class="col-12 gradient-steelblue">
+        @Model.Title    
+        </div>
+
+    <div class="col-12 gradient-white">
+        @Model.Description    
 
     </div>
 
@@ -43,7 +43,11 @@
 <div class="form-group col-10 mx-auto p-2">
     @using (Html.BeginForm("CreateNewThread", "Home", FormMethod.Post))
     {
-        <input type="text" class="form-control col-12" id="NewThreadInput" name="name" placeholder="Thread title">
+        <input type="text" class="form-control col-12" id="NewThreadTitle" name="title" placeholder="Thread title">
+        <br />
+
+        <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="content"></textarea>
+
         <br />
         <input type="submit" class="btn btn-primary" value="New thread">
     }
