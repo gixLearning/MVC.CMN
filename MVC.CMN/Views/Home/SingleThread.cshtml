@@ -7,7 +7,7 @@
 
 
 
-<div class="d-flex border border-dark rounded flex-column col-10 mx-auto no-padding" >
+<div class="d-flex border border-dark rounded flex-column col-10 mx-auto no-padding">
     <div class="col-12 gradient-orange">
         <h3>@Model.Title    </h3>
     </div>
@@ -24,4 +24,16 @@
         }
 
     </table>
-    </div>
+</div>
+
+<hr />
+
+<div class="form-group col-8 mx-auto p-2">
+    @using (Html.BeginForm("CreateNewPost", "Home", FormMethod.Post))
+    {
+        <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="content"></textarea>
+        <br />
+        <input type="submit" class="btn btn-primary" value="Reply">
+    }
+
+</div>
