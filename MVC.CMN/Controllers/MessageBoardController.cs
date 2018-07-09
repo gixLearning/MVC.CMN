@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MVC.CMN.DataContexts;
+using MVC.CMN.Models;
 using MVC.CMN.Models.MessageBoard;
 
 namespace MVC.CMN.Controllers
@@ -15,7 +16,15 @@ namespace MVC.CMN.Controllers
         {
             var model = new MessageBoardViewModel();
             using(ForumDbContext context = new ForumDbContext()) {
-                model.BoardsCount = context.Boards.Count();
+                
+                foreach (var b in context.Boards) {
+                    var boarditem = new Boarditem() {
+                        Title = b.Name,
+                        Description = b.Description,
+                        Id = b.BoardId
+                    };
+                    model.Boarditems.Add(boarditem);
+                }
             }
 
 

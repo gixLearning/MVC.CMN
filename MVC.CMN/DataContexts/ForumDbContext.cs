@@ -37,9 +37,9 @@ namespace MVC.CMN.DataContexts {
                 .WithRequired(e => e.Board)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Thread>()
-                .Property(e => e.Subject)
-                .IsUnicode(false);
+            //modelBuilder.Entity<Thread>()
+            //    .Property(e => e.Subject)
+            //    .IsUnicode(false);
             
             //
             modelBuilder.Entity<Thread>()
@@ -50,6 +50,10 @@ namespace MVC.CMN.DataContexts {
                 .HasMany(e => e.Posts)
                 .WithRequired(e => e.Thread)
                 .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Thread>()
+                .Property(e => e.Created)
+                .HasPrecision(6);
             //
 
             modelBuilder.Entity<Post>()
