@@ -7,6 +7,8 @@ namespace MVC.CMN.Models.MessageBoard {
     [Table("Boards")]
     public class Board {
         public int BoardId { get; set; }
+        
+        //Probably don't need this since we can get it by counting items in the threads-list. =P
         public int ThreadCount { get; set; }
         public virtual ICollection<Thread> Threads { get; set; }
 

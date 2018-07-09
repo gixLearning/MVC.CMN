@@ -5,10 +5,10 @@ using System.Web;
 
 namespace MVC.CMN.Models.MessageBoard {
     public class MessageBoardViewModel {
-        public IList<Boarditem> Boarditems { get; set; }
+        public IList<Board> Boarditems { get; set; }
 
         public MessageBoardViewModel() {
-            Boarditems = new List<Boarditem>();
+            Boarditems = new List<Board>();
         }
     }
 }

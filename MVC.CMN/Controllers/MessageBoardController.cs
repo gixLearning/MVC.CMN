@@ -16,12 +16,20 @@ namespace MVC.CMN.Controllers
         {
             var model = new MessageBoardViewModel();
             using(ForumDbContext context = new ForumDbContext()) {
-                
-                foreach (var b in context.Boards) {
-                    var boarditem = new Boarditem() {
-                        Title = b.Name,
+
+                //foreach (var b in context.Boards) {
+                //    var boarditem = new Boarditem() {
+                //        Title = b.Name,
+                //        Description = b.Description,
+                //        Id = b.BoardId
+                //    };
+                //    model.Boarditems.Add(boarditem);
+                //}
+                foreach (var b in context.Boards.Include("Threads")) {
+                    var boarditem = new Board() {
+                        Name = b.Name,
                         Description = b.Description,
-                        Id = b.BoardId
+                        Threads = b.Threads
                     };
                     model.Boarditems.Add(boarditem);
                 }
