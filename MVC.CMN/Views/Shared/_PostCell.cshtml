@@ -13,38 +13,51 @@
 
 
 
-        <div class="standard-cell rounded col-12 no-padding" id="@Model.Id">
+        <div class="standard-cell border border-dark rounded col-12 no-padding" id="@Model.Id">
 
-            <div class="cell-header col-12">
-                <p class="no-margin text-info">
-                    Make title appear here
-                </p>
+            <div class="d-flex cell-header col-12">
+
+                <div class="no-margin text-info col-9">
+                    Model.BelongsToThread.Title
+                </div>
+
+                <div class="text-right small no-margin col-3">
+                    Written by @Model.Author on InsertDateHere
+                </div>
+
+
             </div>
 
-            <div class="d-flex cell-content col-12 flex-wrap">
-                <div class="col-11 no-padding">
+            <div class="d-flex cell-content col-12 flex-wrap" style="padding-bottom: 20px;">
+                <div class="col-10 no-padding">
                     <p class="no-margin">
                         @Model.Content
                     </p>
 
 
-                    <p class="text-right small no-margin">
-                        Written by @Model.Author on InsertDateHere
-                    </p>
                 </div>
 
-                <div class="col-1 no-padding">
-                    <p class="text-right small no-margin">
-                        @Html.ActionLink("Edit post", "EditPost", "Home", new { id = Model.Id }, null)
+                <div class="col-2 no-padding">
+                    <p class=" no-margin">
+                        @Model.Author
                         <br />
-                        @Html.ActionLink("Delete post", "DeletePost", "Home", new { id = Model.Id }, null)
+                        Add user info here
+
+
+
                     </p>
                 </div>
             </div>
 
             <div class="cell-footer col-12">
-                <p class="no-margin">
-                    Footer info
+                <p class="text-right small no-margin">
+                    @Html.ActionLink("Quote", "QuotePost", "Home", new { id = Model.Id }, null)
+
+                    @Html.ActionLink("Edit post", "EditPost", "Home", new { id = Model.Id }, null)
+
+                    @Html.ActionLink("Delete post", "DeletePost", "Home", new { id = Model.Id }, null)
+
+
                 </p>
 
             </div>

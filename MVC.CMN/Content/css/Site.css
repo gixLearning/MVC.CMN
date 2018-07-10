@@ -21,9 +21,8 @@
 
 .carousel-item.active,
 .carousel-item-next,
-.carousel-item-prev{
-    display:block;
-    
+.carousel-item-prev {
+    display: block;
 }
 
 
@@ -40,7 +39,7 @@ textarea {
 
 
 nav ul li a, nav ul li a:visited {
-    color: lightgray ;
+    color: lightgray;
     text-decoration: none;
 }
 
@@ -51,7 +50,7 @@ nav ul li a, nav ul li a:visited {
 
 
 
-    /*Standard cell css*/
+/*Standard cell css*/
 .standard-cell .cell-header {
     background-image: linear-gradient(#595959, #333 50%, #292929);
 }
@@ -94,28 +93,27 @@ nav ul li a, nav ul li a:visited {
         background: none;
     }
 
-    .cell-header{
-        background: rgb(128, 128, 128);
-    }
+.cell-header {
+    background: rgb(128, 128, 128);
+}
 
-    .cell-content{
-        background: lightgray;
-    }
+.cell-content {
+    background: lightgray;
+}
 
-    .cell-footer{
-        background: rgb(0, 148, 255);
-        
-    }
+.cell-footer {
+    background: rgb(0, 148, 255);
+}
 
-    .no-padding{
-        padding: 0;
-        padding-right: 0;
-        padding-left: 0;
-    }
+.no-padding {
+    padding: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
 
-    .no-margin{
-        margin: 0;
-    }
+.no-margin {
+    margin: 0;
+}
 
 
 .gradient-black {
@@ -128,17 +126,21 @@ nav ul li a, nav ul li a:visited {
 
 
 .gradient-white {
-background-image: linear-gradient(white, #eee 50%, #e4e4e4);
+    background-image: linear-gradient(white, #eee 50%, #e4e4e4);
 }
+
 .gradient-steelblue {
     background-image: linear-gradient(#6d94bf, #446E9B 50%, #3e648d);
 }
+
 .gradient-grey {
     background-image: linear-gradient(#bfbfbf, #999 50%, #8f8f8f);
 }
+
 .gradient-green {
     background-image: linear-gradient(#52da34, #36a41e 50%, #31921b);
 }
+
 .gradient-orange {
     background-image: linear-gradient(#ff9c22, #D47500 50%, #c06a00);
 }
@@ -149,6 +151,43 @@ background-image: linear-gradient(white, #eee 50%, #e4e4e4);
 
 
 tr td {
-    padding: 0; 
+    padding: 0;
     margin: 0;
 }
+
+
+
+
+
+
+/* Style the list */
+ul.breadcrumb {
+    padding: 10px 16px;
+    list-style: none;
+    background-color: #eee;
+}
+
+    /* Display list items side by side */
+    ul.breadcrumb li {
+        display: inline;
+        font-size: 18px;
+    }
+
+        /* Add a slash symbol (/) before/behind each list item */
+        ul.breadcrumb li + li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+
+        /* Add a color to all links inside the list */
+        ul.breadcrumb li a {
+            color: #0275d8;
+            text-decoration: none;
+        }
+
+            /* Add a color on mouse-over */
+            ul.breadcrumb li a:hover {
+                color: #01447e;
+                text-decoration: underline;
+            }
