@@ -99,6 +99,7 @@ nav ul li a, nav ul li a:visited {
 
 .cell-content {
     background: lightgray;
+    padding-bottom: 20px;
 }
 
 .cell-footer {

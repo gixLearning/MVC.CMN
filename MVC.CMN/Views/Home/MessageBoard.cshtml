@@ -4,12 +4,28 @@
     ViewBag.Title = "MessageBoard";
 }
 
-<div>
-    <div class="panel rounded border border-info col-4 mx-auto panel-transparent p-2 m-2">
-        <h2 class="text-center">MessageBoard</h2>
-    </div>
-</div>
+@*<div>
+        <div class="panel rounded border border-info col-4 mx-auto panel-transparent p-2 m-2">
+            <h2 class="text-center">MessageBoard</h2>
+        </div>
+    </div>*@
 
+
+@Html.Partial("_Carousel")
+
+
+
+<table class="mx-auto col-10">
+
+    @{
+        foreach (var board in Model)
+        {
+            @Html.Partial("_BoardCell", board)
+
+        }
+    }
+
+</table>
 
 <div>
     <ul class="breadcrumb">
@@ -17,18 +33,3 @@
     </ul>
 
 </div>
-
-
-
-    <table class="mx-auto col-10">
-
-        @{
-            foreach (var board in Model)
-            {
-                @Html.Partial("_BoardCell", board)
-                
-            }
-        }
-
-    </table>
-

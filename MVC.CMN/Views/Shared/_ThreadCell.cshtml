@@ -5,23 +5,19 @@
 
         <div class="col-12 no-padding standard-cell" id="@Model.Id">
 
-            <div class="d-flex cell-header col-12">
-
+            <div class="cell-header col-12 d-flex flex-wrap">
 
                 <div class="no-padding text-info col-9">
                     @Html.ActionLink(Model.Title, "ShowThread", "Home", new { id = Model.Id }, null)
 
                 </div>
                 <div class="text-right small no-padding col-3">
-                    Written by @Model.Author on InsertDateHere
                 </div>
-
-
 
 
             </div>
 
-            <div class="d-flex cell-content col-12 flex-wrap">
+            <div class="cell-content col-12 d-flex flex-wrap">
                 <div class="col-10 no-padding">
                     <p class="no-margin">
                         @Model.Posts.FirstOrDefault().Content
@@ -38,16 +34,28 @@
                 </div>
             </div>
 
-            <div class="cell-footer col-12">
-                <p class="text-right small no-margin">
-                    @Html.ActionLink("Edit thread", "EditThread", "Home", new { id = Model.Id }, null)
-                
-                    @Html.ActionLink("Delete thread", "DeleteThread", "Home", new { id = Model.Id }, null)
+            <div class="cell-footer col-12 d-flex flex-wrap">
 
-                </p>
 
+
+                <div class="col-10 no-padding">
+                    <p class="small no-margin">
+                        Written by @Model.Author on InsertDateHere
+                    </p>
+                </div>
+
+
+                <div class="col-2 no-padding">
+
+                    <p class="text-right small no-margin">
+                        @Html.ActionLink("Edit thread", "EditThread", "Home", new { id = Model.Id }, null)
+
+                        @Html.ActionLink("Delete thread", "DeleteThread", "Home", new { id = Model.Id }, null)
+
+                    </p>
+                </div>
             </div>
-        </div>
+            </div>
 
 
 
