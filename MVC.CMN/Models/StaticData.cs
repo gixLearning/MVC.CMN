@@ -91,7 +91,7 @@ namespace MVC.CMN.Models
             Id = 1,
             Title = "Main",
             Description = "The main board. Post generic content here.",
-            //Threads = new List<Threaditem>() { thread1, thread2 }
+            Threads = new List<Threaditem>() { thread1, thread2 }
         };
 
 
@@ -100,7 +100,7 @@ namespace MVC.CMN.Models
             Id = 2,
             Title = "Gaming",
             Description = "Game-related topics.",
-            //Threads = new List<Threaditem>() { thread3 }
+            Threads = new List<Threaditem>() { thread3 }
         };
 
         public static Boarditem board3 = new Boarditem()
@@ -108,7 +108,7 @@ namespace MVC.CMN.Models
             Id = 3,
             Title = "Social",
             Description = "Meet the community!",
-            //Threads = new List<Threaditem>() { thread4 }
+            Threads = new List<Threaditem>() { thread4 }
         };
 
 

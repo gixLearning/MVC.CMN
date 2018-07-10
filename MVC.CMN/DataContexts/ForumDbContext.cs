@@ -1,26 +1,23 @@
-﻿using MVC.CMN.Models.MessageBoard;
+﻿using MVC.CMN.Migrations.ContextInitializers;
+using MVC.CMN.Models.MessageBoard;
 using MySql.Data.Entity;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using MVC.CMN.Migrations.ContextInitializers;
 
 namespace MVC.CMN.DataContexts {
+
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class ForumDbContext : DbContext {
 
         public ForumDbContext() : base("name=ForumDBConnection") {
-            this.Database.Log = (s) => System.Diagnostics.Debug.WriteLine(s);
+            Database.Log = (s) => System.Diagnostics.Debug.WriteLine(s);
             Database.SetInitializer(new ForumDbInitializer());
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<Thread> Threads { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<UserProfile> UserProfiles { get; set; }
-
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
@@ -37,10 +34,6 @@ namespace MVC.CMN.DataContexts {
                 .WithRequired(e => e.Board)
                 .WillCascadeOnDelete(false);
 
-            //modelBuilder.Entity<Thread>()
-            //    .Property(e => e.Subject)
-            //    .IsUnicode(false);
-            
             //
             modelBuilder.Entity<Thread>()
                 .Property(e => e.Subject)
