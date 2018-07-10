@@ -6,6 +6,7 @@
     background-attachment: fixed;
 }
 
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -99,11 +100,15 @@ nav ul li a, nav ul li a:visited {
 
 .cell-content {
     background: lightgray;
-    padding-bottom: 20px;
 }
 
 .cell-footer {
     background: rgb(0, 148, 255);
+}
+
+.bottom-padding{
+    padding-bottom: 20px;
+
 }
 
 .no-padding {

@@ -312,6 +312,7 @@
     <Content Include="Views\Shared\_PostCell.cshtml" />
     <Content Include="Views\MessageBoard\Index.cshtml" />
     <Content Include="Views\Shared\_Carousel.cshtml" />
+    <Content Include="Views\Shared\_BoardBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

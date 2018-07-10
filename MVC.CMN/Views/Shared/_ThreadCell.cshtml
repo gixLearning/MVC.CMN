@@ -3,40 +3,57 @@
 <tr>
     <td>
 
-        <div class="col-12 no-padding standard-cell" id="@Model.Id">
+        <div class="col-12 no-padding standard-cell">
 
-            <div class="cell-header col-12 d-flex flex-wrap">
 
-                <div class="no-padding text-info col-9">
-                    @Html.ActionLink(Model.Title, "ShowThread", "Home", new { id = Model.Id }, null)
+            @*<div class="cell-header col-12 d-flex flex-wrap">
+
+            </div>*@
+
+
+
+
+            <div class="col-12 no-padding  d-flex flex-wrap">
+
+                <div class="cell-content bottom-padding col-8">
+
+                    <div class="no-padding  text-danger col-12">
+                        @Html.ActionLink(Model.Title, "ShowThread", "Home", new { id = Model.Id }, null)
+
+                    </div>
+
+
+                    <div class="col-12  no-padding">
+                        <p class="no-margin">                           
+                            @Model.Posts.FirstOrDefault().Content                       @*See if this can be limited to the first line of content only!*@
+                        </p>
+                    </div>
+
+
+
 
                 </div>
-                <div class="text-right small no-padding col-3">
+
+                <div class="cell-content small col-1 d-flex flex-wrap flex-row">
+                    <p class="my-auto">45</p>
                 </div>
-
-
-            </div>
-
-            <div class="cell-content col-12 d-flex flex-wrap">
-                <div class="col-10 no-padding">
-                    <p class="no-margin">
-                        @Model.Posts.FirstOrDefault().Content
-                    </p>
+                <div class="cell-content small col-1 d-flex flex-wrap flex-row">
+                    <p class="my-auto">132</p>
                 </div>
-
-                <div class="col-2 no-padding">
-                    <p class="text-right small no-margin">
-                        @Model.Author
+                <div class="cell-content small col-2 d-flex flex-wrap flex-row">
+                    <p class="my-auto">
+                        Gorgoflex the Untamed
                         <br />
-                        Author info here
-
+                        17/6/18, 20:22
                     </p>
+                    
                 </div>
+
             </div>
+
+
 
             <div class="cell-footer col-12 d-flex flex-wrap">
-
-
 
                 <div class="col-10 no-padding">
                     <p class="small no-margin">
@@ -55,7 +72,9 @@
                     </p>
                 </div>
             </div>
-            </div>
+
+
+        </div>
 
 
 
