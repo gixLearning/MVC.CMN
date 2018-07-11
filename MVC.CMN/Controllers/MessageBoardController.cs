@@ -1,6 +1,7 @@
 ﻿using MVC.CMN.DataContexts;
 using MVC.CMN.Models;
 using MVC.CMN.Models.MessageBoard;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -37,13 +38,9 @@ namespace MVC.CMN.Controllers {
                     var boarditem = new Board() {
                         BoardId = b.BoardId,
                         Name = b.Name,
-<<<<<<< HEAD
                         Description = b.Description,
                         Threads = b.Threads
                         
-=======
-                        Description = b.Description
->>>>>>> gixdev
                     };
                     model.Boarditems.Add(boarditem);
                 }
@@ -53,6 +50,18 @@ namespace MVC.CMN.Controllers {
                         .Where(t => t.BoardId == item.BoardId)
                         .OrderByDescending(d => d.Created)
                         .Take(3)
+                        .ToList();
+                }
+
+                foreach (var item in model.Boarditems) {
+                    foreach (var thread in item.Threads) {
+                        thread.Posts = context.Posts
+                        .Where(p => p.ThreadId == thread.ThreadId)
+                        .OrderByDescending(d => d.Created)
+                        .Take(3)
+                        .ToList();
+                    }
+                }
             }
             return View(model);
         }
@@ -76,6 +85,18 @@ namespace MVC.CMN.Controllers {
                 else {
                     return RedirectToAction("Index");
                 }
+
+                foreach (var item in board.Threads)
+                {
+                    item.Posts = context.Posts
+                        .Where(p => p.ThreadId == item.ThreadId)
+                        .OrderByDescending(d => d.Created)
+                        .Take(1)
+                        .ToList();
+                }
+
+
+
                 return View("SingleBoard", board);
             }
         }
@@ -100,14 +121,20 @@ namespace MVC.CMN.Controllers {
                 return View("Index");
         }
 
-        public ActionResult CreateNewPost(string postcontent, string threadId)
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateNewPost(string postcontent, string threadId, string userId)
         {
             using (ForumDbContext context = new ForumDbContext())
             {
                 Thread relevantthread = context.Threads.Find(threadId);
 
 
-                Post post = new Post() { Content = postcontent, BelongsToThread = relevantthread };
+                Post post = new Post() { Subject = relevantthread.Subject, Content = postcontent, Thread = relevantthread, ThreadId = Convert.ToInt32(threadId),   };
+
+                context.Posts.Add(post);
+                context.SaveChanges();
             }
 
             return View("Index");
@@ -146,5 +173,13 @@ namespace MVC.CMN.Controllers {
 
 
 
+        //public ActionResult CreateNewPost(NewPostViewModel model) {
+        //    return View();
+        //}
     }
+
+    //public class NewPostViewModel {
+    //    public int ThreadId { get; set; }
+    //    public string Content { get; set; }
+    //}
 }

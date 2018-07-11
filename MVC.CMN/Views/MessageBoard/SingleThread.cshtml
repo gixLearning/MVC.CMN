@@ -33,18 +33,12 @@
 
 
 
-
+@*Fix: Get user Id*@
 
 <div class="form-group col-6 mx-auto p-2">
-<<<<<<< HEAD
-    @using (Html.BeginForm("CreateNewPost", "Home", FormMethod.Post, new { threadId = Model.ThreadId } ))
+    @using (Html.BeginForm("CreateNewPost", "MessageBoard", FormMethod.Post, new { threadId = Model.ThreadId, userId = "5" }))
     {
         <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="postcontent"></textarea>
-=======
-    @using (Html.BeginForm("CreateNewPost", "MessageBoard", FormMethod.Post)) {
-        @Html.AntiForgeryToken()
-        <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="content"></textarea>
->>>>>>> gixdev
         <br />
         <input type="submit" class="btn btn-primary" value="Reply">
     }
