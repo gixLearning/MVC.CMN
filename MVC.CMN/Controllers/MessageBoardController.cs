@@ -1,4 +1,7 @@
-﻿using MVC.CMN.DataContexts;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using MVC.CMN.DataContexts;
+using MVC.CMN.Models;
 using MVC.CMN.Models.MessageBoard;
 using System.Data.Entity;
 using System.Linq;
@@ -81,15 +84,42 @@ namespace MVC.CMN.Controllers {
                 else {
                     return RedirectToAction("Index");
                 }
+
+                foreach (var item in board.Threads) {
+                    item.Posts = context.Posts
+                        .Where(p => p.ThreadId == item.ThreadId)
+                        .OrderByDescending(d => d.Created)
+                        .Take(1)
+                        .ToList();                        
+                }
+
                 return View("SingleBoard", board);
             }
         }
 
         public ActionResult ShowThread(int id) {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
             using (ForumDbContext context = new ForumDbContext()) {
-                Thread thread = context.Threads.Where(t => t.ThreadId == id).Include(p => p.Posts).FirstOrDefault();
+                System.Diagnostics.Debug.WriteLine("THREAD QUERY");
+                //Thread thread = context.Threads.Where(t => t.ThreadId == id).Include(p => p.Posts).FirstOrDefault();
+                Thread thread = context.Threads
+                    .Include(p => p.Posts)
+                    .Include(p => p.Posts.Select(e => e.UserProfile))
+                    .Where(t => t.ThreadId == id)
+                    .FirstOrDefault();
 
                 if (thread != null) {
+
+                    //foreach (var item in thread.Posts) {
+                    //    UserProfile profile = new UserProfile();
+                    //    profile.UserId = item.CreatedBy;
+                    //    profile.UserName = userManager.FindById(profile.UserId).UserName;
+                    //    item.UserProfile = profile;
+                    //}
+
+
+                    //userManager.Dispose();
                     return View("SingleThread", thread);
                 }
             }

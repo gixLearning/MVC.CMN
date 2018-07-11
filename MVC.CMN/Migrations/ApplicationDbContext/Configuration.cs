@@ -84,7 +84,8 @@ namespace MVC.CMN.Migrations.ApplicationDbContext {
             using (var forumdb = new DataContexts.ForumDbContext()) {
                 if (!forumdb.UserProfiles.Any(u => u.UserId == admin.Id)) {
                     UserProfile profile = new UserProfile {
-                        UserId = admin.Id
+                        UserId = admin.Id,
+                        UserName = "Adminzor"
                     };
                     forumdb.UserProfiles.AddOrUpdate(profile);
                 }
@@ -94,7 +95,8 @@ namespace MVC.CMN.Migrations.ApplicationDbContext {
                         continue;
                     }
                     UserProfile profile = new UserProfile {
-                        UserId = user.Id
+                        UserId = user.Id,
+                        UserName = user.UserName
                     };
                     forumdb.UserProfiles.AddOrUpdate(profile);
                 }

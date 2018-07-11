@@ -15,6 +15,7 @@ namespace MVC.CMN.Models.MessageBoard {
 
         [Key]
         public string UserId { get; set; }
+        public string UserName { get; set; }
 
         public UserProfile() {
             Posts = new HashSet<Post>();
