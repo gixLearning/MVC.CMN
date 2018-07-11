@@ -112,32 +112,59 @@ namespace MVC.CMN.Controllers {
             return RedirectToAction("Index");
         }
 
-
-        public ActionResult CreateNewThread(string threadtitle, string threadcontent)
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult CreateNewThread(string threadtitle, string threadcontent, int boardId, string userId)
         {
 
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                Board board = context.Boards.Find(boardId);
+
+                Thread thread = new Thread() { Subject = threadtitle, BoardId = boardId, Board = board, Created = DateTime.UtcNow, CreatedBy = userId };
+                context.Threads.Add(thread);
 
 
-                return View("Index");
+
+                Post post = new Post() { Subject = thread.Subject, Content = threadcontent, Thread = thread, ThreadId = thread.ThreadId, Created = DateTime.UtcNow, CreatedBy = userId  };
+
+
+                thread.Posts.Add(post);
+
+
+                //Generera ett post-objekt också, sen lägg till i thread
+                context.Posts.Add(post);
+                context.SaveChanges();
+
+
+                return RedirectToAction("ShowBoard", new { id = boardId });
+
+            }
+
+
         }
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateNewPost(string postcontent, string threadId, string userId)
+        //[ValidateAntiForgeryToken]
+        public ActionResult CreateNewPost(string postcontent, int threadId, string userId)
         {
             using (ForumDbContext context = new ForumDbContext())
             {
-                Thread relevantthread = context.Threads.Find(threadId);
+                Thread thread = context.Threads.Find(threadId);
+
+                Post post = new Post() { Subject = thread.Subject, Content = postcontent, Thread = thread, ThreadId = threadId, Created = DateTime.UtcNow,  CreatedBy = userId };
 
 
-                Post post = new Post() { Subject = relevantthread.Subject, Content = postcontent, Thread = relevantthread, ThreadId = Convert.ToInt32(threadId),   };
+                thread.Posts.Add(post);
 
                 context.Posts.Add(post);
                 context.SaveChanges();
-            }
 
-            return View("Index");
+
+                return RedirectToAction("ShowThread", new { id = threadId });
+
+            }
         }
 
 
@@ -172,14 +199,6 @@ namespace MVC.CMN.Controllers {
 
 
 
-
-        //public ActionResult CreateNewPost(NewPostViewModel model) {
-        //    return View();
-        //}
     }
 
-    //public class NewPostViewModel {
-    //    public int ThreadId { get; set; }
-    //    public string Content { get; set; }
-    //}
 }
