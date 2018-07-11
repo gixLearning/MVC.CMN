@@ -4,22 +4,23 @@
     ViewBag.Title = "SingleThread";
 }
 
-
-<div>
-    <ul class="breadcrumb">
-        <li><a href="#">Main</a></li>
-        <li><a href="#">GetParentName</a></li>
-        <li><a href="#">@Model.Title</a></li>
-    </ul>
-</div>
+@Html.Partial("_Carousel")
 
 
-<div class="d-flex border border-dark rounded flex-column col-10 mx-auto no-padding">
-    <div class="col-12 gradient-orange">
-        <h3>@Model.Title    </h3>
+
+<div class="d-flex flex-column col-10 mx-auto no-padding">
+    
+    
+    @*<div class="col-12 gradient-steelblue">
+        @Model.Title
     </div>
 
-    <table>
+    <div class="col-12 gradient-white">
+        Model.Description
+    </div>*@
+
+
+    <table class="col-12 mx-auto">
 
         @{
             foreach (var post in Model.Posts)
@@ -29,7 +30,6 @@
 
             }
         }
-
     </table>
 </div>
 
@@ -43,4 +43,12 @@
         <input type="submit" class="btn btn-primary" value="Reply">
     }
 
+</div>
+
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#">Main</a></li>
+        <li><a href="#">GetParentName</a></li>
+        <li><a href="#">@Model.Title</a></li>
+    </ul>
 </div>

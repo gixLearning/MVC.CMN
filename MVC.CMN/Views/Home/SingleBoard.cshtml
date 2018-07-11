@@ -4,42 +4,17 @@
     ViewBag.Title = "SingleBoard";
 }
 
-<div>
-    <ul class="breadcrumb">
-        <li><a href="#">Main</a></li>
-        <li><a href="#">@Model.Title</a></li>
-    </ul>
-</div>
+@Html.Partial("_Carousel")
 
-<div class="d-flex border border-dark rounded flex-column col-10 mx-auto no-padding">
+<div class="mx-auto col-10 no-padding">
 
-    <div class="col-12 gradient-steelblue">
-        @Model.Title    
-        </div>
-
-    <div class="col-12 gradient-white">
-        @Model.Description    
+@Html.Partial("_BoardCell", Model)
 
     </div>
 
 
 
-    <table class="col-12 mx-auto">
 
-        @{
-            foreach (var thread in Model.Threads)
-            {
-
-
-
-                @Html.Partial("_ThreadCell", thread)
-
-
-
-            }
-        }
-    </table>
-</div>
 
 <hr />
 
@@ -60,5 +35,11 @@
 
 
 
+<div>
+    <ul class="breadcrumb">
+        <li><a href="#">Main</a></li>
+        <li><a href="#">@Model.Title</a></li>
+    </ul>
+</div>
 
 
