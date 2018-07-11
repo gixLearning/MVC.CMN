@@ -1,0 +1,46 @@
+﻿@model MVC.CMN.Models.MessageBoard.Board
+
+<tr>
+    <td>
+        <div class="border border-dark rounded col-12 no-padding">
+            <div class="col-12 no-padding board-header" id="@Model.BoardId">
+                <div class="cell-header col-12">
+                    <p class="no-margin">
+                        @Html.ActionLink(Model.Name, "ShowBoard", "MessageBoard", new { id = Model.BoardId }, null)
+                    </p>
+                </div>
+                <div class="d-flex cell-content col-12 flex-wrap">
+                    <div class="col-10 no-padding">
+                        <p class="no-margin">
+                            @Model.Description
+                        </p>
+                    </div>
+                    <div class="col-2 no-padding">
+                        <p class="text-right small no-margin">
+                            @Html.ActionLink("Edit board", "EditBoard", "Home", new { id = Model.BoardId }, null)
+                            <br />
+                            @Html.ActionLink("Delete board", "DeleteBoard", "Home", new { id = Model.BoardId }, null)
+                        </p>
+                    </div>
+                </div>
+                <div class="cell-footer col-12">
+                    <p class="no-margin">
+                        Footer info
+                    </p>
+                </div>
+            </div>
+            <div class="d-flex">
+                <table class="col-12 mx-auto no-padding">
+                    @{
+                        foreach (var thread in Model.Threads) {
+
+                            @Html.Partial("_ThreadCell", thread)
+
+                        }
+                    }
+                </table>
+            </div>
+        </div>
+        <br />
+    </td>
+</tr>

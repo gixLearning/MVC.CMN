@@ -64,6 +64,19 @@ namespace MVC.CMN.Migrations.ApplicationDbContext {
                     PhoneNumber = "12345678911",
                     Email = "kevin@mail.com",
                     SecurityStamp = Guid.NewGuid().ToString()
+                },
+                new ApplicationUser() {
+                    UserName = "Paw McFist",
+                    PasswordHash = passwordHasher.HashPassword("Password@3"),
+                    PhoneNumber = "12345678911",
+                    Email = "paw@mail.com",
+                    SecurityStamp = Guid.NewGuid().ToString()
+                },
+                new ApplicationUser() {
+                    UserName = "Jonatan Streith",
+                    PasswordHash = passwordHasher.HashPassword("Password@123"),
+                    Email = "jonatan@streith.se",
+                    SecurityStamp = Guid.NewGuid().ToString()
                 }
             };
             users.ForEach(s => context.Users.AddOrUpdate(x => x.UserName, s));

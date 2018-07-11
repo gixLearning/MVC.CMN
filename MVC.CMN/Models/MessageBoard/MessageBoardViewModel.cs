@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace MVC.CMN.Models.MessageBoard {
+
     public class MessageBoardViewModel {
-        public int BoardsCount { get; set; }
+        public IList<Board> Boarditems { get; set; }
+
+        public MessageBoardViewModel() {
+            Boarditems = new List<Board>();
+        }
     }
 }
