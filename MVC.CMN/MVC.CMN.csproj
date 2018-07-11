@@ -307,12 +307,17 @@
     <Content Include="Views\Shared\_DynamicNewsitem.cshtml" />
     <Content Include="Views\Shared\_BoardCell.cshtml" />
     <Content Include="Views\Home\SingleBoard.cshtml" />
-    <Content Include="Views\Shared\_ThreadCell.cshtml" />
+    <Content Include="Views\MessageBoard\_ThreadCell.cshtml" />
     <Content Include="Views\Home\SingleThread.cshtml" />
     <Content Include="Views\Shared\_PostCell.cshtml" />
     <Content Include="Views\MessageBoard\Index.cshtml" />
     <Content Include="Views\Shared\_Carousel.cshtml" />
     <Content Include="Views\Shared\_BoardBar.cshtml" />
+    <Content Include="Views\MessageBoard\_BoardCell.cshtml" />
+    <Content Include="Views\Shared\_ThreadCell.cshtml" />
+    <Content Include="Views\MessageBoard\SingleBoard.cshtml" />
+    <Content Include="Views\MessageBoard\SingleThread.cshtml" />
+    <Content Include="Views\MessageBoard\_PostCell.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

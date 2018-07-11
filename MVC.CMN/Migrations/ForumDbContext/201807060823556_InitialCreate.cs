@@ -35,14 +35,14 @@ namespace MVC.CMN.Migrations.ForumDbContext {
             CreateTable(
                 "Posts",
                 c => new {
-                    Postid = c.Int(nullable: false, identity: true),
+                    PostId = c.Int(nullable: false, identity: true),
                     ThreadId = c.Int(nullable: false),
                     Created = c.DateTime(nullable: false, precision: 0),
                     Subject = c.String(nullable: false, maxLength: 128, unicode: false),
                     Content = c.String(nullable: false, maxLength: 1000, unicode: false),
                     CreatedBy = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
                 })
-                .PrimaryKey(t => t.Postid)
+                .PrimaryKey(t => t.PostId)
                 .ForeignKey("UserProfiles", t => t.CreatedBy)
                 .ForeignKey("Threads", t => t.ThreadId)
                 .Index(t => t.ThreadId)
