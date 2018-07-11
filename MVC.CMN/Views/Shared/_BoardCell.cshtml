@@ -1,4 +1,4 @@
-﻿@model MVC.CMN.Models.Boarditem
+﻿@model MVC.CMN.Models.MessageBoard.Board
 
 
 
@@ -18,7 +18,7 @@
                 <div class="cell-content bottom-padding col-8">
 
                     <div class="no-padding  text-danger col-12">
-                        @Html.ActionLink(Model.Title, "ShowBoard", "Home", new { id = Model.Id }, null)
+                        @Html.ActionLink(Model.Name, "ShowBoard", "MessageBoard", new { id = Model.BoardId }, null)
 
                     </div>
 
@@ -59,8 +59,8 @@
                 <div class="col-2 no-padding">
 
                     <p class="text-right small no-margin">
-                        @Html.ActionLink("Edit board", "EditBoard", "Home", new { id = Model.Id }, null)
-                        @Html.ActionLink("Delete board", "DeleteBoard", "Home", new { id = Model.Id }, null)
+                        @Html.ActionLink("Edit board", "EditBoard", "Home", new { id = Model.BoardId }, null)
+                        @Html.ActionLink("Delete board", "DeleteBoard", "Home", new { id = Model.BoardId }, null)
 
                     </p>
                 </div>
@@ -88,16 +88,16 @@
                 <table class="col-12 mx-auto no-padding">
 
                     @{
-                    foreach (var thread in Model.Threads)
-                    {
+                        foreach (var thread in Model.Threads)
+                        {
 
 
 
-                        @Html.Partial("_ThreadCell", thread)
+                            @Html.Partial("_ThreadCell", thread)
 
 
 
-                }
+                        }
                     }
 
                 </table>

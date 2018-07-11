@@ -26,6 +26,7 @@ namespace MVC.CMN.Controllers {
                         Name = b.Name,
                         Description = b.Description,
                         Threads = b.Threads
+                        
                     };
                     model.Boarditems.Add(boarditem);
                 }
