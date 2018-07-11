@@ -47,7 +47,7 @@
 
                 <div class="col-2 no-padding">
                     <p class="text-right small no-margin">
-                        @Html.ActionLink("Quote", "QuotePost", "MessageBoard", new { id = Model.PostId }, null)
+                        @Html.ActionLink("Quote", "QuotePost", "MessageBoard", new { id = Model.PostId }, null)  @*This should be an Ajax thingy*@
 
                         @Html.ActionLink("Edit post", "EditPost", "MessageBoard", new { id = Model.PostId }, null)
 

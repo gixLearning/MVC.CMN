@@ -1,4 +1,5 @@
 ﻿using MVC.CMN.DataContexts;
+using MVC.CMN.Models;
 using MVC.CMN.Models.MessageBoard;
 using System.Data.Entity;
 using System.Linq;
@@ -67,5 +68,61 @@ namespace MVC.CMN.Controllers {
             }
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult CreateNewThread(string threadtitle, string threadcontent)
+        {
+
+
+
+                return View("Index");
+        }
+
+        public ActionResult CreateNewPost(string postcontent, string threadId)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                Thread relevantthread = context.Threads.Find(threadId);
+
+
+                Post post = new Post() { Content = postcontent, BelongsToThread = relevantthread };
+            }
+
+            return View("Index");
+        }
+
+
+
+
+
+        public ActionResult EditThread(string id)
+        {
+
+            return View();
+        }
+
+        public ActionResult DeleteThread(string id)
+        {
+
+            return View();
+        }
+
+
+
+        public ActionResult EditPost(string id)
+        {
+
+            return View();
+        }
+
+        public ActionResult DeletePost(string id)
+        {
+
+            return View();
+        }
+
+
+
+
     }
 }
