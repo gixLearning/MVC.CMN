@@ -20,14 +20,43 @@ namespace MVC.CMN.Controllers {
                 //    };
                 //    model.Boarditems.Add(boarditem);
                 //}
-                foreach (var b in context.Boards.Include("Threads")) {
+
+                //foreach (var b in context.Boards.Include("Threads")) {
+                //    var boarditem = new Board() {
+                //        BoardId = b.BoardId,
+                //        Name = b.Name,
+                //        Description = b.Description,
+                //        Threads = b.Threads
+                //    };
+                //    model.Boarditems.Add(boarditem);
+                //}
+
+                //This feels like it could be done in a more efficient way =S
+                foreach (var b in context.Boards) {
                     var boarditem = new Board() {
                         BoardId = b.BoardId,
                         Name = b.Name,
-                        Description = b.Description,
-                        Threads = b.Threads
+                        Description = b.Description
                     };
                     model.Boarditems.Add(boarditem);
+                }
+
+                foreach (var item in model.Boarditems) {
+                    item.Threads = context.Threads
+                        .Where(t => t.BoardId == item.BoardId)
+                        .OrderByDescending(d => d.Created)
+                        .Take(3)
+                        .ToList();
+                }
+
+                foreach (var item in model.Boarditems) {
+                    foreach (var thread in item.Threads) {
+                        thread.Posts = context.Posts
+                        .Where(p => p.ThreadId == thread.ThreadId)
+                        .OrderByDescending(d => d.Created)
+                        .Take(3)
+                        .ToList();
+                    }
                 }
             }
             return View(model);
@@ -66,5 +95,16 @@ namespace MVC.CMN.Controllers {
             }
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateNewPost(NewPostViewModel model) {
+            return View();
+        }
+    }
+
+    public class NewPostViewModel {
+        public int ThreadId { get; set; }
+        public string Content { get; set; }
     }
 }
