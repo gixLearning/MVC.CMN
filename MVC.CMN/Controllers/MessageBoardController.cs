@@ -21,16 +21,38 @@ namespace MVC.CMN.Controllers {
                 //    };
                 //    model.Boarditems.Add(boarditem);
                 //}
-                foreach (var b in context.Boards.Include("Threads")) {
+
+                //foreach (var b in context.Boards.Include("Threads")) {
+                //    var boarditem = new Board() {
+                //        BoardId = b.BoardId,
+                //        Name = b.Name,
+                //        Description = b.Description,
+                //        Threads = b.Threads
+                //    };
+                //    model.Boarditems.Add(boarditem);
+                //}
+
+                //This feels like it could be done in a more efficient way =S
+                foreach (var b in context.Boards) {
                     var boarditem = new Board() {
                         BoardId = b.BoardId,
                         Name = b.Name,
+<<<<<<< HEAD
                         Description = b.Description,
                         Threads = b.Threads
                         
+=======
+                        Description = b.Description
+>>>>>>> gixdev
                     };
                     model.Boarditems.Add(boarditem);
                 }
+
+                foreach (var item in model.Boarditems) {
+                    item.Threads = context.Threads
+                        .Where(t => t.BoardId == item.BoardId)
+                        .OrderByDescending(d => d.Created)
+                        .Take(3)
             }
             return View(model);
         }
