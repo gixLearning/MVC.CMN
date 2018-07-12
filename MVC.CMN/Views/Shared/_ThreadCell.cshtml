@@ -49,15 +49,10 @@
                     <p class="text-right small no-margin">
                         @Ajax.ActionLink("Edit thread", "InsertEditThreadView", "MessageBoard", new { threadId = Model.ThreadId, boardId = Model.BoardId, userId = Model.CreatedBy, subject = Model.Subject }, new AjaxOptions
     {
-        UpdateTargetId = "NewOrEditThread",
+        UpdateTargetId = "NewOrEdit",
         InsertionMode = InsertionMode.Replace,
         HttpMethod = "POST"
     })
-
-
-
-
-
 
                         @Html.ActionLink("Delete thread", "DeleteThread", "MessageBoard", new { id = Model.ThreadId }, null)
 

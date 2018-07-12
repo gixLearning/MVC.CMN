@@ -1,0 +1,19 @@
+﻿@model MVC.CMN.Models.MessageBoard.EditBoardViewModel
+
+@using (Html.BeginForm("EditBoard", "MessageBoard", new { boardId = Model.BoardId }, FormMethod.Post))
+{
+
+
+
+    <textarea rows="1" cols="50" class="form-control col-12" id="EditBoardTitle" name="boardname">@Model.Name</textarea>
+
+    <br />
+
+    <textarea rows="10" cols="50" class="form-control col-12" id="EditBoardDescription" name="boarddescription">@Model.Description</textarea>
+
+
+    <br />
+
+    <input type="submit" class="btn btn-primary" value="Edit">
+
+}

@@ -51,7 +51,7 @@
                         
                         @Ajax.ActionLink("Edit post", "InsertEditPostView", "MessageBoard", new { threadId = Model.ThreadId, postId = Model.PostId, userId = Model.CreatedBy, content = Model.Content }, new AjaxOptions
                    {
-                       UpdateTargetId = "NewOrEditPost",
+                       UpdateTargetId = "NewOrEdit",
                        InsertionMode = InsertionMode.Replace,
                        HttpMethod = "POST"
                    })                        

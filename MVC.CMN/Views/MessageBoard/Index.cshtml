@@ -3,6 +3,9 @@
     ViewBag.Title = "Index";
 }
 
+@using MVC.CMN.Models.MessageBoard
+
+
 <div>
     <div class="panel rounded border border-info col-4 mx-auto panel-transparent p-2 m-2">
         <h2 class="text-center">REAL MessageBoard</h2>
@@ -35,17 +38,11 @@
 
 
 <hr />
-<div class="form-group col-6 mx-auto p-2">
-    @using (Html.BeginForm("CreateNewBoard", "MessageBoard", new { userId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" }, FormMethod.Post))
-    {
-        <input type="text" class="form-control col-12" id="NewThreadTitle" name="boardtitle" placeholder="Board title">
-        <br />
+<div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
 
-        <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="boardcontent"></textarea>
+    @Html.Partial("_CreateNewBoard", new NewBoardViewModel() { UserId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" })
 
-        <br />
-        <input type="submit" class="btn btn-primary" value="New board">
-    }
+
 </div>
 
 

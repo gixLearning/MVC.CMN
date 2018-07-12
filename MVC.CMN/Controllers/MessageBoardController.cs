@@ -77,6 +77,12 @@ namespace MVC.CMN.Controllers
             return View(model);
         }
 
+
+
+
+
+
+
         public ActionResult ShowBoard(int id)
         {
             Board board;
@@ -130,26 +136,22 @@ namespace MVC.CMN.Controllers
 
                 if (thread != null)
                 {
-                    //foreach (var item in thread.Posts) {
-                    //    UserProfile profile = new UserProfile();
-                    //    profile.UserId = item.CreatedBy;
-                    //    profile.UserName = userManager.FindById(profile.UserId).UserName;
-                    //    item.UserProfile = profile;
-                    //}
-
-                    //userManager.Dispose();
                     return View("SingleThread", thread);
                 }
             }
             return RedirectToAction("Index");
         }
 
+
+
+
+
+
         [HttpPost]
 public ActionResult CreateNewBoard(string boardtitle, string boardcontent, string userId)   //userId not used because boards don't have creators. Maybe later?
         {
             using (ForumDbContext context = new ForumDbContext())
             {
-
                 Board board = new Board() { Name = boardtitle, Description = boardcontent };
 
                 context.Boards.Add(board);
@@ -194,7 +196,6 @@ public ActionResult CreateNewBoard(string boardtitle, string boardcontent, strin
                 Post post = new Post() { Subject = thread.Subject, Content = postcontent, Thread = thread, ThreadId = threadId, Created = DateTime.UtcNow, CreatedBy = userId };
                 thread.Posts.Add(post);
                 context.Posts.Add(post);
-
                 context.SaveChanges();
 
                 return RedirectToAction("ShowThread", new { id = threadId });
@@ -206,8 +207,14 @@ public ActionResult CreateNewBoard(string boardtitle, string boardcontent, strin
 
 
 
+        [HttpPost]
+        public ActionResult InsertEditBoardView(int boardId, string name, string description)
+        {
+            EditBoardViewModel ebvm = new EditBoardViewModel() { BoardId = boardId, Name = name, Description = description };
 
-
+            return PartialView("_EditBoard", ebvm);
+        }
+        
         [HttpPost]
         public ActionResult InsertEditThreadView(int threadId, int boardId, string userId, string subject)
         {
@@ -216,38 +223,35 @@ public ActionResult CreateNewBoard(string boardtitle, string boardcontent, strin
             return PartialView("_EditThread", etvm);
         }
 
-
-
-
-
-        public ActionResult DeleteThread(int id)
+        [HttpPost]
+        public ActionResult InsertEditPostView( int threadId, int postId, string userId, string content)
         {
-            using (ForumDbContext context = new ForumDbContext())
-            {
-                Thread thread = context.Threads.Find(id);
+            EditPostViewModel epvm = new EditPostViewModel() { ThreadId = threadId, PostId = postId, UserId = userId, Content = content };
 
-                
-                if (thread != null)
-                {
-                    context.Threads.Remove(thread);
-
-                    context.SaveChanges();
-                }
-
-                return RedirectToAction("ShowBoard", new { id = thread.BoardId });
-
-            }
+            return PartialView("_EditPost", epvm);
         }
 
 
 
-        public ActionResult EditThread(int threadId, int boardId, string userId, string threadtitle)
+
+
+        public ActionResult EditBoard(int boardId, string boardname, string boarddescription)
         {
-
-
             using (ForumDbContext context = new ForumDbContext())
             {
 
+                context.Boards.Find(boardId).Name = boardname;
+                context.Boards.Find(boardId).Description = boarddescription;
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult EditThread(int threadId, int boardId, string userId, string threadtitle)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
                 context.Threads.Find(threadId).Subject = threadtitle;
                 context.SaveChanges();
 
@@ -262,21 +266,47 @@ public ActionResult CreateNewBoard(string boardtitle, string boardcontent, strin
                 context.Posts.Find(postId).Content = postcontent;
                 context.SaveChanges();
 
-
-
                 return RedirectToAction("ShowThread", new { id = threadId });
             }
         }
 
-        [HttpPost]
-        public ActionResult InsertEditPostView( int threadId, int postId, string userId, string content)
-        {
-            EditPostViewModel epvm = new EditPostViewModel() { ThreadId = threadId, PostId = postId, UserId = userId, Content = content };
 
-            return PartialView("_EditPost", epvm);
+
+        public ActionResult DeleteBoard(int id)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                Board board = context.Boards.Find(id);
+
+                if (board != null)
+                {
+                    context.Boards.Remove(board);
+                    context.SaveChanges();
+                }
+
+                return RedirectToAction("Index");
+            }
         }
 
 
+
+
+
+        public ActionResult DeleteThread(int id)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                Thread thread = context.Threads.Find(id);
+                
+                if (thread != null)
+                {
+                    context.Threads.Remove(thread);
+                    context.SaveChanges();
+                }
+
+                return RedirectToAction("ShowBoard", new { id = thread.BoardId });
+            }
+        }
 
         public ActionResult DeletePost(int id)
         {
