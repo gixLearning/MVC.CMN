@@ -57,6 +57,10 @@ namespace MVC.CMN.DataContexts {
                 .Property(e => e.Content)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<Post>()
+                .Property(e => e.ThreadId)
+                .IsRequired();
+
             modelBuilder.Entity<UserProfile>()
                 .HasMany(e => e.Posts)
                 .WithRequired(e => e.UserProfile)

@@ -7,6 +7,8 @@ namespace MVC.CMN.Models.MessageBoard {
     [Table("Posts")]
     public class Post {
         public int PostId { get; set; }
+
+        [Required]
         public int ThreadId { get; set; }
         public DateTime Created { get; set; }
 

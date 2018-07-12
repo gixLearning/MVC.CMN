@@ -184,6 +184,10 @@
     <Compile Include="Migrations\ForumDbContext\201807060823556_InitialCreate.Designer.cs">
       <DependentUpon>201807060823556_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\ForumDbContext\201807111315467_DatabaseCreate_UserProfile.Name.Table.cs" />
+    <Compile Include="Migrations\ForumDbContext\201807111315467_DatabaseCreate_UserProfile.Name.Table.Designer.cs">
+      <DependentUpon>201807111315467_DatabaseCreate_UserProfile.Name.Table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\ForumDbContext\ForumDbInitializer.cs" />
     <Compile Include="Migrations\ForumDbContext\Configuration.cs" />
     <Compile Include="Migrations\MySqlHistoryContext.cs" />
@@ -336,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\ForumDbContext\201807060823556_InitialCreate.resx">
       <DependentUpon>201807060823556_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ForumDbContext\201807111315467_DatabaseCreate_UserProfile.Name.Table.resx">
+      <DependentUpon>201807111315467_DatabaseCreate_UserProfile.Name.Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
