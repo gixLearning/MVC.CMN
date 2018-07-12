@@ -1,0 +1,16 @@
+﻿@model MVC.CMN.Models.MessageBoard.NewThreadViewModel
+
+@using (Html.BeginForm("CreateNewThread", "MessageBoard", new
+{
+    boardId = Model.BoardId,
+    userId = Model.UserId                   //"fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f"
+}, FormMethod.Post))
+{
+    <input type="text" class="form-control col-12" id="NewThreadTitle" name="threadtitle" placeholder="Thread title">
+    <br />
+
+    <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="threadcontent"></textarea>
+
+    <br />
+    <input type="submit" class="btn btn-primary" value="New thread">
+}

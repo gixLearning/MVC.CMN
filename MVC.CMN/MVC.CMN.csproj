@@ -194,11 +194,13 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Boarditem.cs" />
-    <Compile Include="Models\EditPostViewModel.cs" />
+    <Compile Include="Models\MessageBoard\EditPostViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageBoard\Board.cs" />
     <Compile Include="Models\MessageBoard\MessageBoardViewModel.cs" />
+    <Compile Include="Models\MessageBoard\NewPostViewModel.cs" />
+    <Compile Include="Models\MessageBoard\NewThreadViewModel.cs" />
     <Compile Include="Models\MessageBoard\Post.cs" />
     <Compile Include="Models\MessageBoard\Thread.cs" />
     <Compile Include="Models\MessageBoard\UserProfile.cs" />
@@ -321,6 +323,7 @@
     <Content Include="Views\MessageBoard\SingleThread.cshtml" />
     <Content Include="Views\Shared\_CreateNewPost.cshtml" />
     <Content Include="Views\Shared\_EditPost.cshtml" />
+    <Content Include="Views\Shared\_CreateNewThread.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

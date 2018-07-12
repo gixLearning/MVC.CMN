@@ -15,11 +15,14 @@
             <div class="d-flex cell-content no-margin bottom-padding col-12 flex-wrap">
                 <div class="col-10 no-padding">
                     <p class="no-margin">
-                        @if (Model.Posts.FirstOrDefault().Content != null)
+                        
+                        @if (Model.Posts.Count > 0)
+                        {
+                        if (Model.Posts.FirstOrDefault().Content != null)
                         {
                             @Model.Posts.FirstOrDefault().Content @*See if this can be limited to the first line of content only!*@
+                            }
                         }
-
 
                     </p>
                 </div>
