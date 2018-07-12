@@ -47,7 +47,17 @@
                 <div class="col-2 no-padding">
 
                     <p class="text-right small no-margin">
-                        @Html.ActionLink("Edit thread", "EditThread", "MessageBoard", new { id = Model.ThreadId }, null)
+                        @Ajax.ActionLink("Edit thread", "InsertEditThreadView", "MessageBoard", new { threadId = Model.ThreadId, boardId = Model.BoardId, userId = Model.CreatedBy, subject = Model.Subject }, new AjaxOptions
+    {
+        UpdateTargetId = "NewOrEditThread",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST"
+    })
+
+
+
+
+
 
                         @Html.ActionLink("Delete thread", "DeleteThread", "MessageBoard", new { id = Model.ThreadId }, null)
 

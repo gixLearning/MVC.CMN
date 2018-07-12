@@ -201,10 +201,24 @@ public ActionResult CreateNewBoard(string boardtitle, string boardcontent, strin
             }
         }
 
-        public ActionResult EditThread(string id)
+
+
+
+
+
+
+
+        [HttpPost]
+        public ActionResult InsertEditThreadView(int threadId, int boardId, string userId, string subject)
         {
-            return View();
+            EditThreadViewModel etvm = new EditThreadViewModel() { ThreadId = threadId, BoardId = boardId, UserId = userId, Subject = subject };
+
+            return PartialView("_EditThread", etvm);
         }
+
+
+
+
 
         public ActionResult DeleteThread(int id)
         {
@@ -220,10 +234,24 @@ public ActionResult CreateNewBoard(string boardtitle, string boardcontent, strin
                     context.SaveChanges();
                 }
 
-
-
                 return RedirectToAction("ShowBoard", new { id = thread.BoardId });
 
+            }
+        }
+
+
+
+        public ActionResult EditThread(int threadId, int boardId, string userId, string threadtitle)
+        {
+
+
+            using (ForumDbContext context = new ForumDbContext())
+            {
+
+                context.Threads.Find(threadId).Subject = threadtitle;
+                context.SaveChanges();
+
+                return RedirectToAction("ShowBoard", new { id = boardId });
             }
         }
 

@@ -1,0 +1,15 @@
+﻿@model MVC.CMN.Models.MessageBoard.EditThreadViewModel
+
+@using (Html.BeginForm("EditThread", "MessageBoard", new { threadId = Model.ThreadId, boardId = Model.BoardId, userId = Model.UserId }, FormMethod.Post))
+{
+
+
+
+
+
+    <input type="text" class="form-control col-12" id="NewThreadTitle" name="threadtitle" value=@Model.Subject>
+    <br />
+
+    <input type="submit" class="btn btn-primary" value="Edit">
+
+}
