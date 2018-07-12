@@ -49,6 +49,7 @@ namespace MVC.CMN.Controllers {
 
                 foreach (var item in model.Boarditems) {
                     item.Threads = context.Threads
+                        .Include(t => t.UserProfile)
                         .Where(t => t.BoardId == item.BoardId)
                         .OrderByDescending(d => d.Created)
                         .Take(3)
@@ -90,6 +91,7 @@ namespace MVC.CMN.Controllers {
 
                 foreach (var item in board.Threads) {
                     item.Posts = context.Posts
+                        .Include(t => t.UserProfile)
                         .Where(p => p.ThreadId == item.ThreadId)
                         .OrderByDescending(d => d.Created)
                         .Take(1)
@@ -109,6 +111,7 @@ namespace MVC.CMN.Controllers {
                 Thread thread = context.Threads
                     .Include(p => p.Posts)
                     .Include(p => p.Posts.Select(e => e.UserProfile))
+                    //.Include(b => b.Board)
                     .Where(t => t.ThreadId == id)
                     .FirstOrDefault();
 
@@ -167,8 +170,19 @@ namespace MVC.CMN.Controllers {
             return View();
         }
 
-        public ActionResult DeleteThread(string id) {
-            return View();
+        public ActionResult DeleteThread(int id) {
+            using (ForumDbContext context = new ForumDbContext()) {
+                Thread thread = context.Threads.Find(id);
+
+                if (thread != null) {
+                    context.Threads.Remove(thread);
+                    context.SaveChanges();
+                }
+
+                return RedirectToAction("ShowThread", new {
+                    id = thread.BoardId
+                });
+            }
         }
 
         public ActionResult EditPost(string id) {

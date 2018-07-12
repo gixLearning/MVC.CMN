@@ -1,9 +1,5 @@
 ﻿@model MVC.CMN.Models.MessageBoard.Board
 
-
-
-
-
 <tr>
     <td>
 
@@ -11,15 +7,12 @@
 
             @Html.Partial("_BoardBar")
 
-
-
             <div class="col-12 no-padding  d-flex flex-wrap">
 
                 <div class="cell-content bottom-padding col-8">
 
                     <div class="no-padding  text-danger col-12">
                         @Html.ActionLink(Model.Name, "ShowBoard", "MessageBoard", new { id = Model.BoardId }, null)
-
                     </div>
 
                     <div class="col-12  no-padding">
@@ -27,7 +20,6 @@
                             @Model.Description
                         </p>
                     </div>
-
                 </div>
 
                 <div class="cell-content small col-1 d-flex flex-wrap flex-row">
@@ -42,9 +34,7 @@
                         <br />
                         17/6/18, 20:22
                     </p>
-
                 </div>
-
             </div>
 
             <div class="cell-footer col-12 d-flex flex-wrap">
@@ -55,57 +45,35 @@
                     </p>
                 </div>
 
-
                 <div class="col-2 no-padding">
 
                     <p class="text-right small no-margin">
                         @Html.ActionLink("Edit board", "EditBoard", "Home", new { id = Model.BoardId }, null)
                         @Html.ActionLink("Delete board", "DeleteBoard", "Home", new { id = Model.BoardId }, null)
-
                     </p>
                 </div>
             </div>
-
-
         </div>
 
-
-
-
-
-
-
-
-
-
-
-
         <div class="rounded col-12 no-padding">
-
 
             <div class="d-flex">
 
                 <table class="col-12 mx-auto no-padding">
 
                     @{
-                        foreach (var thread in Model.Threads)
-                        {
+                        foreach (var thread in Model.Threads) {
 
-
+                            //TODO: Remove this soon
+                            System.Diagnostics.Debug.WriteLine("T-ID" + thread.ThreadId);
 
                             @Html.Partial("_ThreadCell", thread)
 
-
-
                         }
                     }
-
                 </table>
             </div>
-
         </div>
         <br />
-
     </td>
 </tr>
-

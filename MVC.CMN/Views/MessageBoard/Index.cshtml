@@ -9,16 +9,6 @@
     </div>
 </div>
 
-
-@*<p>Boards: @Model.Boarditems.Count</p>
-
-    @foreach (var item in Model.Boarditems) {
-        <div>
-            <p>Board: @item.Name</p>
-            <p>Threads: @item.Threads.Count</p>
-        </div>
-    }*@
-
 <table class="mx-auto col-10">
 
     @{
@@ -29,7 +19,6 @@
         }
     }
 </table>
-
 
 <div>
     <ul class="breadcrumb">
