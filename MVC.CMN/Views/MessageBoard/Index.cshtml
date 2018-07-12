@@ -12,16 +12,6 @@
     </div>
 </div>
 
-
-@*<p>Boards: @Model.Boarditems.Count</p>
-
-    @foreach (var item in Model.Boarditems) {
-        <div>
-            <p>Board: @item.Name</p>
-            <p>Threads: @item.Threads.Count</p>
-        </div>
-    }*@
-
 <table class="mx-auto col-10">
 
     @{
@@ -37,6 +27,7 @@
 
 
 
+
 <hr />
 <div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
 
@@ -44,11 +35,6 @@
 
 
 </div>
-
-
-
-
-
 
 <div>
     <ul class="breadcrumb">

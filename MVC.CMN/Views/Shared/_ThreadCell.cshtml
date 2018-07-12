@@ -3,7 +3,6 @@
 <tr>
     <td>
 
-
         <div class="col-12 no-padding board-header">
 
             <div class="cell-header col-12">
@@ -15,12 +14,10 @@
             <div class="d-flex cell-content no-margin bottom-padding col-12 flex-wrap">
                 <div class="col-10 no-padding">
                     <p class="no-margin">
-                        
-                        @if (Model.Posts.Count > 0)
-                        {
-                        if (Model.Posts.FirstOrDefault().Content != null)
-                        {
-                            @Model.Posts.FirstOrDefault().Content @*See if this can be limited to the first line of content only!*@
+
+                        @if (Model.Posts.Count > 0) {
+                            if (Model.Posts.FirstOrDefault().Content != null) {
+                                @Model.Posts.FirstOrDefault().Content
                             }
                         }
 
@@ -28,21 +25,18 @@
                 </div>
 
                 <div class="col-2 no-padding">
-                    @Model.CreatedBy
+                    @Model.UserProfile.UserName
                     <br />
                     Add user info here
-
-
                 </div>
             </div>
 
             <div class="cell-footer col-12 d-flex flex-wrap">
                 <div class="col-10 no-padding">
                     <p class="small no-margin">
-                        Written by @Model.CreatedBy on InsertDateHere
+                        Written by @Model.UserProfile.UserName on InsertDateHere
                     </p>
                 </div>
-
 
                 <div class="col-2 no-padding">
 
@@ -55,18 +49,10 @@
     })
 
                         @Html.ActionLink("Delete thread", "DeleteThread", "MessageBoard", new { id = Model.ThreadId }, null)
-
                     </p>
                 </div>
-
             </div>
         </div>
-
-
-
-
-
-
 
         @*<div class="col-12 no-padding standard-cell">
 
@@ -76,7 +62,6 @@
 
                         <div class="no-padding  text-danger col-12">
                             @Html.ActionLink(Model.Title, "ShowThread", "Home", new { id = Model.Id }, null)
-
                         </div>
 
                         <div class="col-12  no-padding">
@@ -84,7 +69,6 @@
                                 @Model.Posts.FirstOrDefault().Content                       See if this can be limited to the first line of content only!
                             </p>
                         </div>
-
                     </div>
 
                     <div class="cell-content small col-1 d-flex flex-wrap flex-row">
@@ -99,9 +83,7 @@
                             <br />
                             17/6/18, 20:22
                         </p>
-
                     </div>
-
                 </div>
 
                 <div class="cell-footer col-12 d-flex flex-wrap">
@@ -112,24 +94,15 @@
                         </p>
                     </div>
 
-
                     <div class="col-2 no-padding">
 
                         <p class="text-right small no-margin">
                             @Html.ActionLink("Edit thread", "EditThread", "Home", new { id = Model.Id }, null)
 
                             @Html.ActionLink("Delete thread", "DeleteThread", "Home", new { id = Model.Id }, null)
-
                         </p>
                     </div>
                 </div>
-
-
             </div>*@
-
-
-
-
-
     </td>
 </tr>

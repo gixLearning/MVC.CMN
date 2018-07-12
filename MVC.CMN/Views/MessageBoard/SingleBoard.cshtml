@@ -1,19 +1,24 @@
-﻿@model MVC.CMN.Models.MessageBoard.Board
+﻿@using Microsoft.AspNet.Identity
+@model MVC.CMN.Models.MessageBoard.Board
+   
 
 @{
     ViewBag.Title = "SingleBoard";
 }
 
+
 @using MVC.CMN.Models.MessageBoard
 
+
+=======
 
 @Html.Partial("_Carousel")
 
 <div class="mx-auto col-10 no-padding">
 
     @Html.Partial("_BoardCell", Model)
-
 </div>
+
 
 
 <hr />
@@ -24,6 +29,25 @@
 </div>
 
 
+<hr />
+
+
+@if (Request.IsAuthenticated) {
+    <div class="form-group col-6 mx-auto p-2">
+        @using (Html.BeginForm("CreateNewThread", "MessageBoard", new {
+                boardId = Model.BoardId,
+                userId = User.Identity.GetUserId()
+        }, FormMethod.Post)) {
+            <input type="text" class="form-control col-12" id="NewThreadTitle" name="threadtitle" placeholder="Thread title">
+            <br />
+
+            <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="threadcontent"></textarea>
+
+            <br />
+            <input type="submit" class="btn btn-primary" value="New thread">
+        }
+    </div>
+}
 
 <div>
     <ul class="breadcrumb">

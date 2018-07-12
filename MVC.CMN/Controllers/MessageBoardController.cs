@@ -56,6 +56,7 @@ namespace MVC.CMN.Controllers
                 foreach (var item in model.Boarditems)
                 {
                     item.Threads = context.Threads
+                        .Include(t => t.UserProfile)
                         .Where(t => t.BoardId == item.BoardId)
                         .OrderByDescending(d => d.Created)
                         .Take(3)
@@ -110,6 +111,7 @@ namespace MVC.CMN.Controllers
                 foreach (var item in board.Threads)
                 {
                     item.Posts = context.Posts
+                        .Include(t => t.UserProfile)
                         .Where(p => p.ThreadId == item.ThreadId)
                         .OrderByDescending(d => d.Created)
                         .Take(1)
@@ -131,6 +133,7 @@ namespace MVC.CMN.Controllers
                 Thread thread = context.Threads
                     .Include(p => p.Posts)
                     .Include(p => p.Posts.Select(e => e.UserProfile))
+                    //.Include(b => b.Board)
                     .Where(t => t.ThreadId == id)
                     .FirstOrDefault();
 
@@ -220,7 +223,23 @@ public ActionResult CreateNewBoard(string boardtitle, string boardcontent, strin
         {
             EditThreadViewModel etvm = new EditThreadViewModel() { ThreadId = threadId, BoardId = boardId, UserId = userId, Subject = subject };
 
+
             return PartialView("_EditThread", etvm);
+
+        public ActionResult DeleteThread(int id) {
+            using (ForumDbContext context = new ForumDbContext()) {
+                Thread thread = context.Threads.Find(id);
+
+                if (thread != null) {
+                    context.Threads.Remove(thread);
+                    context.SaveChanges();
+                }
+
+                return RedirectToAction("ShowThread", new {
+                    id = thread.BoardId
+                });
+            }
+
         }
 
         [HttpPost]
