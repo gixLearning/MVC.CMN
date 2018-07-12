@@ -1,0 +1,9 @@
+﻿@model MVC.CMN.Models.EditPostViewModel
+
+@using (Html.BeginForm("EditPost", "MessageBoard", new { threadId = Model.ThreadId, postId = Model.PostId, userId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" }, FormMethod.Post))
+{
+    <textarea rows="10" cols="50" class="form-control col-12" id="EditPostInput" name="postcontent">@Model.Content</textarea>
+
+    <br />
+    <input type="submit" class="btn btn-primary" value="Edit">
+}

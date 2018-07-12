@@ -194,6 +194,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Boarditem.cs" />
+    <Compile Include="Models\EditPostViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MessageBoard\Board.cs" />
@@ -229,6 +230,8 @@
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap\spacelab.bootstrap.min.css" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\popper\esm\popper-utils.js" />
     <Content Include="Scripts\popper\esm\popper-utils.min.js" />
     <Content Include="Scripts\popper\esm\popper.js" />
@@ -316,6 +319,8 @@
     <Content Include="Views\Shared\_ThreadCell.cshtml" />
     <Content Include="Views\MessageBoard\SingleBoard.cshtml" />
     <Content Include="Views\MessageBoard\SingleThread.cshtml" />
+    <Content Include="Views\Shared\_CreateNewPost.cshtml" />
+    <Content Include="Views\Shared\_EditPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

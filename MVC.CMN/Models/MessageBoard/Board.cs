@@ -20,5 +20,10 @@ namespace MVC.CMN.Models.MessageBoard {
         [Required]
         [StringLength(128)]
         public string Description { get; set; }
+
+        public Board()
+        {
+            Threads = new HashSet<Thread>();
+        }
     }
 }

@@ -31,6 +31,28 @@
 </table>
 
 
+
+
+
+<hr />
+<div class="form-group col-6 mx-auto p-2">
+    @using (Html.BeginForm("CreateNewBoard", "MessageBoard", new { userId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" }, FormMethod.Post))
+    {
+        <input type="text" class="form-control col-12" id="NewThreadTitle" name="boardtitle" placeholder="Board title">
+        <br />
+
+        <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="boardcontent"></textarea>
+
+        <br />
+        <input type="submit" class="btn btn-primary" value="New board">
+    }
+</div>
+
+
+
+
+
+
 <div>
     <ul class="breadcrumb">
         <li><a href="#">Main</a></li>

@@ -35,14 +35,18 @@
 
 @*Fix: Get user Id*@
 
-<div class="form-group col-6 mx-auto p-2">
-    @using (Html.BeginForm("CreateNewPost", "MessageBoard", new { threadId = Model.ThreadId, userId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" }, FormMethod.Post))
+
+<div class="form-group col-6 mx-auto p-2" id="NewOrEditPost">
+
+    @Html.Partial("_CreateNewPost", Model.ThreadId)
+
+    @*@using (Html.BeginForm("CreateNewPost", "MessageBoard", new { threadId = Model.ThreadId, userId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" }, FormMethod.Post))
     {
         <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="postcontent"></textarea>
 
         <br />
         <input type="submit" class="btn btn-primary" value="Reply">
-    }
+    }*@
 </div>
 
 

@@ -145,6 +145,23 @@ namespace MVC.CMN.Controllers
         }
 
         [HttpPost]
+public ActionResult CreateNewBoard(string boardtitle, string boardcontent, string userId)   //userId not used because boards don't have creators. Maybe later?
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+
+                Board board = new Board() { Name = boardtitle, Description = boardcontent };
+
+                context.Boards.Add(board);
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
+        [HttpPost]
         //[ValidateAntiForgeryToken]
         public ActionResult CreateNewThread(string threadtitle, string threadcontent, int boardId, string userId)
         {
@@ -198,7 +215,6 @@ namespace MVC.CMN.Controllers
                 
                 if (thread != null)
                 {
-                    context.Posts.RemoveRange(thread.Posts);
                     context.Threads.Remove(thread);
 
                     context.SaveChanges();
@@ -206,15 +222,32 @@ namespace MVC.CMN.Controllers
 
 
 
-                return RedirectToAction("ShowThread", new { id = thread.BoardId });
+                return RedirectToAction("ShowBoard", new { id = thread.BoardId });
 
             }
         }
 
-        public ActionResult EditPost(string id)
+        public ActionResult EditPost(string postcontent, int threadId, int postId, string userId)
         {
-            return View();
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                context.Posts.Find(postId).Content = postcontent;
+                context.SaveChanges();
+
+
+
+                return RedirectToAction("ShowThread", new { id = threadId });
+            }
         }
+
+        [HttpPost]
+        public ActionResult InsertEditPostView( int threadId, int postId, string userId, string content)
+        {
+            EditPostViewModel epvm = new EditPostViewModel() { ThreadId = threadId, PostId = postId, UserId = userId, Content = content };
+
+            return PartialView("_EditPost", epvm);
+        }
+
 
 
         public ActionResult DeletePost(int id)
