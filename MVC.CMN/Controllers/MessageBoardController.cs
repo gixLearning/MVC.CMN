@@ -9,14 +9,18 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace MVC.CMN.Controllers {
+namespace MVC.CMN.Controllers
+{
 
-    public class MessageBoardController : Controller {
+    public class MessageBoardController : Controller
+    {
 
         // GET: MessageBoard
-        public ActionResult Index() {
+        public ActionResult Index()
+        {
             var model = new MessageBoardViewModel();
-            using (ForumDbContext context = new ForumDbContext()) {
+            using (ForumDbContext context = new ForumDbContext())
+            {
                 //foreach (var b in context.Boards) {
                 //    var boarditem = new Boarditem() {
                 //        Title = b.Name,
@@ -37,8 +41,10 @@ namespace MVC.CMN.Controllers {
                 //}
 
                 //This feels like it could be done in a more efficient way =S
-                foreach (var b in context.Boards) {
-                    var boarditem = new Board() {
+                foreach (var b in context.Boards)
+                {
+                    var boarditem = new Board()
+                    {
                         BoardId = b.BoardId,
                         Name = b.Name,
                         Description = b.Description,
@@ -47,7 +53,8 @@ namespace MVC.CMN.Controllers {
                     model.Boarditems.Add(boarditem);
                 }
 
-                foreach (var item in model.Boarditems) {
+                foreach (var item in model.Boarditems)
+                {
                     item.Threads = context.Threads
                         .Include(t => t.UserProfile)
                         .Where(t => t.BoardId == item.BoardId)
@@ -56,8 +63,10 @@ namespace MVC.CMN.Controllers {
                         .ToList();
                 }
 
-                foreach (var item in model.Boarditems) {
-                    foreach (var thread in item.Threads) {
+                foreach (var item in model.Boarditems)
+                {
+                    foreach (var thread in item.Threads)
+                    {
                         thread.Posts = context.Posts
                         .Where(p => p.ThreadId == thread.ThreadId)
                         .OrderByDescending(d => d.Created)
@@ -69,27 +78,38 @@ namespace MVC.CMN.Controllers {
             return View(model);
         }
 
-        public ActionResult ShowBoard(int id) {
+
+
+
+
+
+
+        public ActionResult ShowBoard(int id)
+        {
             Board board;
-            using (ForumDbContext context = new ForumDbContext()) {
+            using (ForumDbContext context = new ForumDbContext())
+            {
                 System.Diagnostics.Debug.WriteLine("FIRST CONTEXT QUERY BEGIN");
                 board = context.Boards.Where(b => b.BoardId == id).FirstOrDefault();
                 //board = context.Boards.Include(t => t.Threads).Where(b => b.BoardId == id).FirstOrDefault();
 
                 System.Diagnostics.Debug.WriteLine("FIRST CONTEXT QUERY DONE");
 
-                if (board != null) {
+                if (board != null)
+                {
                     board.Threads = context.Threads
                     .Where(t => t.BoardId == board.BoardId)
                     .OrderByDescending(d => d.Created)
                     .Take(5)
                     .ToList();
                 }
-                else {
+                else
+                {
                     return RedirectToAction("Index");
                 }
 
-                foreach (var item in board.Threads) {
+                foreach (var item in board.Threads)
+                {
                     item.Posts = context.Posts
                         .Include(t => t.UserProfile)
                         .Where(p => p.ThreadId == item.ThreadId)
@@ -102,10 +122,12 @@ namespace MVC.CMN.Controllers {
             }
         }
 
-        public ActionResult ShowThread(int id) {
+        public ActionResult ShowThread(int id)
+        {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
-            using (ForumDbContext context = new ForumDbContext()) {
+            using (ForumDbContext context = new ForumDbContext())
+            {
                 System.Diagnostics.Debug.WriteLine("THREAD QUERY");
                 //Thread thread = context.Threads.Where(t => t.ThreadId == id).Include(p => p.Posts).FirstOrDefault();
                 Thread thread = context.Threads
@@ -115,25 +137,41 @@ namespace MVC.CMN.Controllers {
                     .Where(t => t.ThreadId == id)
                     .FirstOrDefault();
 
-                if (thread != null) {
-                    //foreach (var item in thread.Posts) {
-                    //    UserProfile profile = new UserProfile();
-                    //    profile.UserId = item.CreatedBy;
-                    //    profile.UserName = userManager.FindById(profile.UserId).UserName;
-                    //    item.UserProfile = profile;
-                    //}
-
-                    //userManager.Dispose();
+                if (thread != null)
+                {
                     return View("SingleThread", thread);
                 }
             }
             return RedirectToAction("Index");
         }
 
+
+
+
+
+
+        [HttpPost]
+public ActionResult CreateNewBoard(string boardtitle, string boardcontent, string userId)   //userId not used because boards don't have creators. Maybe later?
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                Board board = new Board() { Name = boardtitle, Description = boardcontent };
+
+                context.Boards.Add(board);
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult CreateNewThread(string threadtitle, string threadcontent, int boardId, string userId) {
-            using (ForumDbContext context = new ForumDbContext()) {
+        public ActionResult CreateNewThread(string threadtitle, string threadcontent, int boardId, string userId)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
                 Board board = context.Boards.Find(boardId);
 
                 Thread thread = new Thread() { Subject = threadtitle, BoardId = boardId, Board = board, Created = DateTime.UtcNow, CreatedBy = userId };
@@ -152,23 +190,41 @@ namespace MVC.CMN.Controllers {
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult CreateNewPost(string postcontent, int threadId, string userId) {
-            using (ForumDbContext context = new ForumDbContext()) {
+        public ActionResult CreateNewPost(string postcontent, int threadId, string userId)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
                 Thread thread = context.Threads.Find(threadId);
 
                 Post post = new Post() { Subject = thread.Subject, Content = postcontent, Thread = thread, ThreadId = threadId, Created = DateTime.UtcNow, CreatedBy = userId };
                 thread.Posts.Add(post);
                 context.Posts.Add(post);
-
                 context.SaveChanges();
 
                 return RedirectToAction("ShowThread", new { id = threadId });
             }
         }
 
-        public ActionResult EditThread(string id) {
-            return View();
+
+
+
+
+
+        [HttpPost]
+        public ActionResult InsertEditBoardView(int boardId, string name, string description)
+        {
+            EditBoardViewModel ebvm = new EditBoardViewModel() { BoardId = boardId, Name = name, Description = description };
+
+            return PartialView("_EditBoard", ebvm);
         }
+        
+        [HttpPost]
+        public ActionResult InsertEditThreadView(int threadId, int boardId, string userId, string subject)
+        {
+            EditThreadViewModel etvm = new EditThreadViewModel() { ThreadId = threadId, BoardId = boardId, UserId = userId, Subject = subject };
+
+
+            return PartialView("_EditThread", etvm);
 
         public ActionResult DeleteThread(int id) {
             using (ForumDbContext context = new ForumDbContext()) {
@@ -183,14 +239,110 @@ namespace MVC.CMN.Controllers {
                     id = thread.BoardId
                 });
             }
+
         }
 
-        public ActionResult EditPost(string id) {
-            return View();
+        [HttpPost]
+        public ActionResult InsertEditPostView( int threadId, int postId, string userId, string content)
+        {
+            EditPostViewModel epvm = new EditPostViewModel() { ThreadId = threadId, PostId = postId, UserId = userId, Content = content };
+
+            return PartialView("_EditPost", epvm);
         }
 
-        public ActionResult DeletePost(string id) {
-            return View();
+
+
+
+
+        public ActionResult EditBoard(int boardId, string boardname, string boarddescription)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+
+                context.Boards.Find(boardId).Name = boardname;
+                context.Boards.Find(boardId).Description = boarddescription;
+                context.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
+
+        public ActionResult EditThread(int threadId, int boardId, string userId, string threadtitle)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                context.Threads.Find(threadId).Subject = threadtitle;
+                context.SaveChanges();
+
+                return RedirectToAction("ShowBoard", new { id = boardId });
+            }
+        }
+
+        public ActionResult EditPost(string postcontent, int threadId, int postId, string userId)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                context.Posts.Find(postId).Content = postcontent;
+                context.SaveChanges();
+
+                return RedirectToAction("ShowThread", new { id = threadId });
+            }
+        }
+
+
+
+        public ActionResult DeleteBoard(int id)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                Board board = context.Boards.Find(id);
+
+                if (board != null)
+                {
+                    context.Boards.Remove(board);
+                    context.SaveChanges();
+                }
+
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
+
+
+        public ActionResult DeleteThread(int id)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                Thread thread = context.Threads.Find(id);
+                
+                if (thread != null)
+                {
+                    context.Threads.Remove(thread);
+                    context.SaveChanges();
+                }
+
+                return RedirectToAction("ShowBoard", new { id = thread.BoardId });
+            }
+        }
+
+        public ActionResult DeletePost(int id)
+        {
+            using (ForumDbContext context = new ForumDbContext())
+            {
+                Post post = context.Posts.Find(id);
+
+                if (post != null)
+                {
+                    context.Posts.Remove(post);
+                    context.SaveChanges();
+                }
+
+                return RedirectToAction("ShowThread", new { id = post.ThreadId });
+
+            }
+
         }
     }
 }

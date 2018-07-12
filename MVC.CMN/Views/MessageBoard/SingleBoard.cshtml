@@ -6,6 +6,12 @@
     ViewBag.Title = "SingleBoard";
 }
 
+
+@using MVC.CMN.Models.MessageBoard
+
+
+=======
+
 @Html.Partial("_Carousel")
 
 <div class="mx-auto col-10 no-padding">
@@ -13,7 +19,18 @@
     @Html.Partial("_BoardCell", Model)
 </div>
 
+
+
 <hr />
+<div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
+
+    @Html.Partial("_CreateNewThread", new NewThreadViewModel() { BoardId = Model.BoardId, UserId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" })
+
+</div>
+
+
+<hr />
+
 
 @if (Request.IsAuthenticated) {
     <div class="form-group col-6 mx-auto p-2">

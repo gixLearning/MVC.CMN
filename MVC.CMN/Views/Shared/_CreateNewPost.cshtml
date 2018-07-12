@@ -1,0 +1,11 @@
+﻿@model MVC.CMN.Models.MessageBoard.NewPostViewModel    
+
+
+@using (Html.BeginForm("CreateNewPost", "MessageBoard", new { threadId = Model.ThreadId, userId = Model.UserId }, FormMethod.Post))
+    {
+        <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="postcontent"></textarea>
+
+        <br />
+        <input type="submit" class="btn btn-primary" value="Reply">
+    }
+
