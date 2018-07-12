@@ -1,14 +1,11 @@
 ﻿@using Microsoft.AspNet.Identity
 @model MVC.CMN.Models.MessageBoard.Board
-   
 
 @{
     ViewBag.Title = "SingleBoard";
 }
 
-
 @using MVC.CMN.Models.MessageBoard
-
 
 =======
 
@@ -19,33 +16,13 @@
     @Html.Partial("_BoardCell", Model)
 </div>
 
-
-
 <hr />
-<div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
-
-    @Html.Partial("_CreateNewThread", new NewThreadViewModel() { BoardId = Model.BoardId, UserId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" })
-
-</div>
-
-
-<hr />
-
 
 @if (Request.IsAuthenticated) {
-    <div class="form-group col-6 mx-auto p-2">
-        @using (Html.BeginForm("CreateNewThread", "MessageBoard", new {
-                boardId = Model.BoardId,
-                userId = User.Identity.GetUserId()
-        }, FormMethod.Post)) {
-            <input type="text" class="form-control col-12" id="NewThreadTitle" name="threadtitle" placeholder="Thread title">
-            <br />
 
-            <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="threadcontent"></textarea>
+    <div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
 
-            <br />
-            <input type="submit" class="btn btn-primary" value="New thread">
-        }
+        @Html.Partial("_CreateNewThread", new NewThreadViewModel() { BoardId = Model.BoardId, UserId = User.Identity.GetUserId() })
     </div>
 }
 

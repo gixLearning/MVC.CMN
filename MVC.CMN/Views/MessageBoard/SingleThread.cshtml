@@ -1,10 +1,9 @@
 ﻿@model MVC.CMN.Models.MessageBoard.Thread
-    @using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = "SingleThread";
 }
-
 
 @Html.Partial("_Carousel")
 
@@ -12,14 +11,10 @@
 
 <div class="d-flex flex-column col-10 mx-auto no-padding">
 
-
-
-
     <table class="col-12 mx-auto LALALA">
 
         @{
-            foreach (var post in Model.Posts)
-            {
+            foreach (var post in Model.Posts) {
 
                 @Html.Partial("_PostCell", post)
 
@@ -28,34 +23,17 @@
     </table>
 </div>
 
-
-
 <hr />
-
-
 
 @*Fix: Get user Id*@
 
-
-
 @if (Request.IsAuthenticated) {
-    <div class="form-group col-6 mx-auto p-2">
-    @using (Html.BeginForm("CreateNewPost", "MessageBoard", new { threadId = Model.ThreadId, userId = User.Identity.GetUserId() }, FormMethod.Post))
-    {
-        <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="postcontent"></textarea>
 
+    <div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
 
-<div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
-
-    @Html.Partial("_CreateNewPost", new NewPostViewModel() { ThreadId = Model.ThreadId, UserId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" })
-
-</div>
+        @Html.Partial("_CreateNewPost", new NewPostViewModel() { ThreadId = Model.ThreadId, UserId = User.Identity.GetUserId() })
+    </div>
 }
-
-
-
-
-
 
 <div>
     <ul class="breadcrumb">
