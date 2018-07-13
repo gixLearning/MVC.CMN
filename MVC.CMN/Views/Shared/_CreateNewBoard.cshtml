@@ -1,6 +1,6 @@
 ﻿@model MVC.CMN.Models.MessageBoard.NewBoardViewModel
 
-@using (Html.BeginForm("CreateNewBoard", "MessageBoard", new { userId = "fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f" }, FormMethod.Post))
+@using (Html.BeginForm("CreateNewBoard", "MessageBoard", new { userId = Model.UserId }, FormMethod.Post))
 {
 
     <textarea rows="1" cols="50" class="form-control col-12" id="NewBoardTitle" name="boardtitle" placeholder="Board title"></textarea>

@@ -118,23 +118,22 @@ else
                     </p>
                 </div>
 
-                <div class="col-2 no-padding">
+                @if (Request.IsAuthenticated) {
+                    <div class="col-2 no-padding">
 
-                    <p class="text-right small no-margin">
+                        <p class="text-right small no-margin">
 
-                        @Ajax.ActionLink("Edit board", "InsertEditBoardView", "MessageBoard", new { boardId = Model.BoardId, name = Model.Name, description = Model.Description }, new AjaxOptions
+                            @Ajax.ActionLink("Edit board", "InsertEditBoardView", "MessageBoard", new { boardId = Model.BoardId, name = Model.Name, description = Model.Description }, new AjaxOptions
                         {
                             UpdateTargetId = "NewOrEdit",
                             InsertionMode = InsertionMode.Replace,
                             HttpMethod = "POST"
                         })
 
-
-                        @Html.ActionLink("Delete board", "DeleteBoard", "MessageBoard", new { id = Model.BoardId }, null)
-
-
-                    </p>
-                </div>
+                            @Html.ActionLink("Delete board", "DeleteBoard", "MessageBoard", new { id = Model.BoardId }, null)
+                        </p>
+                    </div>
+                }
             </div>
         </div>
 

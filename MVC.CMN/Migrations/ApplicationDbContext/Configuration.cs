@@ -30,7 +30,7 @@ namespace MVC.CMN.Migrations.ApplicationDbContext {
 
             List<IdentityRole> identityRoles = new List<IdentityRole> {
                 new IdentityRole { Name = RoleTypes.Admin },
-                new IdentityRole { Name = RoleTypes.SuperUser },
+                new IdentityRole { Name = RoleTypes.Moderator },
                 new IdentityRole { Name = RoleTypes.User }
             };
             foreach (IdentityRole role in identityRoles) {

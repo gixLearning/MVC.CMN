@@ -22,7 +22,6 @@
                                 @Model.Posts.LastOrDefault().Content
                             }
                         }
-
                     </p>
                 </div>
 
@@ -58,19 +57,22 @@
                     </p>
                 </div>
 
-                <div class="col-2 no-padding">
+                @if (Request.IsAuthenticated) {
+                    <div class="col-2 no-padding">
 
-                    <p class="text-right small no-margin">
-                        @Ajax.ActionLink("Edit thread", "InsertEditThreadView", "MessageBoard", new { threadId = Model.ThreadId, boardId = Model.BoardId, userId = Model.CreatedBy, subject = Model.Subject }, new AjaxOptions
-                        {
-                            UpdateTargetId = "NewOrEdit",
-                            InsertionMode = InsertionMode.Replace,
-                            HttpMethod = "POST"
-                        })
 
-                        @Html.ActionLink("Delete thread", "DeleteThread", "MessageBoard", new { id = Model.ThreadId }, null)
-                    </p>
-                </div>
+                        <p class="text-right small no-margin">
+                            @Ajax.ActionLink("Edit thread", "InsertEditThreadView", "MessageBoard", new { threadId = Model.ThreadId, boardId = Model.BoardId, userId = Model.CreatedBy, subject = Model.Subject }, new AjaxOptions {
+                                UpdateTargetId = "NewOrEdit",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "POST"
+                            })
+
+
+                            @Html.ActionLink("Delete thread", "DeleteThread", "MessageBoard", new { id = Model.ThreadId }, null)
+                        </p>
+                    </div>
+                }
             </div>
         </div>
 
