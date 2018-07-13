@@ -1,7 +1,7 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using MVC.CMN.Attributes;
 using MVC.CMN.DataContexts;
-
 using MVC.CMN.Models;
 using MVC.CMN.Models.MessageBoard;
 using System;
@@ -11,9 +11,11 @@ using System.Web.Mvc;
 
 namespace MVC.CMN.Controllers {
 
+    [Authorize]
     public class MessageBoardController : Controller {
 
         // GET: MessageBoard
+        [AllowAnonymous]
         public ActionResult Index() {
             var model = new MessageBoardViewModel();
             using (ForumDbContext context = new ForumDbContext()) {
@@ -69,6 +71,7 @@ namespace MVC.CMN.Controllers {
             return View(model);
         }
 
+        [AllowAnonymous]
         public ActionResult ShowBoard(int id) {
             Board board;
             using (ForumDbContext context = new ForumDbContext()) {
@@ -80,6 +83,7 @@ namespace MVC.CMN.Controllers {
 
                 if (board != null) {
                     board.Threads = context.Threads
+                    .Include(b => b.UserProfile)
                     .Where(t => t.BoardId == board.BoardId)
                     .OrderByDescending(d => d.Created)
                     .Take(5)
@@ -102,6 +106,7 @@ namespace MVC.CMN.Controllers {
             }
         }
 
+        [AllowAnonymous]
         public ActionResult ShowThread(int id) {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
@@ -123,6 +128,7 @@ namespace MVC.CMN.Controllers {
         }
 
         [HttpPost]
+        [Authorize(Roles = RoleTypes.Admin)]
         public ActionResult CreateNewBoard(string boardtitle, string boardcontent, string userId)   //userId not used because boards don't have creators. Maybe later?
         {
             using (ForumDbContext context = new ForumDbContext()) {
@@ -182,7 +188,7 @@ namespace MVC.CMN.Controllers {
             EditThreadViewModel etvm = new EditThreadViewModel() { ThreadId = threadId, BoardId = boardId, UserId = userId, Subject = subject };
 
             return PartialView("_EditThread", etvm);
-        }        
+        }
 
         [HttpPost]
         public ActionResult InsertEditPostView(int threadId, int postId, string userId, string content) {
@@ -191,6 +197,7 @@ namespace MVC.CMN.Controllers {
             return PartialView("_EditPost", epvm);
         }
 
+        [Authorize(Roles = RoleTypes.Admin)]
         public ActionResult EditBoard(int boardId, string boardname, string boarddescription) {
             using (ForumDbContext context = new ForumDbContext()) {
                 context.Boards.Find(boardId).Name = boardname;
@@ -201,6 +208,7 @@ namespace MVC.CMN.Controllers {
             }
         }
 
+        [AuthorizeRoles(RoleTypes.Admin, RoleTypes.Moderator)]
         public ActionResult EditThread(int threadId, int boardId, string userId, string threadtitle) {
             using (ForumDbContext context = new ForumDbContext()) {
                 context.Threads.Find(threadId).Subject = threadtitle;
@@ -219,6 +227,7 @@ namespace MVC.CMN.Controllers {
             }
         }
 
+        [Authorize(Roles = RoleTypes.Admin)]
         public ActionResult DeleteBoard(int id) {
             using (ForumDbContext context = new ForumDbContext()) {
                 Board board = context.Boards.Find(id);
@@ -232,6 +241,7 @@ namespace MVC.CMN.Controllers {
             }
         }
 
+        [AuthorizeRoles(RoleTypes.Admin, RoleTypes.Moderator)]
         public ActionResult DeleteThread(int id) {
             using (ForumDbContext context = new ForumDbContext()) {
                 Thread thread = context.Threads.Find(id);
