@@ -15,30 +15,51 @@
                 <div class="col-10 no-padding">
                     <p class="no-margin">
 
-                        @if (Model.Posts.Count > 0) {
-                            if (Model.Posts.FirstOrDefault().Content != null) {
-                                @Model.Posts.FirstOrDefault().Content
+                        @if (Model.Posts.Count > 0)
+                        {
+                            if (Model.Posts.LastOrDefault().Content != null)
+                            {
+                                @Model.Posts.LastOrDefault().Content
                             }
                         }
                     </p>
                 </div>
 
                 <div class="col-2 no-padding">
-                    @Model.UserProfile.UserName
+                    @if (Model.UserProfile != null)
+                    {
+                        @Model.UserProfile.UserName
+                    }
+                    else
+                    {
+                        <span>User profile not found</span>
+                    }
                     <br />
-                    Add user info here
+                    @Model.Posts.Count() posts in this thread
                 </div>
             </div>
 
             <div class="cell-footer col-12 d-flex flex-wrap">
                 <div class="col-10 no-padding">
                     <p class="small no-margin">
-                        Written by @Model.UserProfile.UserName on InsertDateHere
+
+                        @if (Model.UserProfile != null)
+                        {
+
+                            <span>Written by @Model.UserProfile.UserName on @Model.Posts.LastOrDefault().Created</span>
+                        }
+                        else
+                        {
+                            <span>Written by unknown on InsertDateHere</span>
+
+                        }
+
                     </p>
                 </div>
 
                 @if (Request.IsAuthenticated) {
                     <div class="col-2 no-padding">
+
 
                         <p class="text-right small no-margin">
                             @Ajax.ActionLink("Edit thread", "InsertEditThreadView", "MessageBoard", new { threadId = Model.ThreadId, boardId = Model.BoardId, userId = Model.CreatedBy, subject = Model.Subject }, new AjaxOptions {
@@ -47,6 +68,7 @@
                                 HttpMethod = "POST"
                             })
 
+
                             @Html.ActionLink("Delete thread", "DeleteThread", "MessageBoard", new { id = Model.ThreadId }, null)
                         </p>
                     </div>
@@ -54,55 +76,5 @@
             </div>
         </div>
 
-        @*<div class="col-12 no-padding standard-cell">
-
-                <div class="col-12 no-padding  d-flex flex-wrap">
-
-                    <div class="cell-content bottom-padding col-8">
-
-                        <div class="no-padding  text-danger col-12">
-                            @Html.ActionLink(Model.Title, "ShowThread", "Home", new { id = Model.Id }, null)
-                        </div>
-
-                        <div class="col-12  no-padding">
-                            <p class="no-margin">
-                                @Model.Posts.FirstOrDefault().Content                       See if this can be limited to the first line of content only!
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="cell-content small col-1 d-flex flex-wrap flex-row">
-                        <p class="my-auto">45</p>
-                    </div>
-                    <div class="cell-content small col-1 d-flex flex-wrap flex-row">
-                        <p class="my-auto">132</p>
-                    </div>
-                    <div class="cell-content small col-2 d-flex flex-wrap flex-row">
-                        <p class="my-auto">
-                            Gorgoflex the Untamed
-                            <br />
-                            17/6/18, 20:22
-                        </p>
-                    </div>
-                </div>
-
-                <div class="cell-footer col-12 d-flex flex-wrap">
-
-                    <div class="col-10 no-padding">
-                        <p class="small no-margin">
-                            Written by @Model.Author on InsertDateHere
-                        </p>
-                    </div>
-
-                    <div class="col-2 no-padding">
-
-                        <p class="text-right small no-margin">
-                            @Html.ActionLink("Edit thread", "EditThread", "Home", new { id = Model.Id }, null)
-
-                            @Html.ActionLink("Delete thread", "DeleteThread", "Home", new { id = Model.Id }, null)
-                        </p>
-                    </div>
-                </div>
-            </div>*@
     </td>
 </tr>

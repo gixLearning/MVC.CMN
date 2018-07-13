@@ -45,6 +45,9 @@ namespace MVC.CMN.Controllers {
                         Name = b.Name,
                         Description = b.Description,
                         Threads = b.Threads
+
+
+
                     };
                     model.Boarditems.Add(boarditem);
                 }
@@ -63,7 +66,7 @@ namespace MVC.CMN.Controllers {
                         thread.Posts = context.Posts
                         .Where(p => p.ThreadId == thread.ThreadId)
                         .OrderByDescending(d => d.Created)
-                        .Take(3)
+                        //.Take(3)
                         .ToList();
                     }
                 }
@@ -86,7 +89,7 @@ namespace MVC.CMN.Controllers {
                     .Include(b => b.UserProfile)
                     .Where(t => t.BoardId == board.BoardId)
                     .OrderByDescending(d => d.Created)
-                    .Take(5)
+                    //.Take(5)
                     .ToList();
                 }
                 else {
@@ -98,7 +101,7 @@ namespace MVC.CMN.Controllers {
                         .Include(t => t.UserProfile)
                         .Where(p => p.ThreadId == item.ThreadId)
                         .OrderByDescending(d => d.Created)
-                        .Take(1)
+                        //.Take(1)
                         .ToList();
                 }
 
@@ -197,6 +200,14 @@ namespace MVC.CMN.Controllers {
             return PartialView("_EditPost", epvm);
         }
 
+        [HttpPost]
+        public ActionResult InsertQuotePostView(int threadId, string userId, string content)
+        {
+            QuotePostViewModel qpvm = new QuotePostViewModel() { ThreadId = threadId, UserId = userId, Content = content };
+
+            return PartialView("_QuotePost", qpvm);
+        }
+        
         [Authorize(Roles = RoleTypes.Admin)]
         public ActionResult EditBoard(int boardId, string boardname, string boarddescription) {
             using (ForumDbContext context = new ForumDbContext()) {
@@ -257,14 +268,33 @@ namespace MVC.CMN.Controllers {
 
         public ActionResult DeletePost(int id) {
             using (ForumDbContext context = new ForumDbContext()) {
+                bool ThreadWasDeleted = false;
+
                 Post post = context.Posts.Find(id);
+
+                int threadId = post.ThreadId;
 
                 if (post != null) {
                     context.Posts.Remove(post);
+
+
+
+
+                    //Is it the last post? Then delete the thread too.
+                if (context.Posts.Where(p => p.ThreadId == threadId).Count() == 1) {
+                        context.Threads.Remove(context.Threads.Find(threadId));
+                        ThreadWasDeleted = true;
+                }
                     context.SaveChanges();
                 }
 
+                if(ThreadWasDeleted == true) {
+                    return RedirectToAction("Index");
+                }
+                else {
                 return RedirectToAction("ShowThread", new { id = post.ThreadId });
+                }
+
             }
         }
     }

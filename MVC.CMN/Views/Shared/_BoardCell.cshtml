@@ -1,5 +1,39 @@
 ﻿@model MVC.CMN.Models.MessageBoard.Board
 
+@using MVC.CMN.Models.MessageBoard
+
+@{
+    int numofthreads = Model.Threads.Count();
+
+    ///
+
+    int numofposts = 0;
+
+    foreach (var thread in Model.Threads)
+    {
+        numofposts += thread.Posts.Count();
+    }
+
+    ///
+
+    List<Post> latestposts = new List<Post>();
+
+    foreach (var thread in Model.Threads)
+    {
+        latestposts.Add(thread.Posts.Last());
+    }
+
+    Post latest = new Post();
+
+    if (latestposts.Count() > 0)
+    {
+        DateTime latesttime = latestposts.Max(p => p.Created);
+
+        latest = latestposts.First(x => x.Created == latesttime);
+    }
+}
+
+
 <tr>
     <td>
 
@@ -23,16 +57,55 @@
                 </div>
 
                 <div class="cell-content small col-1 d-flex flex-wrap flex-row">
-                    <p class="my-auto">45</p>
+                    <p class="my-auto">@numofthreads</p>
                 </div>
                 <div class="cell-content small col-1 d-flex flex-wrap flex-row">
-                    <p class="my-auto">132</p>
+                    <p class="my-auto">@numofposts</p>
                 </div>
+
+
+
+
                 <div class="cell-content small col-2 d-flex flex-wrap flex-row">
                     <p class="my-auto">
-                        Gorgoflex the Untamed
+
+
+                        @if (latest.Content != null)
+    {
+        if (latest.Content.Length > 25)
+        {
+                    <span>"@latest.Content.Substring(0, 25)..."</span>
+}
+else
+{
+                    <span>"@latest.Content"</span>
+
+}
+}
+
                         <br />
-                        17/6/18, 20:22
+
+
+
+                        @if (latest.Subject != null)
+    {
+                    <span>@latest.Subject</span>
+}
+
+                        <br />
+                        @if (latest.UserProfile != null)
+    {
+        if (latest.UserProfile.UserName != null)
+        {
+                    <span>@latest.UserProfile.UserName</span>
+}
+}
+                        <br />
+                        @if (latest.Created != null)
+    {
+                    <span>@latest.Created</span>
+}
+
                     </p>
                 </div>
             </div>
@@ -41,7 +114,7 @@
 
                 <div class="col-10 no-padding">
                     <p class="small no-margin">
-                        Written by Model.Author on InsertDateHere
+                        Eat at Joe's
                     </p>
                 </div>
 
@@ -50,11 +123,12 @@
 
                         <p class="text-right small no-margin">
 
-                            @Ajax.ActionLink("Edit board", "InsertEditBoardView", "MessageBoard", new { boardId = Model.BoardId, name = Model.Name, description = Model.Description }, new AjaxOptions {
-                                UpdateTargetId = "NewOrEdit",
-                                InsertionMode = InsertionMode.Replace,
-                                HttpMethod = "POST"
-                            })
+                            @Ajax.ActionLink("Edit board", "InsertEditBoardView", "MessageBoard", new { boardId = Model.BoardId, name = Model.Name, description = Model.Description }, new AjaxOptions
+                        {
+                            UpdateTargetId = "NewOrEdit",
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "POST"
+                        })
 
                             @Html.ActionLink("Delete board", "DeleteBoard", "MessageBoard", new { id = Model.BoardId }, null)
                         </p>
@@ -70,7 +144,8 @@
                 <table class="col-12 mx-auto no-padding">
 
                     @{
-                        foreach (var thread in Model.Threads) {
+                        foreach (var thread in Model.Threads)
+                        {
 
                             //TODO: Remove this soon
                             System.Diagnostics.Debug.WriteLine("T-ID" + thread.ThreadId);

@@ -203,6 +203,7 @@
     <Compile Include="Models\MessageBoard\EditThreadViewModel.cs" />
     <Compile Include="Models\MessageBoard\MessageBoardViewModel.cs" />
     <Compile Include="Models\MessageBoard\NewBoardViewModel.cs" />
+    <Compile Include="Models\MessageBoard\QuotePostViewModel.cs" />
     <Compile Include="Models\MessageBoard\NewPostViewModel.cs" />
     <Compile Include="Models\MessageBoard\NewThreadViewModel.cs" />
     <Compile Include="Models\MessageBoard\Post.cs" />
@@ -331,6 +332,8 @@
     <Content Include="Views\Shared\_EditThread.cshtml" />
     <Content Include="Views\Shared\_CreateNewBoard.cshtml" />
     <Content Include="Views\Shared\_EditBoard.cshtml" />
+    <Content Include="Views\Shared\_QuotePost.cshtml" />
+    <Content Include="Views\Shared\_NewsDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
