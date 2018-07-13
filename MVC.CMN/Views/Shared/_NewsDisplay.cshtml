@@ -1,0 +1,29 @@
+﻿@model  List<MVC.CMN.Models.MessageBoard.Thread>
+
+
+
+
+@{
+    foreach (var item in Model)
+    {
+
+
+        <div class="border border-info p-2 m-2 rounded btn-info">
+            <p>
+                <h2>
+                    @item.Subject
+                </h2>
+            </p>
+
+            <p class="small">
+                @item.Posts.First().Content
+            </p>
+
+            <p class="text-right small">Written by @item.UserProfile.UserName on @item.Created</p>
+
+
+        </div>
+        <br />
+    }
+}
+

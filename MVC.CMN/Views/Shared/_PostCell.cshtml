@@ -47,14 +47,23 @@
 
                 <div class="col-2 no-padding">
                     <p class="text-right small no-margin">
-                        @Html.ActionLink("Quote", "QuotePost", "MessageBoard", new { id = Model.PostId }, null)  @*This should be an Ajax thingy*@
-                        
+                        @*@Html.ActionLink("Quote", "QuotePost", "MessageBoard", new { id = Model.PostId }, null)  This should be an Ajax thingy*@
+
+                        @Ajax.ActionLink("Quote", "InsertQuotePostView", "MessageBoard", new { threadId = Model.ThreadId, userId = Model.CreatedBy, content = Model.Content }, new AjaxOptions
+    {
+        UpdateTargetId = "NewOrEdit",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST"
+    })
+
+
+
                         @Ajax.ActionLink("Edit post", "InsertEditPostView", "MessageBoard", new { threadId = Model.ThreadId, postId = Model.PostId, userId = Model.CreatedBy, content = Model.Content }, new AjaxOptions
-                   {
-                       UpdateTargetId = "NewOrEdit",
-                       InsertionMode = InsertionMode.Replace,
-                       HttpMethod = "POST"
-                   })                        
+    {
+        UpdateTargetId = "NewOrEdit",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST"
+    })
 
                         @Html.ActionLink("Delete post", "DeletePost", "MessageBoard", new { id = Model.PostId }, null)
                     </p>
