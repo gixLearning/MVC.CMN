@@ -207,6 +207,7 @@
     <Compile Include="Models\MessageBoard\NewPostViewModel.cs" />
     <Compile Include="Models\MessageBoard\NewThreadViewModel.cs" />
     <Compile Include="Models\MessageBoard\Post.cs" />
+    <Compile Include="Models\MessageBoard\ShowThreadViewModel.cs" />
     <Compile Include="Models\MessageBoard\Thread.cs" />
     <Compile Include="Models\MessageBoard\UserProfile.cs" />
     <Compile Include="Models\Newsitem.cs" />

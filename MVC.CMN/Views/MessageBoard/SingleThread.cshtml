@@ -1,37 +1,98 @@
-﻿@model MVC.CMN.Models.MessageBoard.Thread
+﻿@model MVC.CMN.Models.MessageBoard.ShowThreadViewModel
 @using Microsoft.AspNet.Identity
+@using MVC.CMN.Models.MessageBoard
 
 @{
     ViewBag.Title = "SingleThread";
+
+    int startingcount = Model.index;
+    int endingcount = Model.index + 10;
+
+    int postcount = Model.theThread.Posts.Count();
+
+    int pages = (int)Math.Ceiling(((double)postcount) / 10);
+
+    int currentpage = startingcount / 10; //Note: 0-indexing; first page is 0
+
+    if (postcount < endingcount)
+    {
+        endingcount = postcount;
+    }
+
 }
 
 @*@Html.Partial("_Carousel")*@
 
-@using MVC.CMN.Models.MessageBoard
 
 <div class="d-flex flex-column col-10 mx-auto no-padding">
 
     <table class="col-12 mx-auto">
 
-        @{
-            foreach (var post in Model.Posts) {
 
-                @Html.Partial("_PostCell", post)
+
+
+        @{
+
+
+            for (int i = startingcount; i < endingcount; i++)
+            {
+                @Html.Partial("_PostCell", Model.theThread.Posts.ToList()[i])
+
+            }
+
+            foreach (var post in Model.theThread.Posts)
+            {
+
 
             }
         }
+
+
+
     </table>
 </div>
+
+
+
+
+<br />
+
+
+<ul class="pagination col-10 mx-auto">
+    @{
+        for (int i = 0; i < pages; i++)
+        {
+            if (i == currentpage)
+            {
+
+                <li class="page-item active">
+                    @Html.ActionLink((i + 1).ToString(), "ShowThread", "MessageBoard", new { id = Model.theThread.ThreadId, _index = i * 10 }, new { @class = "page-link" })
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    @Html.ActionLink((i + 1).ToString(), "ShowThread", "MessageBoard", new { id = Model.theThread.ThreadId, _index = i * 10 }, new { @class = "page-link" })
+                </li>
+            }
+        }
+    }
+</ul>
+
+
+
+
 
 <hr />
 
 @*Fix: Get user Id*@
 
-@if (Request.IsAuthenticated) {
+@if (Request.IsAuthenticated)
+{
 
     <div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
 
-        @Html.Partial("_CreateNewPost", new NewPostViewModel() { ThreadId = Model.ThreadId, UserId = User.Identity.GetUserId() })
+        @Html.Partial("_CreateNewPost", new NewPostViewModel() { ThreadId = Model.theThread.ThreadId, UserId = User.Identity.GetUserId() })
     </div>
 }
 
@@ -40,9 +101,9 @@
 
         <li>@Html.ActionLink("Main", "Index", "MessageBoard", new { }, null)</li>
 
-        <li>@Html.ActionLink(Model.Board.Name, "ShowBoard", "MessageBoard", new { id = Model.BoardId }, null)</li>
+        <li>@Html.ActionLink(Model.theThread.Board.Name, "ShowBoard", "MessageBoard", new { id = Model.theThread.BoardId }, null)</li>
 
-        <li>@Html.ActionLink(Model.Subject, "ShowThread", "MessageBoard", new { id = Model.ThreadId }, null)</li>
+        <li>@Html.ActionLink(Model.theThread.Subject, "ShowThread", "MessageBoard", new { id = Model.theThread.ThreadId, _index = 0 }, null)</li>
 
     </ul>
 </div>

@@ -7,7 +7,7 @@
 
             <div class="cell-header col-12">
                 <p class="no-margin">
-                    @Html.ActionLink(Model.Subject, "ShowThread", "MessageBoard", new { id = Model.ThreadId }, null)
+                    @Html.ActionLink(Model.Subject, "ShowThread", "MessageBoard", new { id = Model.ThreadId, _index = 0 }, null)
                 </p>
             </div>
 
