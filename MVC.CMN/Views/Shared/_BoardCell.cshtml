@@ -16,20 +16,20 @@
 
     ///
 
-    List<Post> latestposts = new List<Post>();
+    List<Post> allposts = new List<Post>();
 
     foreach (var thread in Model.Threads)
     {
-        latestposts.Add(thread.Posts.Last());
+        allposts.AddRange(thread.Posts);
     }
 
     Post latest = new Post();
 
-    if (latestposts.Count() > 0)
+    if (allposts.Count() > 0)
     {
-        DateTime latesttime = latestposts.Max(p => p.Created);
+        DateTime latesttime = allposts.Max(p => p.Created);
 
-        latest = latestposts.First(x => x.Created == latesttime);
+        latest = allposts.First(x => x.Created == latesttime);
     }
 }
 
@@ -88,9 +88,26 @@ else
 
 
                         @if (latest.Subject != null)
-    {
+                        {
+                            if (latest.Subject.Length > 25)
+                            {
+                    <span>"@latest.Subject.Substring(0, 25)..."</span>
+                            }
+
+
+
+                            else
+
+
+
+                            {
                     <span>@latest.Subject</span>
-}
+                            }
+
+                        }
+
+
+
 
                         <br />
                         @if (latest.UserProfile != null)
