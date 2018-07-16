@@ -118,6 +118,7 @@ namespace MVC.CMN.Controllers {
                 //Thread thread = context.Threads.Where(t => t.ThreadId == id).Include(p => p.Posts).FirstOrDefault();
                 Thread thread = context.Threads
                     .Include(p => p.Posts)
+                    .Include(p => p.Board)
                     .Include(p => p.Posts.Select(e => e.UserProfile))
                     //.Include(b => b.Board)
                     .Where(t => t.ThreadId == id)
