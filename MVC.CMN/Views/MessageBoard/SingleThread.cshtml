@@ -11,7 +11,7 @@
 
 <div class="d-flex flex-column col-10 mx-auto no-padding">
 
-    <table class="col-12 mx-auto LALALA">
+    <table class="col-12 mx-auto">
 
         @{
             foreach (var post in Model.Posts) {
@@ -35,10 +35,14 @@
     </div>
 }
 
-<div>
+<div class="mx-auto col-10">
     <ul class="breadcrumb">
-        <li><a href="#">Main</a></li>
-        <li><a href="#">@Model.BoardId</a></li>
-        <li><a href="#">@Model.Subject</a></li>
+
+        <li>@Html.ActionLink("Main", "Index", "MessageBoard", new { }, null)</li>
+
+        <li>@Html.ActionLink(Model.Board.Name, "ShowBoard", "MessageBoard", new { id = Model.BoardId }, null)</li>
+
+        <li>@Html.ActionLink(Model.Subject, "ShowThread", "MessageBoard", new { id = Model.ThreadId }, null)</li>
+
     </ul>
 </div>
