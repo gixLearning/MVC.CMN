@@ -1,15 +1,28 @@
-﻿@model MVC.CMN.Models.MessageBoard.Board
+﻿@model MVC.CMN.Models.MessageBoard.ShowBoardViewModel
 
 @using MVC.CMN.Models.MessageBoard
 
 @{
-    int numofthreads = Model.Threads.Count();
+    int startingcount = Model.index;
+    int endingcount = Model.index + 10;
+
+    int threadcount = Model.theBoard.Threads.Count();
+
+    if (threadcount < endingcount)
+    {
+        endingcount = threadcount;
+    }
+
+
+
+
+    int numofthreads = Model.theBoard.Threads.Count();
 
     ///
 
     int numofposts = 0;
 
-    foreach (var thread in Model.Threads)
+    foreach (var thread in Model.theBoard.Threads)
     {
         numofposts += thread.Posts.Count();
     }
@@ -18,7 +31,7 @@
 
     List<Post> allposts = new List<Post>();
 
-    foreach (var thread in Model.Threads)
+    foreach (var thread in Model.theBoard.Threads)
     {
         allposts.AddRange(thread.Posts);
     }
@@ -46,12 +59,12 @@
                 <div class="cell-content bottom-padding col-8">
 
                     <div class="no-padding  text-danger col-12">
-                        @Html.ActionLink(Model.Name, "ShowBoard", "MessageBoard", new { id = Model.BoardId }, null)
+                        @Html.ActionLink(Model.theBoard.Name, "ShowBoard", "MessageBoard", new { id = Model.theBoard.BoardId, _index = 0 }, null)
                     </div>
 
                     <div class="col-12  no-padding">
                         <p class="no-margin">
-                            @Model.Description
+                            @Model.theBoard.Description
                         </p>
                     </div>
                 </div>
@@ -71,17 +84,17 @@
 
 
                         @if (latest.Content != null)
-    {
-        if (latest.Content.Length > 25)
-        {
-                    <span>"@latest.Content.Substring(0, 25)..."</span>
-}
-else
-{
-                    <span>"@latest.Content"</span>
+                        {
+                            if (latest.Content.Length > 25)
+                            {
+                                <span>"@latest.Content.Substring(0, 25)..."</span>
+                            }
+                            else
+                            {
+                                <span>"@latest.Content"</span>
 
-}
-}
+                            }
+                        }
 
                         <br />
 
@@ -91,7 +104,7 @@ else
                         {
                             if (latest.Subject.Length > 25)
                             {
-                    <span>"@latest.Subject.Substring(0, 25)..."</span>
+                                <span>"@latest.Subject.Substring(0, 25)..."</span>
                             }
 
 
@@ -101,7 +114,7 @@ else
 
 
                             {
-                    <span>@latest.Subject</span>
+                                <span>@latest.Subject</span>
                             }
 
                         }
@@ -111,17 +124,17 @@ else
 
                         <br />
                         @if (latest.UserProfile != null)
-    {
-        if (latest.UserProfile.UserName != null)
-        {
-                    <span>@latest.UserProfile.UserName</span>
-}
-}
+                        {
+                            if (latest.UserProfile.UserName != null)
+                            {
+                                <span>@latest.UserProfile.UserName</span>
+                            }
+                        }
                         <br />
                         @if (latest.Created != null)
-    {
-                    <span>@latest.Created</span>
-}
+                        {
+                            <span>@latest.Created</span>
+                        }
 
                     </p>
                 </div>
@@ -135,19 +148,20 @@ else
                     </p>
                 </div>
 
-                @if (Request.IsAuthenticated) {
+                @if (Request.IsAuthenticated)
+                {
                     <div class="col-2 no-padding">
 
                         <p class="text-right small no-margin">
 
-                            @Ajax.ActionLink("Edit board", "InsertEditBoardView", "MessageBoard", new { boardId = Model.BoardId, name = Model.Name, description = Model.Description }, new AjaxOptions
-                        {
-                            UpdateTargetId = "NewOrEdit",
-                            InsertionMode = InsertionMode.Replace,
-                            HttpMethod = "POST"
-                        })
+                            @Ajax.ActionLink("Edit board", "InsertEditBoardView", "MessageBoard", new { boardId = Model.theBoard.BoardId, name = Model.theBoard.Name, description = Model.theBoard.Description }, new AjaxOptions
+                            {
+                                UpdateTargetId = "NewOrEdit",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "POST"
+                            })
 
-                            @Html.ActionLink("Delete board", "DeleteBoard", "MessageBoard", new { id = Model.BoardId }, null)
+                            @Html.ActionLink("Delete board", "DeleteBoard", "MessageBoard", new { id = Model.theBoard.BoardId }, null)
                         </p>
                     </div>
                 }
@@ -160,17 +174,41 @@ else
 
                 <table class="col-12 mx-auto no-padding">
 
+
                     @{
-                        foreach (var thread in Model.Threads)
+                        for (int i = startingcount; i < endingcount; i++)
                         {
-
-                            //TODO: Remove this soon
-                            System.Diagnostics.Debug.WriteLine("T-ID" + thread.ThreadId);
-
-                            @Html.Partial("_ThreadCell", thread)
+                            @Html.Partial("_ThreadCell", Model.theBoard.Threads.ToList()[i])
 
                         }
+
                     }
+
+
+
+
+
+
+
+                    @*@{
+                                foreach (var thread in Model.theBoard.Threads)
+                                {
+
+                                    //TODO: Remove this soon
+                                    System.Diagnostics.Debug.WriteLine("T-ID" + thread.ThreadId);
+
+                                        @Html.Partial("_ThreadCell", thread)
+
+                        }
+                                            }*@
+
+
+
+
+
+
+
+
                 </table>
             </div>
         </div>

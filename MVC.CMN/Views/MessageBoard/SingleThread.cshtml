@@ -40,11 +40,6 @@
 
             }
 
-            foreach (var post in Model.theThread.Posts)
-            {
-
-
-            }
         }
 
 
@@ -58,13 +53,15 @@
 <br />
 
 
+
+@if (pages > 1)
+{ 
+
 <ul class="pagination col-10 mx-auto">
-    @{
-        for (int i = 0; i < pages; i++)
+    @for (int i = 0; i < pages; i++)
         {
             if (i == currentpage)
             {
-
                 <li class="page-item active">
                     @Html.ActionLink((i + 1).ToString(), "ShowThread", "MessageBoard", new { id = Model.theThread.ThreadId, _index = i * 10 }, new { @class = "page-link" })
                 </li>
@@ -76,9 +73,9 @@
                 </li>
             }
         }
-    }
+    
 </ul>
-
+}
 
 
 
@@ -101,9 +98,11 @@
 
         <li>@Html.ActionLink("Main", "Index", "MessageBoard", new { }, null)</li>
 
-        <li>@Html.ActionLink(Model.theThread.Board.Name, "ShowBoard", "MessageBoard", new { id = Model.theThread.BoardId }, null)</li>
+        <li>@Html.ActionLink(Model.theThread.Board.Name, "ShowBoard", "MessageBoard", new { id = Model.theThread.BoardId, _index = 0 }, null)</li>
 
         <li>@Html.ActionLink(Model.theThread.Subject, "ShowThread", "MessageBoard", new { id = Model.theThread.ThreadId, _index = 0 }, null)</li>
 
     </ul>
 </div>
+
+<br />

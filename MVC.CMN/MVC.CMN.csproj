@@ -195,6 +195,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Boarditem.cs" />
+    <Compile Include="Models\FakeGame.cs" />
     <Compile Include="Models\MessageBoard\EditBoardViewModel.cs" />
     <Compile Include="Models\MessageBoard\EditPostViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Models\MessageBoard\NewPostViewModel.cs" />
     <Compile Include="Models\MessageBoard\NewThreadViewModel.cs" />
     <Compile Include="Models\MessageBoard\Post.cs" />
+    <Compile Include="Models\MessageBoard\ShowBoardViewModel.cs" />
     <Compile Include="Models\MessageBoard\ShowThreadViewModel.cs" />
     <Compile Include="Models\MessageBoard\Thread.cs" />
     <Compile Include="Models\MessageBoard\UserProfile.cs" />
@@ -226,6 +228,7 @@
     <Content Include="Content\css\bootstrap\bootstrap.css" />
     <Content Include="Content\css\bootstrap\bootstrap.min.css" />
     <Content Include="Content\Images\Avian.png" />
+    <Content Include="Content\Images\p9jsP1x.png" />
     <Content Include="Content\Images\water-management-systems.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
