@@ -26,9 +26,12 @@
     </div>
 }
 
-<div>
+<div class="mx-auto col-10">
     <ul class="breadcrumb">
-        <li><a href="#">Main</a></li>
-        <li><a href="#">@Model.Name</a></li>
+
+        <li>@Html.ActionLink("Main", "Index", "MessageBoard", new { }, null)</li>
+
+        <li>@Html.ActionLink(Model.Name, "ShowBoard", "MessageBoard", new { id = Model.BoardId }, null)</li>
+
     </ul>
 </div>
