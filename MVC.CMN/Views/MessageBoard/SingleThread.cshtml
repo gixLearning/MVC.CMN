@@ -1,9 +1,16 @@
 ﻿@model MVC.CMN.Models.MessageBoard.Thread
 @using Microsoft.AspNet.Identity
+@using MVC.CMN.Models
+
 
 @{
-    ViewBag.Title = "SingleThread";
+    ViewBag.Title = "SingleThread";    
 }
+
+@section MessageBoard {
+    @Scripts.Render("~/bundles/" + ScriptRenders.MessageBoard)
+}
+
 
 @*@Html.Partial("_Carousel")*@
 

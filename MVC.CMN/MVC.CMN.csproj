@@ -211,6 +211,7 @@
     <Compile Include="Models\MessageBoard\UserProfile.cs" />
     <Compile Include="Models\Newsitem.cs" />
     <Compile Include="Models\Postitem.cs" />
+    <Compile Include="Models\ScriptRenders.cs" />
     <Compile Include="Models\RoleTypes.cs" />
     <Compile Include="Models\StaticData.cs" />
     <Compile Include="Models\Threaditem.cs" />
@@ -274,6 +275,7 @@
     <Content Include="Scripts\popper\umd\popper-utils.min.js" />
     <Content Include="Scripts\popper\umd\popper.js" />
     <Content Include="Scripts\popper\umd\popper.min.js" />
+    <Content Include="Scripts\messageboard.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

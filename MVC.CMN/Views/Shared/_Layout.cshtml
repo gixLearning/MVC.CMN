@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using MVC.CMN.Models
+
+<!DOCTYPE html>
 <html>
 <head>
     <title></title>
@@ -58,5 +60,6 @@
     @Scripts.Render("~/bundles/bootstrap")
 
     @RenderSection("scripts", required: false)
+    @RenderSection(ScriptRenders.MessageBoard, false)
 </body>
 </html>

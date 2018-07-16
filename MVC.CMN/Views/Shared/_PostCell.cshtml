@@ -40,9 +40,14 @@
 
             <div class="cell-footer col-12 d-flex flex-wrap">
                 <div class="col-10 no-padding">
-                    <p class="small no-margin">
+                    <p class="small no-margin display-inline">
                         Written by @Model.UserProfile.UserName on @Model.Created
                     </p>
+                    @if (Request.IsAuthenticated) {
+                        <p class="small no-margin display-inline">
+                            <a href="#quote" data-trigger="quote" class="quote">Quote</a>
+                        </p>
+                    }
                 </div>
 
 
