@@ -1,6 +1,7 @@
 ﻿@model MVC.CMN.Models.MessageBoard.ShowBoardViewModel
 
 @using MVC.CMN.Models.MessageBoard
+@using MVC.CMN.Models
 
 @{
     int startingcount = Model.index;
@@ -148,8 +149,9 @@
                     </p>
                 </div>
 
-                @if (Request.IsAuthenticated)
-                {
+
+                @if (Request.IsAuthenticated && User.IsInRole(RoleTypes.Admin)) {
+
                     <div class="col-2 no-padding">
 
                         <p class="text-right small no-margin">

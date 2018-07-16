@@ -3,10 +3,10 @@
 @using (Html.BeginForm("CreateNewThread", "MessageBoard", new
 {
     boardId = Model.BoardId,
-    userId = Model.UserId                   //"fa6fb3bc-1cca-4fe9-95d5-e0544dee4d1f"
+    userId = Model.UserId
 }, FormMethod.Post))
 {
-
+    @Html.AntiForgeryToken()
     <textarea rows="1" cols="50" class="form-control col-12" id="NewThreadTitle" name="threadtitle" placeholder="Thread title"></textarea>
 
     <br />

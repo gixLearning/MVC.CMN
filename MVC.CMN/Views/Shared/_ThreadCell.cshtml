@@ -1,4 +1,5 @@
 ﻿@model MVC.CMN.Models.MessageBoard.Thread
+    @using MVC.CMN.Models
 
 <tr>
     <td>
@@ -57,7 +58,7 @@
                     </p>
                 </div>
 
-                @if (Request.IsAuthenticated) {
+                @if (Request.IsAuthenticated && (User.IsInRole(RoleTypes.Admin) || User.IsInRole(RoleTypes.Moderator))) {
                     <div class="col-2 no-padding">
 
 
