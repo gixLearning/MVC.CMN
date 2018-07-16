@@ -2,6 +2,7 @@
 
 @using (Html.BeginForm("EditPost", "MessageBoard", new { threadId = Model.ThreadId, postId = Model.PostId, userId = Model.UserId }, FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
     <textarea rows="10" cols="50" class="form-control col-12" id="EditPostInput" name="postcontent">@Model.Content</textarea>
 
     <br />

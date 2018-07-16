@@ -2,7 +2,7 @@
 
 @using (Html.BeginForm("EditBoard", "MessageBoard", new { boardId = Model.BoardId }, FormMethod.Post))
 {
-
+    @Html.AntiForgeryToken()
 
 
     <textarea rows="1" cols="50" class="form-control col-12" id="EditBoardTitle" name="boardname">@Model.Name</textarea>

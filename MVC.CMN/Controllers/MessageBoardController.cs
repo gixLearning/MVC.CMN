@@ -145,7 +145,7 @@ namespace MVC.CMN.Controllers {
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateNewThread(string threadtitle, string threadcontent, int boardId, string userId) {
             using (ForumDbContext context = new ForumDbContext()) {
                 Board board = context.Boards.Find(boardId);
@@ -165,7 +165,7 @@ namespace MVC.CMN.Controllers {
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateNewPost(string postcontent, int threadId, string userId) {
             using (ForumDbContext context = new ForumDbContext()) {
                 Thread thread = context.Threads.Find(threadId);
@@ -209,6 +209,7 @@ namespace MVC.CMN.Controllers {
         }
         
         [Authorize(Roles = RoleTypes.Admin)]
+        [ValidateAntiForgeryToken]
         public ActionResult EditBoard(int boardId, string boardname, string boarddescription) {
             using (ForumDbContext context = new ForumDbContext()) {
                 context.Boards.Find(boardId).Name = boardname;
@@ -220,6 +221,7 @@ namespace MVC.CMN.Controllers {
         }
 
         [AuthorizeRoles(RoleTypes.Admin, RoleTypes.Moderator)]
+        [ValidateAntiForgeryToken]
         public ActionResult EditThread(int threadId, int boardId, string userId, string threadtitle) {
             using (ForumDbContext context = new ForumDbContext()) {
                 context.Threads.Find(threadId).Subject = threadtitle;
@@ -229,6 +231,7 @@ namespace MVC.CMN.Controllers {
             }
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult EditPost(string postcontent, int threadId, int postId, string userId) {
             using (ForumDbContext context = new ForumDbContext()) {
                 context.Posts.Find(postId).Content = postcontent;
