@@ -227,9 +227,16 @@
     <Content Include="Content\css\bootstrap\bootstrap-reboot.min.css" />
     <Content Include="Content\css\bootstrap\bootstrap.css" />
     <Content Include="Content\css\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\css\wmd.css" />
     <Content Include="Content\Images\Avian.png" />
+    <Content Include="Content\Images\dubstephero.jpg" />
+    <Content Include="Content\Images\helicopter.png" />
+    <Content Include="Content\Images\lanoire.jpg" />
+    <Content Include="Content\Images\minecraft.png" />
     <Content Include="Content\Images\p9jsP1x.png" />
+    <Content Include="Content\Images\saintsrow.jpg" />
     <Content Include="Content\Images\water-management-systems.jpg" />
+    <Content Include="Content\Images\wmd-buttons.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\css\Site.css" />
@@ -243,6 +250,8 @@
     <Content Include="Scripts\bootstrap\spacelab.bootstrap.min.css" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery\jquery-1.2.6.js" />
+    <Content Include="Scripts\jquery\jquery-1.2.6.min.js" />
     <Content Include="Scripts\popper\esm\popper-utils.js" />
     <Content Include="Scripts\popper\esm\popper-utils.min.js" />
     <Content Include="Scripts\popper\esm\popper.js" />
@@ -278,6 +287,8 @@
     <Content Include="Scripts\popper\umd\popper-utils.min.js" />
     <Content Include="Scripts\popper\umd\popper.js" />
     <Content Include="Scripts\popper\umd\popper.min.js" />
+    <Content Include="Scripts\showdown.js" />
+    <Content Include="Scripts\wmd.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
