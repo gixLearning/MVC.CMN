@@ -14,7 +14,7 @@
     @{
         foreach (var board in Model.Boarditems)
         {
-            @Html.Partial("_BoardCell", board)
+            @Html.Partial("_BoardCell", new ShowBoardViewModel() { theBoard = board, index = 0 } )
 
         }
     }
@@ -34,3 +34,6 @@
         <li>@Html.ActionLink("Main", "Index", "MessageBoard", new { }, null)</li>
     </ul>
 </div>
+
+
+<br />

@@ -1,13 +1,28 @@
 ﻿@using Microsoft.AspNet.Identity
-@model MVC.CMN.Models.MessageBoard.Board
+@using MVC.CMN.Models.MessageBoard
+
+@model MVC.CMN.Models.MessageBoard.ShowBoardViewModel
 
 @{
     ViewBag.Title = "SingleBoard";
+
+    int startingcount = Model.index;
+    int endingcount = Model.index + 10;
+
+    int threadcount = Model.theBoard.Threads.Count();
+
+    int pages = (int)Math.Ceiling(((double)threadcount) / 10);
+
+    int currentpage = startingcount / 10; //Note: 0-indexing; first page is 0
+
+    if (threadcount < endingcount)
+    {
+        endingcount = threadcount;
+    }
 }
 
-@using MVC.CMN.Models.MessageBoard
 
-=======
+@*======*@
 
 @*@Html.Partial("_Carousel")*@
 
@@ -16,22 +31,51 @@
     @Html.Partial("_BoardCell", Model)
 </div>
 
-<hr />
+<br />
 
-@if (Request.IsAuthenticated) {
+@if (pages > 1)
+{
+    <ul class="pagination col-10 mx-auto">
+        @for (int i = 0; i < pages; i++)
+        {
+            if (i == currentpage)
+            {
 
-    <div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
-
-        @Html.Partial("_CreateNewThread", new NewThreadViewModel() { BoardId = Model.BoardId, UserId = User.Identity.GetUserId() })
-    </div>
+                <li class="page-item active">
+                    @Html.ActionLink((i + 1).ToString(), "ShowBoard", "MessageBoard", new { id = Model.theBoard.BoardId, _index = i * 10 }, new { @class = "page-link" })
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    @Html.ActionLink((i + 1).ToString(), "ShowBoard", "MessageBoard", new { id = Model.theBoard.BoardId, _index = i * 10 }, new { @class = "page-link" })
+                </li>
+            }
+        }
+    </ul>
 }
 
-<div class="mx-auto col-10">
-    <ul class="breadcrumb">
 
-        <li>@Html.ActionLink("Main", "Index", "MessageBoard", new { }, null)</li>
 
-        <li>@Html.ActionLink(Model.Name, "ShowBoard", "MessageBoard", new { id = Model.BoardId }, null)</li>
+    <hr />
 
-    </ul>
-</div>
+    @if (Request.IsAuthenticated)
+    {
+
+        <div class="form-group col-6 mx-auto p-2" id="NewOrEdit">
+
+            @Html.Partial("_CreateNewThread", new NewThreadViewModel() { BoardId = Model.theBoard.BoardId, UserId = User.Identity.GetUserId() })
+        </div>
+    }
+
+    <div class="mx-auto col-10">
+        <ul class="breadcrumb">
+
+            <li>@Html.ActionLink("Main", "Index", "MessageBoard", new { }, null)</li>
+
+            <li>@Html.ActionLink(Model.theBoard.Name, "ShowBoard", "MessageBoard", new { id = Model.theBoard.BoardId, _index = 0 }, null)</li>
+
+        </ul>
+    </div>
+
+<br />

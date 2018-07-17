@@ -8,6 +8,9 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="~/Content/css/wmd.css" />
+
+    <script type="text/javascript" src="~/Scripts/showdown.js"></script>
 </head>
 <body>
     <nav class="navbar fixed-top navbar-dark bg-primary navbar-expand-lg navbar-expand-md">
@@ -40,6 +43,12 @@
     @Scripts.Render("~/bundles/bootstrap")
 
     @RenderSection("scripts", required: false)
+
+
+
+    <script type="text/javascript" src="~/Scripts/wmd.js"></script>
+
     @RenderSection(ScriptRenders.MessageBoard, false)
+
 </body>
 </html>
