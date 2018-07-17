@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using MVC.CMN.Models;
+using System.Web;
 using System.Web.Optimization;
 
 namespace MVC.CMN {
@@ -9,7 +10,9 @@ namespace MVC.CMN {
                         "~/Scripts/jquery/jquery-{version}.js",
                         "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
-            
+            bundles.Add(new ScriptBundle("~/bundles/" + ScriptRenders.MessageBoard).Include(
+                        "~/Scripts/messageboard.js"
+                ));
 
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(

@@ -197,3 +197,11 @@ ul.breadcrumb {
                 color: #01447e;
                 text-decoration: underline;
             }
+
+.display-inline {
+    display: inline
+}
+
+blockquote {
+    border: 1px black solid;
+}
