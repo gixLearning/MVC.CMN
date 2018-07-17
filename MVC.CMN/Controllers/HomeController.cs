@@ -38,13 +38,6 @@ namespace MVC.CMN.Controllers {
         //    return View("MessageBoard", StaticData.Boards);
         //}
 
-        public ActionResult DynamicNewsitem(int id)
-        {
-
-            Newsitem model = StaticData.NewsBase.Find(x => x.Id == id);
-
-            return PartialView("_DynamicNewsitem", model);
-        }
 
         public ActionResult NewsLoader()
 

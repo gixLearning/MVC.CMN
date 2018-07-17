@@ -75,7 +75,7 @@ namespace MVC.CMN.Controllers {
         }
 
         [AllowAnonymous]
-        public ActionResult ShowBoard(int id) {
+        public ActionResult ShowBoard(int id, int _index) {
             Board board;
             using (ForumDbContext context = new ForumDbContext()) {
                 System.Diagnostics.Debug.WriteLine("FIRST CONTEXT QUERY BEGIN");
@@ -105,12 +105,12 @@ namespace MVC.CMN.Controllers {
                         .ToList();
                 }
 
-                return View("SingleBoard", board);
+                return View("SingleBoard", new ShowBoardViewModel() { theBoard = board, index = _index });
             }
         }
 
         [AllowAnonymous]
-        public ActionResult ShowThread(int id) {
+        public ActionResult ShowThread(int id, int _index) {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
             using (ForumDbContext context = new ForumDbContext()) {
@@ -125,7 +125,7 @@ namespace MVC.CMN.Controllers {
                     .FirstOrDefault();
 
                 if (thread != null) {
-                    return View("SingleThread", thread);
+                    return View("SingleThread", new ShowThreadViewModel() { theThread = thread, index = _index });
                 }
             }
             return RedirectToAction("Index");
@@ -161,7 +161,7 @@ namespace MVC.CMN.Controllers {
                 context.Posts.Add(post);
                 context.SaveChanges();
 
-                return RedirectToAction("ShowBoard", new { id = boardId });
+                return RedirectToAction("ShowBoard", new { id = boardId, _index = 0 });
             }
         }
 
@@ -176,7 +176,7 @@ namespace MVC.CMN.Controllers {
                 context.Posts.Add(post);
                 context.SaveChanges();
 
-                return RedirectToAction("ShowThread", new { id = threadId });
+                return RedirectToAction("ShowThread", new { id = threadId, _index = 0 });
             }
         }
 
@@ -228,7 +228,7 @@ namespace MVC.CMN.Controllers {
                 context.Threads.Find(threadId).Subject = threadtitle;
                 context.SaveChanges();
 
-                return RedirectToAction("ShowBoard", new { id = boardId });
+                return RedirectToAction("ShowBoard", new { id = boardId, _index = 0 });
             }
         }
 
@@ -238,7 +238,7 @@ namespace MVC.CMN.Controllers {
                 context.Posts.Find(postId).Content = postcontent;
                 context.SaveChanges();
 
-                return RedirectToAction("ShowThread", new { id = threadId });
+                return RedirectToAction("ShowThread", new { id = threadId, _index = 0 });
             }
         }
 
@@ -266,7 +266,7 @@ namespace MVC.CMN.Controllers {
                     context.SaveChanges();
                 }
 
-                return RedirectToAction("ShowBoard", new { id = thread.BoardId });
+                return RedirectToAction("ShowBoard", new { id = thread.BoardId, _index = 0 });
             }
         }
 
@@ -296,7 +296,7 @@ namespace MVC.CMN.Controllers {
                     return RedirectToAction("Index");
                 }
                 else {
-                return RedirectToAction("ShowThread", new { id = post.ThreadId });
+                return RedirectToAction("ShowThread", new { id = post.ThreadId, _index = 0 });
                 }
 
             }

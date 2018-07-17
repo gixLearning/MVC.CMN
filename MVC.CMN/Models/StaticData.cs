@@ -8,113 +8,29 @@ namespace MVC.CMN.Models
     public class StaticData
     {
 
-        public static List<Newsitem> NewsBase = new List<Newsitem> {
-        new Newsitem {Id = 1, Title = "The hottest titles this summer!", Content = "Blah blah blah", Author = "Jonatan Streith", Datestamp = "18-06-29, 10:22", Colorstyle = "success"},
-        new Newsitem {Id = 2, Title = "Ball-shaped blocks? Minecraft's latest development will outrage the fans!", Content = "Es ist unser in die luft, und bald kommt die bären und löwen.", Author = "Jonatan Streith", Datestamp = "18-06-28, 13:12", Colorstyle = "danger"},
-        new Newsitem {Id = 3, Title = "Is Pong coming back?", Content = "My hoovercraft is full of eels.", Author = "Jonatan Streith", Datestamp = "18-06-27, 19:56", Colorstyle = "info"},
-        new Newsitem {Id = 4, Title = "EA refuses comments on allegations of insider trading, cannibalism", Content = "Ani-san no Raoul no sakana wo misete.", Author = "Jonatan Streith", Datestamp = "18-06-26, 10:35", Colorstyle = "warning"},
-        new Newsitem {Id = 5, Title = "Latest CoD release revealed: more dakka!", Content = "Sodomy non sapiens.", Author = "Jonatan Streith", Datestamp = "18-06-20, 4:31", Colorstyle = "primary"}
+        public static List<FakeGame> fakegames = new List<FakeGame>() {
+            new FakeGame() {filename = "helicopter.png", description = "<i>Planet of the Helicopter in Africa</i> is the latest release in the popular 'Planet of...' series, and it does not disappoint! Filled with action from beginning to end, this full-immersion RTS action game..."},
+            new FakeGame() {filename = "dubstephero.jpg", description = "Now you can be the musical prodigy of the decade, and with no talent or effort required! Command thousands of exciting soundbites that..."},
+            new FakeGame() {filename = "lanoire.jpg", description = "Who is responsible for the gristly murders plaguing the strets of L.A.? Why is everything so Noire? How many cars can you steal while bretending to be a law-abiding officer? Most importantly, DO NOT..."},
+            new FakeGame() {filename = "minecraft.png", description = "NEW RELEASE! Now with better, more realistic graphics, more blocks, more critters, and more? Can you uncover the truth of the dreaded 'negative world'? Subscribe now for..."},
+            new FakeGame() {filename = "saintsrow.jpg", description = "The Saints are back, and wilder than ever!"}
+
+
+
         };
 
-
-
-
-
-
-        public static Threaditem thread1 = new Threaditem()
+        public static FakeGame GetGame()
         {
-            Id = 1,
-            Title = "Welcome to the forum!",
-            Author = "Jonatan Streith",
-            Posts = new List<Postitem>()
-            {
-            new Postitem() {Id=1, Author = "Jonatan Streith", BelongsToThread = thread1, Content = "Welcome, new user! Enjoy your stay, and obey the rules!"},
-            new Postitem() {Id=2, Author = "Douchey Newguy", BelongsToThread = thread1, Content = "This place sucks. Where's the content?"},
-            new Postitem() {Id=3, Author = "Jonatan Streith", BelongsToThread = thread1, Content = "New content will be added in time. This is just a placeholder. Also I'm talking to myself?"}
-            }
-        };
+            Random randomPick = new Random();         
+
+            return fakegames[randomPick.Next(0, 5)];
+        }
 
 
 
 
 
 
-
-        public static Threaditem thread2 = new Threaditem()
-        {
-            Id = 2,
-            Title = "User rules",
-            Author = "Jonatan Streith",
-            Posts = new List<Postitem>()
-            {
-            new Postitem() {Id=4, Author = "Jonatan Streith", BelongsToThread = thread1, Content = "User rules! That means you! You rule!"},
-            new Postitem() {Id=5, Author = "Nitpick McAnalRetentive", BelongsToThread = thread1, Content = "Actually, that's not what 'user rules' is supposed to mean."},
-            new Postitem() {Id=6, Author = "Jonatan Streith", BelongsToThread = thread1, Content = "Terms mean what I say they mean. Don't make me ban you for your offensive username."}
-
-            }
-        };
-
-
-        public static Threaditem thread3 = new Threaditem()
-        {
-            Id = 3,
-            Title = "Sonic 2020 Speedrun",
-            Author = "Jonatan Streith",
-            Posts = new List<Postitem>()
-            {
-            new Postitem() {Id=7, Author = "Jonatan Streith", BelongsToThread = thread3, Content = "This week, I'll be attempting another speedrun!"},
-            new Postitem() {Id=8, Author = "Nitpick McAnalRetentive", BelongsToThread = thread3, Content = "That game doesn't even exist."},
-            new Postitem() {Id=9, Author = "Jonatan Streith", BelongsToThread = thread3, Content = "That's how you know it's fast!"}
-
-            }
-        };
-
-        public static Threaditem thread4 = new Threaditem()
-        {
-            Id = 4,
-            Title = "Introduce yourself",
-            Author = "Jonatan Streith",
-            Posts = new List<Postitem>()
-            {
-            new Postitem() {Id=10, Author = "Jonatan Streith", BelongsToThread = thread4, Content = "Tell us who you are!"}
-
-            }
-        };
-
-
-
-
-        public static List<Threaditem> Threads = new List<Threaditem>() { thread1, thread2, thread3 };
-
-        public static Boarditem board1 = new Boarditem()
-        {
-            Id = 1,
-            Title = "Main",
-            Description = "The main board. Post generic content here.",
-            Threads = new List<Threaditem>() { thread1, thread2 }
-        };
-
-
-        public static Boarditem board2 = new Boarditem()
-        {
-            Id = 2,
-            Title = "Gaming",
-            Description = "Game-related topics.",
-            Threads = new List<Threaditem>() { thread3 }
-        };
-
-        public static Boarditem board3 = new Boarditem()
-        {
-            Id = 3,
-            Title = "Social",
-            Description = "Meet the community!",
-            Threads = new List<Threaditem>() { thread4 }
-        };
-
-
-
-
-        public static List<Boarditem> Boards = new List<Boarditem>() { board1, board2, board3 };
 
     }
 }
