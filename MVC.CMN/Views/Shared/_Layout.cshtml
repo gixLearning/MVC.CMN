@@ -7,15 +7,11 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 <body>
     <nav class="navbar fixed-top navbar-dark bg-primary navbar-expand-lg navbar-expand-md">
         <a class="navbar-brand" href="#">D-J Daily - not your usual gaming community portal!</a>
-
-
-
 
         <ul class="navbar-nav">
             <li class="nav-item p-2">@Html.ActionLink("Home", "Index", "Home")</li>
@@ -26,21 +22,7 @@
         <ul class="nav navbar-nav ml-auto">
             @Html.Partial("_LoginPartial")
         </ul>
-
-
-
     </nav>
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="container-fluid">
         @RenderBody()
@@ -48,11 +30,9 @@
         <footer>
             <nav class="navbar fixed-bottom navbar-dark bg-dark navbar-expand-lg navbar-expand-md">
 
-
                 <span class="navbar-text">
                     Copyright <i class="far fa-copyright"></i> some guys, All Rights Reserved.
                 </span>
-
             </nav>
         </footer>
     </div>

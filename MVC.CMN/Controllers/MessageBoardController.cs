@@ -7,6 +7,8 @@ using MVC.CMN.Models.MessageBoard;
 using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Text;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MVC.CMN.Controllers {
@@ -167,11 +169,19 @@ namespace MVC.CMN.Controllers {
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateNewPost(string postcontent, int threadId, string userId) {
+        public ActionResult CreateNewPost([ModelBinder(typeof(AllowHtmlBinder))]string postcontent, int threadId, string userId) {
             using (ForumDbContext context = new ForumDbContext()) {
                 Thread thread = context.Threads.Find(threadId);
 
-                Post post = new Post() { Subject = thread.Subject, Content = postcontent, Thread = thread, ThreadId = threadId, Created = DateTime.UtcNow, CreatedBy = userId };
+                const int MAX_LENGHT = 1000;
+                if(postcontent.Length > MAX_LENGHT) {
+                    postcontent = postcontent.Substring(0, MAX_LENGHT);
+                }
+
+                StringBuilder sb = new StringBuilder(HttpUtility.HtmlEncode(postcontent));
+                sb.Replace("&gt;", ">"); //Because markdown-quotation                
+
+                Post post = new Post() { Subject = thread.Subject, Content = sb.ToString(), Thread = thread, ThreadId = threadId, Created = DateTime.UtcNow, CreatedBy = userId };
                 thread.Posts.Add(post);
                 context.Posts.Add(post);
                 context.SaveChanges();
@@ -235,6 +245,9 @@ namespace MVC.CMN.Controllers {
         [ValidateAntiForgeryToken]
         public ActionResult EditPost(string postcontent, int threadId, int postId, string userId) {
             using (ForumDbContext context = new ForumDbContext()) {
+
+                StringBuilder sb = new StringBuilder(HttpUtility.HtmlEncode(postcontent));
+
                 context.Posts.Find(postId).Content = postcontent;
                 context.SaveChanges();
 

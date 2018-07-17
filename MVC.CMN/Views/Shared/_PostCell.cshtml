@@ -1,5 +1,6 @@
 ﻿@model MVC.CMN.Models.MessageBoard.Post
-    @using Microsoft.AspNet.Identity
+@using Microsoft.AspNet.Identity
+@using Markdig
 
 <tr>
     <td>
@@ -10,21 +11,23 @@
                 <div class="no-padding text-info col-9">
                     @Model.Thread.Subject
                 </div>
-                
-                <div class="text-right small no-padding col-3">
 
+                <div class="text-right small no-padding col-3">
                 </div>
             </div>
-
-
 
             <div class="cell-content bottom-padding col-12 d-flex flex-wrap">
                 <div class="col-10 no-padding">
                     <p class="no-margin">
-                        @Model.Content
+                        @{
+                            string text = Model.Content;
+
+                            //text = Markdown.ToHtml("> This is a very long line that will &lt;still&gt; be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. ");
+                            text = Markdown.ToHtml(text);
+                            @MvcHtmlString.Create(text);
+                        }
                     </p>
                 </div>
-
 
                 <div class="col-2 no-padding">
                     <p class=" no-margin">
@@ -34,9 +37,6 @@
                     </p>
                 </div>
             </div>
-
-
-
 
             <div class="cell-footer col-12 d-flex flex-wrap">
                 <div class="col-10 no-padding">
@@ -50,45 +50,28 @@
                     }
                 </div>
 
-
                 @if (Request.IsAuthenticated && Model.CreatedBy == User.Identity.GetUserId()) {
                     <div class="col-2 no-padding">
-                    <p class="text-right small no-margin">
-                        @*@Html.ActionLink("Quote", "QuotePost", "MessageBoard", new { id = Model.PostId }, null)  This should be an Ajax thingy*@
+                        <p class="text-right small no-margin">
+                            @*@Html.ActionLink("Quote", "QuotePost", "MessageBoard", new { id = Model.PostId }, null)  This should be an Ajax thingy*@
 
-                        @Ajax.ActionLink("Quote", "InsertQuotePostView", "MessageBoard", new { threadId = Model.ThreadId, userId = Model.CreatedBy, content = Model.Content }, new AjaxOptions
-    {
-        UpdateTargetId = "NewOrEdit",
-        InsertionMode = InsertionMode.Replace,
-        HttpMethod = "POST"
-    })
+                            @Ajax.ActionLink("Quote", "InsertQuotePostView", "MessageBoard", new { threadId = Model.ThreadId, userId = Model.CreatedBy, content = Model.Content }, new AjaxOptions {
+                                UpdateTargetId = "NewOrEdit",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "POST"
+                            })
 
+                            @Ajax.ActionLink("Edit post", "InsertEditPostView", "MessageBoard", new { threadId = Model.ThreadId, postId = Model.PostId, userId = Model.CreatedBy, content = Model.Content }, new AjaxOptions {
+                                UpdateTargetId = "NewOrEdit",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "POST"
+                            })
 
-
-                        @Ajax.ActionLink("Edit post", "InsertEditPostView", "MessageBoard", new { threadId = Model.ThreadId, postId = Model.PostId, userId = Model.CreatedBy, content = Model.Content }, new AjaxOptions
-    {
-        UpdateTargetId = "NewOrEdit",
-        InsertionMode = InsertionMode.Replace,
-        HttpMethod = "POST"
-    })
-
-                        @Html.ActionLink("Delete post", "DeletePost", "MessageBoard", new { id = Model.PostId }, null)
-                    </p>
-                </div>
+                            @Html.ActionLink("Delete post", "DeletePost", "MessageBoard", new { id = Model.PostId }, null)
+                        </p>
+                    </div>
                 }
             </div>
         </div>
-
-
-
-
-
-
-
-
     </td>
-
-
-
-
 </tr>

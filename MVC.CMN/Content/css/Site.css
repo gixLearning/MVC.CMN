@@ -201,3 +201,7 @@ ul.breadcrumb {
 .display-inline {
     display: inline
 }
+
+blockquote {
+    border: 1px black solid;
+}
