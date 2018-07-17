@@ -1,9 +1,26 @@
 ﻿@model MVC.CMN.Models.MessageBoard.NewPostViewModel
 
-@using (Html.BeginForm("CreateNewPost", "MessageBoard", new { threadId = Model.ThreadId, userId = Model.UserId }, FormMethod.Post)) {
+@using (Html.BeginForm("CreateNewPost", "MessageBoard", new { threadId = Model.ThreadId, userId = Model.UserId }, FormMethod.Post))
+{
     @Html.AntiForgeryToken()
+
+    @*<div id="wmd-button-bar" class="wmd-panel"></div>
+    <br />
+    <textarea id="wmd-input" class="wmd-panel" name="postcontent"></textarea>
+    <br />
+    <div id="wmd-preview" class="wmd-panel"></div>
+    <br />
+    <div id="wmd-output" class="wmd-panel"></div>*@
+
+
     <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="postcontent"></textarea>
 
     <br />
     <input type="submit" class="btn btn-primary" value="Reply">
 }
+
+
+
+
+
+
