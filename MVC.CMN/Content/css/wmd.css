@@ -13,41 +13,41 @@ body
 
 #wmd-editor
 {
-	background-color: Aquamarine;
+	/*background-color: Aquamarine;*/
 }
 
 #wmd-button-bar 
 {
 	width: 100%;
-	background-color: Silver; 
+	/*background-color: Silver;*/ 
 }
 
 #wmd-input 
 { 
 	height: 500px;
 	width: 100%;
-	background-color: Gainsboro;
+	/*background-color: Gainsboro;*/
 	border: 1px solid DarkGray;
 }
 
 #wmd-preview 
 { 
-	background-color: LightSkyBlue; 
+	/*background-color: LightSkyBlue;*/ 
 }
 
 #wmd-output 
 { 
-	background-color: Pink;
+	/*background-color: Pink;*/
 }
 
 #wmd-button-row {
     position: relative;
-    margin-left: 5px;
+    /*margin-left: 5px;
     margin-right: 5px;
     margin-bottom: 5px;
-    margin-top: 10px;
+    margin-top: 10px;*/
     padding: 0px;
-    height: 20px;
+    height: 5px;
 }
 
 .wmd-spacer

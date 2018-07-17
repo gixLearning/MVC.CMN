@@ -4,13 +4,14 @@
 {
     @Html.AntiForgeryToken()
 
-    @*<div id="wmd-button-bar" class="wmd-panel"></div>
+    <div id="wmd-button-bar" class="form-control wmd-panel col-8 mx-auto"></div>
+    <textarea id="wmd-input" class="form-control wmd-panel mx-auto" name="postcontent"></textarea>
     <br />
-    <textarea id="wmd-input" class="wmd-panel" name="postcontent"></textarea>
+    <div id="wmd-preview" class="form-control wmd-panel mx-auto"></div>
     <br />
-    <div id="wmd-preview" class="wmd-panel"></div>
-    <br />
-    <div id="wmd-output" class="wmd-panel"></div>*@
+    <div id="wmd-output" class="form-control wmd-panel mx-auto"></div>
+
+
 
 
     <textarea rows="10" cols="50" class="form-control col-12" id="NewPostInput" name="postcontent"></textarea>
