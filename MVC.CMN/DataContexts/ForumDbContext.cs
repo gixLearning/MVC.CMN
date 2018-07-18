@@ -1,16 +1,12 @@
-﻿using MVC.CMN.Migrations.ContextInitializers;
-using MVC.CMN.Models.MessageBoard;
-using MySql.Data.Entity;
+﻿using MVC.CMN.Models.MessageBoard;
 using System.Data.Entity;
 
 namespace MVC.CMN.DataContexts {
 
-    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class ForumDbContext : DbContext {
 
         public ForumDbContext() : base("name=ForumDBConnection") {
             Database.Log = (s) => System.Diagnostics.Debug.WriteLine(s);
-            Database.SetInitializer(new ForumDbInitializer());
             Configuration.LazyLoadingEnabled = false;
         }
 

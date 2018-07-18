@@ -14,8 +14,6 @@ namespace MVC.CMN.Migrations.ApplicationDbContext {
         public Configuration() {
             AutomaticMigrationsEnabled = false;
             MigrationsDirectory = @"Migrations\ApplicationDbContext";
-            SetSqlGenerator("MySql.Data.MySqlLient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
-            CodeGenerator = new MySql.Data.Entity.MySqlMigrationCodeGenerator();
         }
 
         protected override void Seed(DataContexts.ApplicationDbContext context) {

@@ -12,9 +12,6 @@ namespace MVC.CMN.Migrations.ForumDbContext {
         public Configuration() {
             AutomaticMigrationsEnabled = true;
             MigrationsDirectory = @"Migrations\ForumDbContext";
-            SetSqlGenerator("MySql.Data.MySqlLient", new MySql.Data.Entity.MySqlMigrationSqlGenerator());
-            CodeGenerator = new MySql.Data.Entity.MySqlMigrationCodeGenerator();
-            SetHistoryContextFactory("MySql.Data.MySqlClient", (conn, schema) => new MySqlHistoryContext(conn, schema));
         }
 
         protected override void Seed(DataContexts.ForumDbContext context) {

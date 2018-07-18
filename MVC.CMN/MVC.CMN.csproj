@@ -80,12 +80,6 @@
     <Reference Include="Microsoft.Owin.Security.Google, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.10.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.6.10.7\lib\net452\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.Entity.EF6, Version=6.8.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.Entity.6.8.8\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -178,23 +172,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.cs" />
-    <Compile Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.Designer.cs">
-      <DependentUpon>201807051306080_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\ApplicationDbContext\201807180804019_InitialDatabaseCreation.cs" />
+    <Compile Include="Migrations\ApplicationDbContext\201807180804019_InitialDatabaseCreation.Designer.cs">
+      <DependentUpon>201807180804019_InitialDatabaseCreation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ApplicationDbContext\ApplicationDbInitializer.cs" />
     <Compile Include="Migrations\ApplicationDbContext\Configuration.cs" />
-    <Compile Include="Migrations\ForumDbContext\201807060823556_InitialCreate.cs" />
-    <Compile Include="Migrations\ForumDbContext\201807060823556_InitialCreate.Designer.cs">
-      <DependentUpon>201807060823556_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\ForumDbContext\201807180810558_InitialDatabaseCreation.cs" />
+    <Compile Include="Migrations\ForumDbContext\201807180810558_InitialDatabaseCreation.Designer.cs">
+      <DependentUpon>201807180810558_InitialDatabaseCreation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\ForumDbContext\201807111315467_DatabaseCreate_UserProfile.Name.Table.cs" />
-    <Compile Include="Migrations\ForumDbContext\201807111315467_DatabaseCreate_UserProfile.Name.Table.Designer.cs">
-      <DependentUpon>201807111315467_DatabaseCreate_UserProfile.Name.Table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\ForumDbContext\ForumDbInitializer.cs" />
     <Compile Include="Migrations\ForumDbContext\Configuration.cs" />
-    <Compile Include="Migrations\MySqlHistoryContext.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Boarditem.cs" />
@@ -226,6 +213,14 @@
     <Compile Include="Validation\AllowHtmlBinder.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-MVC.CMN-Forum.mdf" />
+    <Content Include="App_Data\aspnet-MVC.CMN-Forum_log.ldf">
+      <DependentUpon>aspnet-MVC.CMN-Forum.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\aspnet-MVC.CMN-Identity.mdf" />
+    <Content Include="App_Data\aspnet-MVC.CMN-Identity_log.ldf">
+      <DependentUpon>aspnet-MVC.CMN-Identity.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\css\bootstrap\bootstrap-grid.css" />
     <Content Include="Content\css\bootstrap\bootstrap-grid.min.css" />
     <Content Include="Content\css\bootstrap\bootstrap-reboot.css" />
@@ -292,12 +287,9 @@
     <Content Include="Scripts\popper\umd\popper-utils.min.js" />
     <Content Include="Scripts\popper\umd\popper.js" />
     <Content Include="Scripts\popper\umd\popper.min.js" />
-
     <Content Include="Scripts\showdown.js" />
     <Content Include="Scripts\wmd.js" />
-
     <Content Include="Scripts\messageboard.js" />
-
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -360,7 +352,6 @@
     <Content Include="Views\Shared\_NewsDisplay.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Initializers\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
@@ -377,14 +368,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\ApplicationDbContext\201807051306080_InitialCreate.resx">
-      <DependentUpon>201807051306080_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ApplicationDbContext\201807180804019_InitialDatabaseCreation.resx">
+      <DependentUpon>201807180804019_InitialDatabaseCreation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ForumDbContext\201807060823556_InitialCreate.resx">
-      <DependentUpon>201807060823556_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\ForumDbContext\201807111315467_DatabaseCreate_UserProfile.Name.Table.resx">
-      <DependentUpon>201807111315467_DatabaseCreate_UserProfile.Name.Table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\ForumDbContext\201807180810558_InitialDatabaseCreation.resx">
+      <DependentUpon>201807180810558_InitialDatabaseCreation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
