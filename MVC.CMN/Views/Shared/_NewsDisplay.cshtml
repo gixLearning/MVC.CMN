@@ -1,6 +1,6 @@
 ﻿@model  List<MVC.CMN.Models.MessageBoard.Thread>
 
-
+@using Markdig
 
 
 @{
@@ -16,7 +16,17 @@
             </p>
 
             <p class="small">
-                @item.Posts.First().Content
+                @*@item.Posts.First().Content*@
+
+
+                @{
+        string text = item.Posts.First().Content;
+
+        //text = Markdown.ToHtml("> This is a very long line that will &lt;still&gt; be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. ");
+        text = Markdown.ToHtml(text);
+            @MvcHtmlString.Create(text);
+                }
+
             </p>
 
             <p class="text-right small">Written by @item.UserProfile.UserName on @item.Created</p>
