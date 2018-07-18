@@ -5,10 +5,10 @@ body
 
 .wmd-panel
 {
-	margin-left: 25%;
+	/*margin-left: 25%;
 	margin-right: 25%;
 	width: 50%;
-	min-width: 500px;
+	min-width: 500px;*/
 }
 
 #wmd-editor
@@ -24,20 +24,20 @@ body
 
 #wmd-input 
 { 
-	height: 500px;
+	/*height: 500px;*/
 	width: 100%;
 	/*background-color: Gainsboro;*/
 	border: 1px solid DarkGray;
 }
 
-#wmd-preview 
-{ 
-	/*background-color: LightSkyBlue;*/ 
+#wmd-preview {
+    width: 100%;
+    /*background-color: LightSkyBlue;*/
 }
 
-#wmd-output 
-{ 
-	/*background-color: Pink;*/
+#wmd-output {
+    width: 100%;
+    /*background-color: Pink;*/
 }
 
 #wmd-button-row {
