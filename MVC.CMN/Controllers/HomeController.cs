@@ -49,7 +49,7 @@ namespace MVC.CMN.Controllers {
                 newsitems.AddRange(context.Threads
                         .Include(t => t.Posts)
                         .Include(t => t.UserProfile)
-                        .Where(t => t.BoardId == 6)
+                        .Where(t => t.BoardId == 4)
                         .OrderByDescending(d => d.Created)
                         .Take(5)
                         .ToList()
