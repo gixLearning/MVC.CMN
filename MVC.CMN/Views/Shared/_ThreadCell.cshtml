@@ -1,5 +1,6 @@
 ﻿@model MVC.CMN.Models.MessageBoard.Thread
-    @using MVC.CMN.Models
+@using MVC.CMN.Models
+@using Markdig
 
 <tr>
     <td>
@@ -16,13 +17,27 @@
                 <div class="col-10 no-padding">
                     <p class="no-margin">
 
-                        @if (Model.Posts.Count > 0)
-                        {
-                            if (Model.Posts.LastOrDefault().Content != null)
+                         @if (Model.Posts.Count > 0)
                             {
-                                @Model.Posts.LastOrDefault().Content
-                            }
-                        }
+                                if (Model.Posts.LastOrDefault().Content != null)
+                                {
+
+                                    {
+                                        string text = Model.Posts.LastOrDefault().Content;
+
+                                        //text = Markdown.ToHtml("> This is a very long line that will &lt;still&gt; be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. ");
+
+                                        Console.WriteLine(text);
+
+                                        text = Markdown.ToHtml(text);
+                                    @MvcHtmlString.Create(text);
+                                        }
+
+
+
+                                    }
+                                }
+                            
                     </p>
                 </div>
 
@@ -58,12 +73,14 @@
                     </p>
                 </div>
 
-                @if (Request.IsAuthenticated && (User.IsInRole(RoleTypes.Admin) || User.IsInRole(RoleTypes.Moderator))) {
+                @if (Request.IsAuthenticated && (User.IsInRole(RoleTypes.Admin) || User.IsInRole(RoleTypes.Moderator)))
+                {
                     <div class="col-2 no-padding">
 
 
                         <p class="text-right small no-margin">
-                            @Ajax.ActionLink("Edit thread", "InsertEditThreadView", "MessageBoard", new { threadId = Model.ThreadId, boardId = Model.BoardId, userId = Model.CreatedBy, subject = Model.Subject }, new AjaxOptions {
+                            @Ajax.ActionLink("Edit thread", "InsertEditThreadView", "MessageBoard", new { threadId = Model.ThreadId, boardId = Model.BoardId, userId = Model.CreatedBy, subject = Model.Subject }, new AjaxOptions
+                            {
                                 UpdateTargetId = "NewOrEdit",
                                 InsertionMode = InsertionMode.Replace,
                                 HttpMethod = "POST"
