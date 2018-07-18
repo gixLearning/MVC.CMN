@@ -43,11 +43,11 @@
                     <p class="small no-margin display-inline">
                         Written by @Model.UserProfile.UserName on @Model.Created
                     </p>
-                    @if (Request.IsAuthenticated) {
+                    @*@if (Request.IsAuthenticated) {
                         <p class="small no-margin display-inline">
                             <a href="#quote" data-trigger="quote" class="quote">Quote</a>
                         </p>
-                    }
+                    }*@
                 </div>
 
                 @if (Request.IsAuthenticated && Model.CreatedBy == User.Identity.GetUserId()) {

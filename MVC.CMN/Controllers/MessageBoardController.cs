@@ -156,8 +156,18 @@ namespace MVC.CMN.Controllers {
                 Thread thread = new Thread() { Subject = threadtitle, BoardId = boardId, Board = board, Created = DateTime.UtcNow, CreatedBy = userId };
                 context.Threads.Add(thread);
 
-                Post post = new Post() { Subject = thread.Subject, Content = threadcontent, Thread = thread, ThreadId = thread.ThreadId, Created = DateTime.UtcNow, CreatedBy = userId };
+                StringBuilder sb = new StringBuilder(HttpUtility.HtmlEncode(threadcontent));
+                sb.Replace("&gt;", ">"); //Because markdown-quotation                
+
+                Post post = new Post() { Subject = thread.Subject, Content = sb.ToString(), Thread = thread, ThreadId = thread.ThreadId, Created = DateTime.UtcNow, CreatedBy = userId };
                 thread.Posts.Add(post);
+
+
+
+
+
+                //Post post = new Post() { Subject = thread.Subject, Content = threadcontent, Thread = thread, ThreadId = thread.ThreadId, Created = DateTime.UtcNow, CreatedBy = userId };
+                //thread.Posts.Add(post);
 
                 //Generera ett post-objekt också, sen lägg till i thread
                 context.Posts.Add(post);
